@@ -6,9 +6,12 @@ import Credits from './scenes/credits'
 // initialize context
 kaboom({
 	backgroundAudio: true,
-	background: [0,0,0],
+	background: [23,139,225],
 	loadingScreen: false
 })
+if(!localStorage.getItem("score")) {
+	localStorage.setItem("score", 0)
+}
 onLoading((progress) => {
     console.log(progress)
 	// Black background
@@ -19,7 +22,7 @@ onLoading((progress) => {
 	})
 
 	// A pie representing current load progress
-	drawCircle({
+	/*drawCircle({
 		pos: center(),
 		radius: 32,
 		end: map(progress, 0, 1, 0, 360),
@@ -31,8 +34,7 @@ onLoading((progress) => {
 		size: 24,
 		anchor: "center",
 		pos: center().add(0, 70),
-	})
-
+	})*/
 })
 const effects = {
 	vhs: () => ({
@@ -43,6 +45,7 @@ const effects = {
 let curEffect = 0
 // load assets
 loadSprite("bean", "sprites/bean.png")
+loadSprite("cloud", "sprites/clouds.png")
 loadSound("20190724", "sounds/20190724.mp3")
 
 loadSound("20190724 2", "sounds/20190724 2.mp3")
@@ -87,6 +90,39 @@ scene("menu", () => {
 scene("credits", () => {
 	Credits();
 })
+scene("loading", () => {
+	var progress = 0
+	const interval = setInterval((t) => {
+		console.log(progress)
+		progress++;
+		if(progress>99) {
+			console.log("Done!")
+			go("menu")
+			clearInterval(interval)
+		}
+	// Black background
+	drawRect({
+		width: width(),
+		height: height(),
+		color: rgb(0, 0, 0),
+	})
+
+	// A pie representing current load progress
+	drawCircle({
+		pos: center(),
+		radius: 32,
+		end: map(progress, 0, 1, 0, 360),
+	})
+
+	drawText({
+		text: "loading" + ".".repeat(wave(1, 4, time() * 12)),
+		font: "monospace",
+		size: 24,
+		anchor: "center",
+		pos: center().add(0, 70),
+	})
+	})
+})
 scene("notmobile", () => {
 	add([
 		pos(center()),
@@ -103,7 +139,7 @@ scene("notmobile", () => {
         pos(0, height()*(3/4)),
     ]);
 })
-go("menu")
+go("loading")
 /*if(kaboom.isTouch()) {
   go("menu")
 } else {
