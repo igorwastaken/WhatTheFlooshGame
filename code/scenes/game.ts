@@ -41,8 +41,8 @@ export default function Game(effects, curEffect) {
 			offscreen({destroy:true}),
 			"Rect"
         ])
-		onUpdate(() => {recta.move(0, -150)})
-		wait(rand(0.5, 0.8), spawnRect);
+		onUpdate(() => {recta.move(0, rand(-150,-100))})
+		wait(rand(0.2, 0.5), spawnRect);
 		// wait(0.3, spawnRect);
 		recta.onCollide("clouds", () => {
 			destroy(recta)
@@ -54,6 +54,29 @@ export default function Game(effects, curEffect) {
 		}
 	})
 	}
+	function spawnRedRect() {
+	    const recta = add([
+            pos(rand(width()), height()),
+			color(255,0,0),
+		    circle(10, 10),
+            outline(2),
+            area(),
+			offscreen({destroy:true}),
+			"Rectred"
+        ])
+		onUpdate(() => {recta.move(0, -150)})
+		wait(rand(0.4, 1), spawnRedRect);
+		// wait(0.3, spawnRect);
+		recta.onCollide("clouds", () => {
+			destroy(recta)
+		})
+		recta.onUpdate(() => {
+		if (recta.pos.y > height()) {
+			destroy(recta)
+			addKaboom(recta.pos)
+		}
+	})
+				}
     function spawnClouds() {
 	    const recta = add([
             pos(rand(width()), height()),
@@ -61,6 +84,7 @@ export default function Game(effects, curEffect) {
             //outline(2),
 			scale(0.3),
             area(),
+			offscreen({destroy:true}),
 			"clouds"
         ])
 		onUpdate(() => {recta.move(0, -150)})
@@ -74,9 +98,9 @@ export default function Game(effects, curEffect) {
 	})
 	}
 	spawnClouds()
-	
+	spawnRedRect()
 	spawnRect()
-	player.onCollide("clouds", () => {
+	player.onCollide("Rectred", () => {
 		addKaboom(player.pos)
 		burp()
 		shake(50)

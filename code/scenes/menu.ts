@@ -45,7 +45,7 @@ export default function MainMenu() {
 		area(),
 		"credits"
 	])
-	var clouds = 0
+    /*var clouds = 0
 	for(clouds=0; clouds < 11; clouds++) {
 		const clouds = add([
 			sprite("cloud"),
@@ -54,7 +54,28 @@ export default function MainMenu() {
 			scale(0.3)
 		])
 		clouds.onCollide("score", () => destroy(clouds))
+	}*/
+	function spawnClouds() {
+	    const recta = add([
+            pos(width(), rand(height())),
+		    sprite("cloud"),
+            //outline(2),
+			scale(0.3),
+            area(),
+			offscreen({destroy:true}),
+			"clouds"
+        ])
+		onUpdate(() => {recta.move(rand(-150,-130),0)})
+		//wait(rand(0.3, 0.7), spawnRect);
+		wait(0.6, spawnClouds);
+		recta.onUpdate(() => {
+		if (recta.pos.x > width()) {
+			destroy(recta)
+			// addKaboom(recta.pos)
+		}
+	})
 	}
+	spawnClouds()
 	onClick("btn", () => {
 		go("game")
 	})
