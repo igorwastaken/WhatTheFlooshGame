@@ -16,6 +16,14 @@ export default function Game(effects, curEffect) {
 		pos(10,10),
 		area()
 	])
+	/*const fps = add([
+		text(debug.fps()),
+		pos(width()-100, 10),
+		area()
+	])
+	onUpdate(() => {
+		fps.text = debug.fps()
+	})*/
 	/*onKeyDown('left', () => {
 		player.moveTo(-80, 200)
 	})
@@ -100,12 +108,14 @@ export default function Game(effects, curEffect) {
 	spawnClouds()
 	spawnRedRect()
 	spawnRect()
-	player.onCollide("Rectred", () => {
-		addKaboom(player.pos)
-		burp()
+	player.onCollide("Rectred", (re) => {
+		const kaboom = addKaboom(player.pos)
+		kaboom.move(0, -150)
+		play("score")
 		shake(50)
 		destroy(player)
-		wait(rand(0.5, 2), () => {
+		destroy(re)
+		wait(2, () => {
 			// readd(player)
 			//spawnRect()
 			go("menu")
@@ -117,5 +127,23 @@ export default function Game(effects, curEffect) {
 		if(currentScore > localStorage.getItem("score")) { localStorage.setItem("score", currentScore) }
 		destroy(c)
 	})
-	
+	/*onUpdate(() => {
+		if(currentScore === 20) {
+			/*loadShader("invert", null, `
+uniform float u_time;
+
+vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
+	vec4 c = def_frag();
+	float t = (sin(u_time * 4.0) + 1.0) / 2.0;
+	return mix(c, vec4(1.0 - c.r, 1.0 - c.g, 1.0 - c.b, c.a), t);
+}
+`)
+			// console.log("20")
+			loadShaderURL("invert", null, "shaders/invert.frag")
+		}
+	})*/
+	// loadShaderURL("invert", null, "shaders/invert.frag")
+	/*onUpdate(() => {
+		shake(0.05)
+	})*/
 }

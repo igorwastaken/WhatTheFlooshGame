@@ -8,7 +8,12 @@ export default function Credits() {
 			width: width()
 		}),
 		pos(10,10),
+		area(),
+		"devBtn"
 	])
+	onHoverEnd("devBtn", () => {
+		go("devOptions")
+	})
 	add([
 		text("Criador:", {
 			size: 20,
@@ -38,7 +43,7 @@ export default function Credits() {
 		pos(10, 140)
 	])
 	add([
-		text("20190724 2 - Mac Demaeco", {
+		text("20190724 2 - Mac Demarco", {
 			size: 14,
 			width: width()
 		}),

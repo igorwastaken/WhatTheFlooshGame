@@ -3,8 +3,11 @@ import "kaboom/global"
 import Game from './scenes/game'
 import Menu from './scenes/menu'
 import Credits from './scenes/credits'
+import Dev from './scenes/devScreen'
 // initialize context
 kaboom({
+	/*width: window.innerWidth,
+	height: window.innerHeight,*/
 	backgroundAudio: true,
 	background: [23,139,225],
 	loadingScreen: false
@@ -46,11 +49,13 @@ let curEffect = 0
 // load assets
 loadSprite("bean", "sprites/bean.png")
 loadSprite("cloud", "sprites/clouds.png")
+loadSprite("plane", "sprites/plane.png")
 loadSound("20190724", "sounds/20190724.mp3")
-
+loadSound("score", "sounds/score.mp3")
 loadSound("20190724 2", "sounds/20190724 2.mp3")
+loadSound("20210511", "sounds/20210511.mp3")
+loadShaderURL("vhs", null, "shaders/vhs.frag")
 
-burp()
 
 const menumusic = play("20190724 2", {
 	loop: true,
@@ -60,18 +65,30 @@ const gamemusic = play("20190724", {
 	loop: true,
 	volume: 0,
 })
+const creditsmusic = play("20210511", {
+	loop: true,
+	volume: 0
+})
 const label = add([
 	  pos(8, 8),
 	  text("0"),
+	  area()
 ])
 
 
 // gamemusic.play()
 // menumusic.play()
 // record(60)
+
+add([
+	uvquad(width(), height()),
+	shader("vhs")
+])
+
 scene("game", () => {
 	gamemusic.play()
 	menumusic.volume = 0
+	creditsmusic.volume = 0
 	gamemusic.volume = 1
 	debug.log("Como se fosse aquele jogo do Pou")
 	debug.log(`Use o touch e/ou o mouse para mover o Floosh.`)
@@ -80,14 +97,24 @@ scene("game", () => {
 	}, 500)*/
 	Game(effects, curEffect);
 })
+
+burp()
+scene("devOptions", () => {
+	Dev()
+})
 scene("menu", () => {
-	burp()
-	// menumusic.play()
+	play("score")
+	menumusic.play()
 	menumusic.volume = 1
+	creditsmusic.volume = 0
 	gamemusic.volume = 0
 	Menu();
 })
 scene("credits", () => {
+	creditsmusic.play()
+	creditsmusic.volume = 1
+	menumusic.volume = 0
+	gamemusic.volume = 0
 	Credits();
 })
 scene("loading", () => {
@@ -99,6 +126,7 @@ scene("loading", () => {
 			console.log("Done!")
 			go("menu")
 			clearInterval(interval)
+			alert("O jogo está instável no momento, mas ainda é jogável (:")
 		}
 	// Black background
 	drawRect({
@@ -123,7 +151,7 @@ scene("loading", () => {
 	})
 	})
 })
-scene("notmobile", () => {
+scene("notfull", () => {
 	add([
 		pos(center()),
 		sprite("bean"),
@@ -131,7 +159,7 @@ scene("notmobile", () => {
 		body()
 	])
 	add([
-        text(`Desculpe, mas o jogo só funciona em touch`, {
+        text(`O jogo funciona melhor com tela cheia. Clique em F11 e/ou recarregue a página`, {
             size: 16,
             width: width(),
             // font: "breakout"
@@ -147,3 +175,9 @@ go("loading")
 }
 */
 debug.inspect = window.location.hash==="#debug"
+// setFullscreen()
+/*onUpdate(() => {
+	if(!isFullscreen) {
+		go("notFull")
+	}
+})*/
