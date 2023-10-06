@@ -26,7 +26,7 @@ export default function Credits() {
 			size: 14,
 			width: width()
 		}),
-		pos(10, 80)
+		pos(10, 70)
 	])
 	add([
 		text("Músicas:", {
@@ -50,11 +50,18 @@ export default function Credits() {
 		pos(10, 160)
 	])
 	add([
+		text("20210511 - Mac Demarco", {
+			size: 14,
+			width: width()
+		}),
+		pos(10, 180)
+	])
+	add([
 		text("Criado com Kaboom.js", {
 			size: 20,
 			width: width()
 		}),
-		pos(10, 200),
+		pos(10, 210),
 		area(),
 		"kaboomgit"
 	])
@@ -65,6 +72,7 @@ export default function Credits() {
 		}),
 		pos(10, 250),
 		area(),
+
 		"voltar"
 	])
 	onClick("kaboomgit", () => {

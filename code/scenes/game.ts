@@ -84,7 +84,33 @@ export default function Game(effects, curEffect) {
 			addKaboom(recta.pos)
 		}
 	})
-				}
+	}
+	function spawnPlanes() {
+		const recta = add([
+            pos(-100, rand(height())),
+			color(255,0,0),
+		    sprite("plane", {
+				flipX: true
+			}),
+			scale(0.5),
+            area(),
+			offscreen({destroy:true}),
+			"Rectred"
+        ])
+		onUpdate(() => {recta.move(rand(100, 50), -120)})
+		wait(rand(5, 10), spawnPlanes);
+		// wait(0.3, spawnRect);
+		recta.onCollide("Rectred", (a) => {
+			destroy(recta)
+			addKaboom(a.pos)
+		})
+		recta.onUpdate(() => {
+		if (recta.pos.y > height()) {
+			destroy(recta)
+			addKaboom(recta.pos)
+		}
+	})
+	}
     function spawnClouds() {
 	    const recta = add([
             pos(rand(width()), height()),
@@ -108,10 +134,11 @@ export default function Game(effects, curEffect) {
 	spawnClouds()
 	spawnRedRect()
 	spawnRect()
+	wait(1, spawnPlanes)
 	player.onCollide("Rectred", (re) => {
-		const kaboom = addKaboom(player.pos)
-		kaboom.move(0, -150)
-		play("score")
+		const kaaboom = addKaboom(player.pos)
+		kaaboom.move(0, -150)
+		burp()
 		shake(50)
 		destroy(player)
 		destroy(re)
@@ -122,6 +149,7 @@ export default function Game(effects, curEffect) {
 		})
 	})
 	player.onCollide("Rect", (c) => {
+		
 		currentScore++;
 		score.text=currentScore;
 		if(currentScore > localStorage.getItem("score")) { localStorage.setItem("score", currentScore) }

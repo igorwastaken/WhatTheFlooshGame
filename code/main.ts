@@ -6,12 +6,13 @@ import Credits from './scenes/credits'
 import Dev from './scenes/devScreen'
 // initialize context
 kaboom({
-	/*width: window.innerWidth,
-	height: window.innerHeight,*/
+	width: window.innerWidth,
+	height: window.innerHeight,
 	backgroundAudio: true,
 	background: [23,139,225],
 	loadingScreen: false
 })
+
 if(!localStorage.getItem("score")) {
 	localStorage.setItem("score", 0)
 }
@@ -103,7 +104,8 @@ scene("devOptions", () => {
 	Dev()
 })
 scene("menu", () => {
-	play("score")
+	burp()
+	// play("score")
 	menumusic.play()
 	menumusic.volume = 1
 	creditsmusic.volume = 0
