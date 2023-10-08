@@ -1,3 +1,3 @@
 # Skins
 
-![Nerd](sprites/skins/nerd.png) Nerd
+![Nerd](/sprites/skins/nerd.png) Nerd
