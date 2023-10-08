@@ -23,7 +23,7 @@ export default function MainMenu() {
 	])
 	add([
 		pos(center()),
-		sprite("bean"),
+		sprite(localStorage.getItem("skin")),
 		area(),
 		body(),
 		"btn",
