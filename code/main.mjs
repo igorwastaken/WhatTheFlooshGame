@@ -64,6 +64,8 @@ loadSound("20190724 2", "sounds/20190724 2.mp3")
 loadSound("20210511", "sounds/20210511.mp3")
 loadShaderURL("vhs", null, "shaders/vhs.frag")
 
+// Skins
+loadSprite("nerd", "sprites/skins/nerd.png")
 
 const menumusic = play("20190724 2", {
 	loop: true,
