@@ -93,11 +93,6 @@ scene("game", () => {
 	menumusic.volume = 0
 	creditsmusic.volume = 0
 	gamemusic.volume = 1
-	debug.log("Como se fosse aquele jogo do Pou")
-	debug.log(`Use o touch e/ou o mouse para mover o Floosh.`)
-	/*setTimeout(() => {
-	  debug.log("Como se fosse aquele joguinho do Pou")
-	}, 500)*/
 	Game(effects, curEffect);
 })
 
