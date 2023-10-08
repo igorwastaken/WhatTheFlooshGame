@@ -31,7 +31,7 @@ export default function Game(effects, curEffect) {
 		player.moveTo(80, 200)
 	})*/
 	player.onUpdate(() => {
-		if(player.pos.y < 201) {
+		if(player.pos.y < 300) {
 			player.move(0,100)
 		}
 	});
