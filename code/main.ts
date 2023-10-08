@@ -1,5 +1,5 @@
 import kaboom from "kaboom"
-import "kaboom/global"
+// import "kaboom/global"
 import Game from './scenes/game'
 import Menu from './scenes/menu'
 import Credits from './scenes/credits'
