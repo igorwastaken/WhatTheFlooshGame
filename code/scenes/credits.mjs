@@ -1,4 +1,3 @@
-import 'kaboom/global'
 import kaboom from 'kaboom'
 
 export default function Credits() {
