@@ -32,7 +32,7 @@ export default function Game(effects, curEffect) {
 	})*/
 	player.onUpdate(() => {
 		if(player.pos.y < 201) {
-			player.move(0,50)
+			player.move(0,100)
 		}
 	});
 	onTouchMove((_, pos) => {
