@@ -1,9 +1,9 @@
 import kaboom from "kaboom"
 // import "kaboom/global"
-import Game from './scenes/game'
-import Menu from './scenes/menu'
-import Credits from './scenes/credits'
-import Dev from './scenes/devScreen'
+import Game from './scenes/game.mjs'
+import Menu from './scenes/menu.mjs'
+import Credits from './scenes/credits.mjs'
+import Dev from './scenes/devScreen.mjs'
 // initialize context
 kaboom({
 	width: window.innerWidth,
