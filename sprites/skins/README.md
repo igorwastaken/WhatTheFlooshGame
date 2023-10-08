@@ -1,2 +1,3 @@
 # Skins
-nada ainda
+
+![Nerd](sprites/skins/nerd.png) Nerd
