@@ -36,7 +36,7 @@ export default function MainMenu() {
 	    align: "center"
             // font: "breakout"
         }),
-        pos(0, height()*(4/6)),
+        pos(0, height()/3),
 		area(),
 		"btn",
 		z(3),
@@ -48,19 +48,19 @@ export default function MainMenu() {
 			width: width(),
 			align: "center"
 		}),
-		pos(0, height()*(3/4)),
+		pos(0, height()/2.5),
 		area(),
 		"credits",
 		z(3)
 	])
-	/*add([
+	add([
 		text("Loja", {
 			size: 16,
 			width: width(),
 			align:"center"
 		}),
-		pos(0,height()*(300))
-	])*/
+		pos(0,height()/2)
+	])
     var clouds = 0
 	for(clouds=0; clouds < 50; clouds++) {
 		const clouds = add([
