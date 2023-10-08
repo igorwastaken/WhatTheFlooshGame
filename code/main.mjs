@@ -4,7 +4,6 @@ import Game from './scenes/game.mjs'
 import Menu from './scenes/menu.mjs'
 import Credits from './scenes/credits.mjs'
 import Dev from './scenes/devScreen.mjs'
-import Shop from './scenes/shop.mjs'
 // initialize context
 kaboom({
 	width: window.innerWidth,
@@ -12,7 +11,7 @@ kaboom({
 	backgroundAudio: true,
 	background: [0,20,102],
 	loadingScreen: false,
-	canvas: document.getElementById("gamecanvas")
+	// canvas: document.getElementById("gamecanvas")
 })
 
 if(!localStorage.getItem("score")) {
@@ -116,13 +115,6 @@ scene("credits", () => {
 	menumusic.volume = 0
 	gamemusic.volume = 0
 	Credits();
-})
-scene("shop", () => {
-	creditsmusic.play()
-	creditsmusic.volume = 1
-	menumusic.volume = 0
-	gamemusic.volume = 0
-	Shop();
 })
 scene("loading", () => {
 	var progress = 0

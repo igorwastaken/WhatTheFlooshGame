@@ -27,7 +27,7 @@ export default function MainMenu() {
 		area(),
 		body(),
 		"btn",
-		z(1),
+		z(1)
 	])
 	add([
         text(`Jogar`, {
@@ -36,7 +36,7 @@ export default function MainMenu() {
 	    align: "center"
             // font: "breakout"
         }),
-        pos(0, height()/2.9),
+        pos(0, height()/2),
 		area(),
 		"btn",
 		z(3),
@@ -48,22 +48,19 @@ export default function MainMenu() {
 			width: width(),
 			align: "center"
 		}),
-		pos(0, height()/2.5),
+		pos(0, height()/2),
 		area(),
 		"credits",
 		z(3)
 	])
-	add([
+	/*add([
 		text("Loja", {
 			size: 16,
 			width: width(),
 			align:"center"
 		}),
-		pos(0,height()/2.2),
-		area(),
-		"shop",
-		z(3)
-	])
+		pos(0,height()*(300))
+	])*/
     var clouds = 0
 	for(clouds=0; clouds < 50; clouds++) {
 		const clouds = add([
@@ -119,8 +116,5 @@ export default function MainMenu() {
 	})
 	onClick("credits", () => {
 		go("credits")
-	})
-	onClick("shop", () => {
-		go("shop")
 	})
 }
