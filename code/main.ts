@@ -1,16 +1,17 @@
-import kaboom from "kaboom"
-import "kaboom/global"
-import Game from './scenes/game'
-import Menu from './scenes/menu'
-import Credits from './scenes/credits'
-import Dev from './scenes/devScreen'
+import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs"
+// import "kaboom/global"
+import Game from '/scenes/game'
+import Menu from '/scenes/menu'
+import Credits from '/scenes/credits'
+import Dev from '/scenes/devScreen'
 // initialize context
 kaboom({
 	width: window.innerWidth,
 	height: window.innerHeight,
 	backgroundAudio: true,
 	background: [0,20,102],
-	loadingScreen: false
+	loadingScreen: false,
+	canvas: document.getElementById("gamecanvas")
 })
 
 if(!localStorage.getItem("score")) {

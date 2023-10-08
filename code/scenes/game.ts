@@ -157,7 +157,7 @@ export default function Game(effects, curEffect) {
 		
 		currentScore++;
 		score.text=currentScore;
-		if(currentScore > localStorage.getItem("score")) { localStorage.setItem("score", currentScore) }
+		if(currentScore > localStorage.getItem("score")) { localStorage.setItem("score", currentScore); score.color=GREEN }
 		destroy(c)
 	})
 	/*onUpdate(() => {
