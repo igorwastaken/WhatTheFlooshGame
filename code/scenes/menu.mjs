@@ -36,7 +36,7 @@ export default function MainMenu() {
 			align: "center"
             // font: "breakout"
         }),
-        pos(0, height()*(4/6)),
+        pos(0, height()*(6/9)),
 		area(),
 		"btn",
 		z(3),
@@ -48,7 +48,7 @@ export default function MainMenu() {
 			width: width(),
 			align: "center"
 		}),
-		pos(0, height()*(3/4)),
+		pos(0, height()*(4/6)),
 		area(),
 		"credits",
 		z(3)
@@ -59,7 +59,7 @@ export default function MainMenu() {
 			width: width(),
 			align:"center"
 		}),
-		pos(0,height()*(2/3))
+		pos(0,height()*(3/4))
 	])
     var clouds = 0
 	for(clouds=0; clouds < 50; clouds++) {
