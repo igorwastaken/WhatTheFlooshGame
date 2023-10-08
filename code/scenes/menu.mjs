@@ -36,7 +36,7 @@ export default function MainMenu() {
 	    align: "center"
             // font: "breakout"
         }),
-        pos(0, height()/3),
+        pos(0, height()/2.8),
 		area(),
 		"btn",
 		z(3),
