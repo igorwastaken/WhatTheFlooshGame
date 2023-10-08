@@ -5,7 +5,7 @@ export default function Game(effects, curEffect) {
 	var currentScore = 0;
 	const player = add([
 		sprite("bean"),
-        pos(100, 200),
+        pos(100, 0),
         area(),
         body(),
 		offscreen({ destroy: true }),
@@ -30,15 +30,20 @@ export default function Game(effects, curEffect) {
 	onKeyDown('right', () => {
 		player.moveTo(80, 200)
 	})*/
+	player.onUpdate(() => {
+		if(player.pos.y < 201) {
+			player.move(0,50)
+		}
+	});
 	onTouchMove((_, pos) => {
-		player.moveTo(pos.clientX, 200)
+		player.moveTo(pos.clientX, player.pos.y)
 		/*const list = Object.keys(effects)
 		curEffect = curEffect === 0 ? list.length - 1 : curEffect - 1*/
 	   // label.text = list[curEffect]
 	})
 	onMouseMove((pos) => {
 		// console.log(pos.x)
-		player.moveTo(pos.x, 200)
+		player.moveTo(pos.x, player.pos.y)
 	})
 	function spawnRect() {
 	    const recta = add([
