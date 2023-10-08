@@ -18,6 +18,10 @@ kaboom({
 if(!localStorage.getItem("score")) {
 	localStorage.setItem("score", 0)
 }
+if(!localStorage.getItem("skin")) {
+	localStorage.setItem("skin", "bean")
+}
+
 onLoading((progress) => {
     console.log(progress)
 	// Black background
