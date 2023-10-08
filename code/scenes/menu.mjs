@@ -27,7 +27,7 @@ export default function MainMenu() {
 		area(),
 		body(),
 		"btn",
-		z(1)
+		z(1),
 	])
 	add([
         text(`Jogar`, {
@@ -59,7 +59,7 @@ export default function MainMenu() {
 			width: width(),
 			align:"center"
 		}),
-		pos(0,height()/2)
+		pos(0,height()/2.2)
 	])
     var clouds = 0
 	for(clouds=0; clouds < 50; clouds++) {
