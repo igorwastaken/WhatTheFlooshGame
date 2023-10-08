@@ -33,10 +33,10 @@ export default function MainMenu() {
         text(`Jogar`, {
             size: 16,
             width: width(),
-			align: "center"
+	    align: "center"
             // font: "breakout"
         }),
-        pos(0, height()*(4/6)),
+        pos(0, height()*(5/6)),
 		area(),
 		"btn",
 		z(3),
