@@ -106,7 +106,7 @@ export default function Game(effects, curEffect) {
 			offscreen({destroy:true}),
 			"Rectred"
         ])
-		onUpdate(() => {recta.move(rand(100, 50), -120)})
+		onUpdate(() => {recta.move(rand(200, 50), -120)})
 		wait(rand(5, 10), spawnPlanes);
 		// wait(0.3, spawnRect);
 		/*recta.onCollide("Rectred", (a) => {
