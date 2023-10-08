@@ -125,7 +125,7 @@ scene("loading", () => {
 			console.log("Done!")
 			go("warning")
 			clearInterval(interval)
-			alert("O jogo está instável no momento, mas ainda é jogável (:")
+			// alert("O jogo está instável no momento, mas ainda é jogável (:")
 			/*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
 		}
 	// Black background
@@ -143,7 +143,7 @@ scene("loading", () => {
 	})
 
 	drawText({
-		text: "loading" + ".".repeat(wave(1, 4, time() * 12)),
+		text: progress + "%\ncarregando" + ".".repeat(wave(1, 4, time() * 12)),
 		font: "monospace",
 		size: 24,
 		anchor: "center",
