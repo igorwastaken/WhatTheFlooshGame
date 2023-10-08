@@ -4,10 +4,10 @@ import kaboom from 'kaboom'
 export default function Game(effects, curEffect) {
 	var currentScore = 0;
 	const player = add([
-		sprite("bean"),
-        pos(100, 0),
-        area(),
-        body(),
+		sprite(localStorage.getItem("skin")),
+                pos(100, 0),
+                area(),
+                body(),
 		offscreen({ destroy: true }),
 		z(1)
 	])
