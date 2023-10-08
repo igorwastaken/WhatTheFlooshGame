@@ -59,7 +59,10 @@ export default function MainMenu() {
 			width: width(),
 			align:"center"
 		}),
-		pos(0,height()/2.2)
+		pos(0,height()/2.2),
+		area(),
+		"shop",
+		z(3)
 	])
     var clouds = 0
 	for(clouds=0; clouds < 50; clouds++) {
@@ -116,5 +119,8 @@ export default function MainMenu() {
 	})
 	onClick("credits", () => {
 		go("credits")
+	})
+	onClick("shop", () => {
+		go("shop")
 	})
 }
