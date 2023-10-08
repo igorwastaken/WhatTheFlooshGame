@@ -53,6 +53,14 @@ export default function MainMenu() {
 		"credits",
 		z(3)
 	])
+	add([
+		text("Loja", {
+			size: 16,
+			width: width(),
+			align:"center"
+		}),
+		pos(0,height()*(2/3))
+	])
     var clouds = 0
 	for(clouds=0; clouds < 50; clouds++) {
 		const clouds = add([
