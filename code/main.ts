@@ -9,7 +9,7 @@ kaboom({
 	width: window.innerWidth,
 	height: window.innerHeight,
 	backgroundAudio: true,
-	background: [23,139,225],
+	background: [0,20,102],
 	loadingScreen: false
 })
 
@@ -51,6 +51,7 @@ let curEffect = 0
 loadSprite("bean", "sprites/bean.png")
 loadSprite("cloud", "sprites/clouds.png")
 loadSprite("plane", "sprites/plane.png")
+loadSprite("star", "sprites/star.png")
 loadSound("20190724", "sounds/20190724.mp3")
 loadSound("score", "sounds/score.mp3")
 loadSound("20190724 2", "sounds/20190724 2.mp3")
@@ -104,7 +105,7 @@ scene("devOptions", () => {
 	Dev()
 })
 scene("menu", () => {
-	burp()
+	// burp()
 	// play("score")
 	menumusic.play()
 	menumusic.volume = 1
@@ -126,9 +127,10 @@ scene("loading", () => {
 		progress++;
 		if(progress>99) {
 			console.log("Done!")
-			go("menu")
+			go("warning")
 			clearInterval(interval)
 			alert("O jogo está instável no momento, mas ainda é jogável (:")
+			/*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
 		}
 	// Black background
 	drawRect({
@@ -152,6 +154,36 @@ scene("loading", () => {
 		pos: center().add(0, 70),
 	})
 	})
+})
+scene("warning", () => {
+	burp()
+	const firstText = add([
+		text("AVISO!", {
+			size: 26
+		}),
+		pos(10,10),
+		area(),
+		scale(2)
+	])
+	const secondText = add([
+		text("Tente NÃO tirar o seu dedo enquanto estiver jogando, assim o Flush irá mover rapidamente para outro lado, e assim você pode bater em uma estrela e perder o jogo. Enquanto no computador, para evitar isso, tente jogar em tela cheia (F11 + F5).", {
+			size: 18,
+			width: width()
+		}),
+		pos(10, 60),
+		area()
+	])
+	const OK = add([
+		text("Clique em qualquer lugar ou em qualquer tecla para jogar", {
+			size: 14,
+			width: width()
+		}),
+		pos(10, height()-100),
+		// scale(1),
+		area()
+	])
+	onClick(() => go("menu"))
+	onKeyPress(() => go("menu"))
 })
 scene("notfull", () => {
 	add([
@@ -183,3 +215,8 @@ debug.inspect = window.location.hash==="#debug"
 		go("notFull")
 	}
 })*/
+
+onDestroy((e) => {
+	debug.log("Item destruído")
+})
+

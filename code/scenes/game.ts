@@ -9,7 +9,7 @@ export default function Game(effects, curEffect) {
         area(),
         body(),
 		offscreen({ destroy: true }),
-		
+		z(1)
 	])
     const score = add([
 		text(currentScore),
@@ -50,11 +50,11 @@ export default function Game(effects, curEffect) {
 			"Rect"
         ])
 		onUpdate(() => {recta.move(0, rand(-150,-100))})
-		wait(rand(0.2, 0.5), spawnRect);
+		wait(rand(0.1, 0.2), spawnRect);
 		// wait(0.3, spawnRect);
-		recta.onCollide("clouds", () => {
+		/*recta.onCollide("clouds", () => {
 			destroy(recta)
-		})
+		})*/
 		recta.onUpdate(() => {
 		if (recta.pos.y > height()) {
 			destroy(recta)
@@ -65,19 +65,23 @@ export default function Game(effects, curEffect) {
 	function spawnRedRect() {
 	    const recta = add([
             pos(rand(width()), height()),
-			color(255,0,0),
+			/*color(255,0,0),
 		    circle(10, 10),
-            outline(2),
+            outline(2),*/
+			sprite("star"),
             area(),
 			offscreen({destroy:true}),
-			"Rectred"
+			"Rectred",
+			// z(rand(0.5, 1)),
+			scale(0.4),
+			rotate(rand(0,360))
         ])
 		onUpdate(() => {recta.move(0, -150)})
-		wait(rand(0.4, 1), spawnRedRect);
+		wait(rand(0.4, 0.6), spawnRedRect);
 		// wait(0.3, spawnRect);
-		recta.onCollide("clouds", () => {
+		/*recta.onCollide("clouds", () => {
 			destroy(recta)
-		})
+		})*/
 		recta.onUpdate(() => {
 		if (recta.pos.y > height()) {
 			destroy(recta)
@@ -100,10 +104,10 @@ export default function Game(effects, curEffect) {
 		onUpdate(() => {recta.move(rand(100, 50), -120)})
 		wait(rand(5, 10), spawnPlanes);
 		// wait(0.3, spawnRect);
-		recta.onCollide("Rectred", (a) => {
+		/*recta.onCollide("Rectred", (a) => {
 			destroy(recta)
 			addKaboom(a.pos)
-		})
+		})*/
 		recta.onUpdate(() => {
 		if (recta.pos.y > height()) {
 			destroy(recta)
@@ -119,9 +123,10 @@ export default function Game(effects, curEffect) {
 			scale(0.3),
             area(),
 			offscreen({destroy:true}),
-			"clouds"
+			"clouds",
+			z(rand(0,2))
         ])
-		onUpdate(() => {recta.move(0, -150)})
+		onUpdate(() => {recta.move(rand(-100, -50), -150)})
 		//wait(rand(0.3, 0.7), spawnRect);
 		wait(0.6, spawnClouds);
 		recta.onUpdate(() => {
