@@ -21,7 +21,7 @@ export default function Shop() {
       item.name
     ])
     onClick(item.name, () => {
-      if(localStorage.getItem("score")>item.price-1) {
+      if(localStorage.getItem("score")>=item.price) {
         localStorage.setItem("skin", item.sprite)
         go("menu")
       } else {
