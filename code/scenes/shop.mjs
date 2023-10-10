@@ -15,14 +15,14 @@ export default function Shop() {
   items.map((item, index) => {
     add([
       sprite(item.sprite),
-      pos(width()/1.5, 2*index),
+      pos(width()/2.5, 2*index),
       area(),
       item.name
     ])
   })
   add([
     text("Voltar", {
-      size: 10
+      size: 14
   }),
     pos(10, 10),
     area(),
