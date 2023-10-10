@@ -14,11 +14,17 @@ export default function MainMenu() {
 		z(3)
     ]);
 	add([
-		text("Seu maior ponto foi: " + maxScore, {
+		text("Maior pontuação: " + maxScore, {
 			size: 18
 		}),
 		pos(10, 60),
 		"score",
+		z(3)
+	])
+	add([
+		text("C: ", {size: 18}),
+		pos(10,60),
+		"coins",
 		z(3)
 	])
 	add([
