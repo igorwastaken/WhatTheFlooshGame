@@ -3,7 +3,7 @@ const items = [
   {
     sprite: "bean",
     name: "Floosh",
-    price: 0
+    price: -1
   },
   {
     sprite: "nerd",
