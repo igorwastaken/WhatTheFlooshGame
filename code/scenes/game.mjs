@@ -3,6 +3,7 @@ import kaboom from 'kaboom'
 
 export default function Game(effects, curEffect) {
 	var currentScore = 0;
+	var currentCoins = 0;
 	const player = add([
 		sprite(localStorage.getItem("skin")),
                 pos(100, 0),
@@ -11,9 +12,23 @@ export default function Game(effects, curEffect) {
 		offscreen({ destroy: true }),
 		z(1)
 	])
-    const score = add([
-		text(currentScore),
+       const score = add([
+		text(currentScore, {
+			width: width(),
+			align: "right"
+		}),
 		pos(10,10),
+		area()
+	])
+	add([
+               sprite("coin"),
+               pos(10,10),
+               z(3),
+               scale(0.1)
+        ])
+	const coins = add([
+		text(currentCoins),
+		pos(10,93),
 		area()
 	])
 	/*const fps = add([
@@ -56,6 +71,28 @@ export default function Game(effects, curEffect) {
         ])
 		onUpdate(() => {recta.move(0, rand(-150,-100))})
 		wait(rand(0.1, 0.2), spawnRect);
+		// wait(0.3, spawnRect);
+		/*recta.onCollide("clouds", () => {
+			destroy(recta)
+		})*/
+		recta.onUpdate(() => {
+		if (recta.pos.y > height()) {
+			destroy(recta)
+			addKaboom(recta.pos)
+		}
+	})
+	}
+	function spawnCoins() {
+	    const recta = add([
+            pos(rand(width()), height()),
+		    circle(5, 5),
+            outline(2),
+            area(),
+			offscreen({destroy:true}),
+			"Coins"
+        ])
+		onUpdate(() => {recta.move(0, rand(-150,-100))})
+		wait(rand(1, 3), spawnCoins);
 		// wait(0.3, spawnRect);
 		/*recta.onCollide("clouds", () => {
 			destroy(recta)
@@ -163,6 +200,12 @@ export default function Game(effects, curEffect) {
 		currentScore++;
 		score.text=currentScore;
 		if(currentScore > localStorage.getItem("score")) { localStorage.setItem("score", currentScore); score.color=GREEN }
+		destroy(c)
+	})
+	player.onCollide("Coins", (c) => {
+		currentCoins++;
+		coins.text=currentCoins;
+		localStorage.setItem("coins", localStorage.getItem("coins") + 1)
 		destroy(c)
 	})
 	/*onUpdate(() => {
