@@ -17,7 +17,7 @@ export default function Shop() {
       sprite(item.sprite),
       pos(width()/2.3, 55*(index)),
       area(),
-      opacity(localStorage.getItem("score")>item.price?1:0.5),
+      opacity(localStorage.getItem("score")>=item.price?1:0.5),
       item.name
     ])
     onClick(item.name, () => {
