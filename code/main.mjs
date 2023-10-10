@@ -18,6 +18,9 @@ kaboom({
 if(!localStorage.getItem("score")) {
 	localStorage.setItem("score", 0)
 }
+if(!localStorage.getItem("coins")) {
+	localStorage.setItem("coins", 0)
+}
 if(!localStorage.getItem("skin")) {
 	localStorage.setItem("skin", "bean")
 }
