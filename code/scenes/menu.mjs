@@ -23,7 +23,7 @@ export default function MainMenu() {
 	])
 	add([
 		text(localStorage.getItem("coins"), {size: 18}),
-		pos(30,90),
+		pos(40,90),
 		"coins",
 		z(3)
 	])
