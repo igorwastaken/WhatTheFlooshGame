@@ -88,7 +88,7 @@ export default function Game(effects, curEffect) {
 	    const recta = add([
             pos(rand(width()), height()),
 	    sprite("coin"),
-            scale(0.5),
+            scale(0.15),
             area(),
 			offscreen({destroy:true}),
 			"Coins"
