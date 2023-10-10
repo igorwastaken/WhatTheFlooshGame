@@ -22,11 +22,18 @@ export default function MainMenu() {
 		z(3)
 	])
 	add([
-		text("C: ", {size: 18}),
-		pos(10,90),
+		text(localStorage.getItem("coins"), {size: 18}),
+		pos(30,90),
 		"coins",
 		z(3)
 	])
+	add([
+               sprite("coin"),
+               pos(10,90),
+               "coins",
+               z(3),
+               scale(0.1)
+        ])
 	add([
 		pos(center()),
 		sprite(localStorage.getItem("skin")),
