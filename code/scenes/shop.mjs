@@ -15,7 +15,7 @@ export default function Shop() {
   items.map((item, index) => {
     add([
       sprite(item.sprite),
-      pos(height()/2, 2*index),
+      pos(width()/2, 2*index),
       area(),
       item.name
     ])
