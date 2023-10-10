@@ -15,12 +15,19 @@ export default function Shop() {
   items.map((item, index) => {
     const i = add([
       sprite(item.sprite),
-      pos(width()/2.3, 52*(index)),
+      pos(width()/2.3, 55*(index)),
       area(),
       opacity(localStorage.getItem("score")>item.price?1:0.5),
       item.name
     ])
-    console.log(i.pos)
+    onClick(item.name, () => {
+      if(localStorage.getItem("score")>item.price) {
+        localStorage.setItem("skin", item.sprite)
+        go("menu")
+      } else {
+        alert("Desculpe, mas você não tem pontos suficientes para comprar esse item.")
+      }
+    })
   })
   add([
     text("Voltar", {
