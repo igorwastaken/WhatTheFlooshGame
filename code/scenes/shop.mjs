@@ -19,7 +19,7 @@ export default function Shop() {
       area(),
       item.name
     ])
-    console.log(i)
+    console.log(i.pos)
   })
   add([
     text("Voltar", {
