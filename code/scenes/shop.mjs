@@ -15,7 +15,7 @@ export default function Shop() {
   items.map((item, index) => {
     const i = add([
       sprite(item.sprite),
-      pos(width()/2.3, 10*(index+20)),
+      pos(width()/2.3, 20*(index)),
       area(),
       item.name
     ])
