@@ -87,8 +87,8 @@ export default function Game(effects, curEffect) {
 	function spawnCoins() {
 	    const recta = add([
             pos(rand(width()), height()),
-		    circle(5, 5),
-            outline(2),
+	    sprite("coin"),
+            scale(0.5),
             area(),
 			offscreen({destroy:true}),
 			"Coins"
