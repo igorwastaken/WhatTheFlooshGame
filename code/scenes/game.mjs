@@ -17,7 +17,7 @@ export default function Game(effects, curEffect) {
 			width: width(),
 			align: "right"
 		}),
-		pos(10,10),
+		pos(0,0),
 		area()
 	])
 	add([
@@ -27,8 +27,10 @@ export default function Game(effects, curEffect) {
                scale(0.1)
         ])
 	const coins = add([
-		text(currentCoins),
-		pos(10,93),
+		text(currentCoins, {
+			size: 18
+		}),
+		pos(40,13),
 		area()
 	])
 	/*const fps = add([
@@ -181,6 +183,7 @@ export default function Game(effects, curEffect) {
 	spawnClouds()
 	spawnRedRect()
 	spawnRect()
+	wait(1, spawnCoins)
 	wait(1, spawnPlanes)
 	player.onCollide("Rectred", (re) => {
 		const kaaboom = addKaboom(player.pos)
