@@ -1,7 +1,7 @@
 import kaboom from 'kaboom'
 const items = [
   {
-    sprite: "floosh",
+    sprite: "bean",
     name: "Floosh",
     price: 0
   },
