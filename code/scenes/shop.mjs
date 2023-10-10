@@ -15,8 +15,9 @@ export default function Shop() {
   items.map((item, index) => {
     const i = add([
       sprite(item.sprite),
-      pos(width()/2.3, 50*(index)),
+      pos(width()/2.3, 52*(index)),
       area(),
+      opacity(localStorage.getItem("score")>item.price?1:0.5),
       item.name
     ])
     console.log(i.pos)
