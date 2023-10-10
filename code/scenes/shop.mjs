@@ -13,13 +13,13 @@ const items = [
 ]
 export default function Shop() {
   items.map((item, index) => {
-    const item = add([
+    add([
       sprite(item.sprite),
       pos(width()/2.3, 2*index),
       area(),
       item.name
     ])
-    console.log(item)
+   // console.log(item)
   })
   add([
     text("Voltar", {
