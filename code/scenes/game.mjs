@@ -198,6 +198,9 @@ export default function Game(effects, curEffect) {
 			go("menu")
 		})
 	})
+	onCollide("Coins", "Rectred", (c) => {
+		destroy(c)
+	})
 	player.onCollide("Rect", (c) => {
 		
 		currentScore++;
