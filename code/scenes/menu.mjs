@@ -23,7 +23,7 @@ export default function MainMenu() {
 	])
 	add([
 		text("C: ", {size: 18}),
-		pos(10,60),
+		pos(10,80),
 		"coins",
 		z(3)
 	])
