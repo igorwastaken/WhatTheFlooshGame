@@ -3,7 +3,7 @@ const items = [
   {
     sprite: "bean",
     name: "Floosh",
-    price: -1
+    price: 0
   },
   {
     sprite: "nerd",
@@ -21,7 +21,7 @@ export default function Shop() {
       item.name
     ])
     onClick(item.name, () => {
-      if(localStorage.getItem("score")>item.price) {
+      if(localStorage.getItem("score")>item.price-1) {
         localStorage.setItem("skin", item.sprite)
         go("menu")
       } else {
