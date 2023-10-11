@@ -211,7 +211,8 @@ export default function Game(effects, curEffect) {
 	player.onCollide("Coins", (c) => {
 		currentCoins++;
 		coins.text=currentCoins;
-		localStorage.setItem("coins", localStorage.getItem("coins") + 1)
+		
+		localStorage.setItem("coins", Math.floor(localStorage.getItem("coins")) + 1)
 		destroy(c)
 	})
 	/*onUpdate(() => {
