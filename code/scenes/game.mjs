@@ -100,7 +100,7 @@ export default function Game(effects, curEffect) {
 			"Coins"
         ])
 		onUpdate(() => {recta.move(0, rand(-150,-100))})
-		wait(rand(1, 3), spawnCoins);
+		wait(rand(0.5, 1.5), spawnCoins);
 		// wait(0.3, spawnRect);
 		/*recta.onCollide("clouds", () => {
 			destroy(recta)
@@ -127,7 +127,7 @@ export default function Game(effects, curEffect) {
 			rotate(rand(0,360))
         ])
 		onUpdate(() => {recta.move(0, -150)})
-		wait(rand(0.4, 0.6), spawnRedRect);
+		wait(rand(0.9, 2), spawnRedRect);
 		// wait(0.3, spawnRect);
 		/*recta.onCollide("clouds", () => {
 			destroy(recta)
@@ -152,7 +152,7 @@ export default function Game(effects, curEffect) {
 			"Rectred"
         ])
 		onUpdate(() => {recta.move(rand(200, 50), -120)})
-		wait(rand(5, 10), spawnPlanes);
+		wait(rand(2, 7), spawnPlanes);
 		// wait(0.3, spawnRect);
 		/*recta.onCollide("Rectred", (a) => {
 			destroy(recta)
