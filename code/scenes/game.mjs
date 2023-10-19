@@ -125,7 +125,7 @@ export default function Game(effects, curEffect) {
 			// z(rand(0.5, 1)),
 			scale(0.4),
 			rotate(rand(0,360)),
-		        scale(rand(0.3, 1))
+		        scale(rand(0.2, 0.5))
         ])
 		onUpdate(() => {recta.move(0, -150)})
 		wait(rand(0.9, 2), spawnRedRect);
