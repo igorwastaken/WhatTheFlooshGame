@@ -52,11 +52,17 @@ export default function Game(effects, curEffect) {
 			player.move(0,100)
 		}
 	});
+	onTouchStart(() => {
+		player.moveTo(player.pos)
+	})
 	onTouchMove((_, pos) => {
 		player.moveTo(pos.clientX, player.pos.y)
 		/*const list = Object.keys(effects)
 		curEffect = curEffect === 0 ? list.length - 1 : curEffect - 1*/
 	   // label.text = list[curEffect]
+	})
+	onMouseStart(() => {
+		player.moveTo(player.pos)
 	})
 	onMouseMove((pos) => {
 		// console.log(pos.x)
