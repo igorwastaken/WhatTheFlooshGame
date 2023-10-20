@@ -160,7 +160,7 @@ scene("loading", () => {
             anchor: "center",
             pos: center().add(0, 70),
         })
-    })
+    }, rand(0.4, 1))
     AFK()
 })
 scene("warning", () => {
