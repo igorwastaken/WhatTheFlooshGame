@@ -112,7 +112,7 @@ scene("afk", () => {
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1*/
-    AFK();
+    AFK(1);
 })
 burp()
 scene("devOptions", () => {
@@ -161,7 +161,7 @@ scene("loading", () => {
             pos: center().add(0, 70),
         })
     }, rand(0.4, 1))
-    AFK()
+    AFK(rand(1, 3))
 })
 scene("warning", () => {
     burp()
