@@ -142,10 +142,10 @@ export default function MainMenu() {
     onTouchMove(() => {
         afkTimeout = 0;
     })
-	onUpdate(() => {
-        wait(1, () => {
-            afkTimeout++;
-        })
+    loop(1, () => {
+        afkTimeout++;
+    })
+    onUpdate(() => {
         console.log(afkTimeout);
         if(afkTimeout === 60) {
             go("afk")
