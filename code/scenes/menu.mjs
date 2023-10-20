@@ -3,7 +3,7 @@ import kaboom from 'kaboom'
 
 export default function MainMenu() {
 	const maxScore = localStorage.getItem("score");
-	
+	var afkTimeout = 0;
 	add([
         text(`What The Floosh Game`, {
             size: 28,
@@ -135,5 +135,20 @@ export default function MainMenu() {
 	})
 	onClick("shop", () => {
 		go("shop")
+	})
+    onMouseMove(() => {
+        afkTimeout = 0;
+    })
+    onTouchMove(() => {
+        afkTimeout = 0;
+    })
+	onUpdate(() => {
+        wait(1, () => {
+            afkTimeout++;
+        })
+        console.log(afkTimeout);
+        if(afkTimeout === 60) {
+            go("afk")
+        }
 	})
 }
