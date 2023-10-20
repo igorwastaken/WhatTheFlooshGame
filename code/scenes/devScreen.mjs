@@ -26,9 +26,20 @@ export default function DevOptions() {
 		area(),
 		"debug"
 	])
+	const AFKScreen = add([
+		text("AFK Screen", {
+			size: 18
+		}),
+		pos(10,60),
+		area(),
+		"afk"
+	])
 	onClick("back", () => go("menu"));
 
 	onClick("debug", () => {
 		debug.inspect = !debug.inspect
+	})
+	onClick("afk", () => {
+		go("afk")
 	})
 }

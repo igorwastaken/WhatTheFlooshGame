@@ -1,6 +1,6 @@
 import kaboom from 'kaboom'
 
-export default function Game(effects, curEffect) {
+export default function Game(velocity=1, spawn=1) {
     var currentScore = 0;
     var currentCoins = 0;
     const player = add([
