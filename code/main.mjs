@@ -161,7 +161,7 @@ scene("loading", () => {
             pos: center().add(0, 70),
         })
     }, rand(0.4, 1))
-    AFK(rand(1, 3))
+    AFK(rand(4, 9))
 })
 scene("warning", () => {
     burp()
