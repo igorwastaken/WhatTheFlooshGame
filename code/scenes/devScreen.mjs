@@ -30,7 +30,7 @@ export default function DevOptions() {
 		text("AFK Screen", {
 			size: 18
 		}),
-		pos(10,60),
+		pos(10,80),
 		area(),
 		"afk"
 	])
