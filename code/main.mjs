@@ -5,6 +5,7 @@ import Menu from './scenes/menu.mjs'
 import Credits from './scenes/credits.mjs'
 import Dev from './scenes/devScreen.mjs'
 import Shop from './scenes/shop.mjs'
+import AFK from './scenes/afk.mjs'
 // initialize context
 kaboom({
 	width: window.innerWidth,
@@ -106,7 +107,13 @@ scene("game", () => {
 	gamemusic.volume = 1
 	Game(effects, curEffect);
 })
-
+scene("afk", () => {
+	/*gamemusic.play()
+	menumusic.volume = 0
+	creditsmusic.volume = 0
+	gamemusic.volume = 1*/
+	AFK();
+})
 burp()
 scene("devOptions", () => {
 	Dev()
