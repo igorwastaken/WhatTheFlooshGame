@@ -34,6 +34,11 @@ export default function Game(effects, curEffect) {
         pos(40, 13),
         area()
     ])
+	player.onUpdate(() => {
+		if(player.pos.y < 300) {
+			player.move(0,100)
+		}
+	})
     onTouchMove((_, pos) => {
         player.moveTo(pos.clientX, player.pos.y)
     })
