@@ -161,9 +161,9 @@ export default function AFK(v) {
     onTouchMove(() => {
         go("menu")
     })
-    onMouseMove(() => {
+    /*onMouseMove(() => {
         go("menu")
-    })
+    })*/
     onKeyDown(() => {
         go("menu")
     })
