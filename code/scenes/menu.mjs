@@ -78,7 +78,7 @@ export default function MainMenu() {
     ])
     add([
         sprite("instagram"),
-        pos(width()/2.3, height()/2),
+        pos(width()/2.5, height()/2),
         area(),
         "social:Instagram",
         z(3),
