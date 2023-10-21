@@ -29,7 +29,7 @@ export default function Shop() {
                 localStorage.setItem("skin", item.sprite)
                 go("menu")
             } else {
-                alert("Desculpe, mas você não tem pontos suficientes para comprar esse item.")
+                alert(`Desculpe, mas você não tem pontos suficientes (${item.price}) para comprar esse item.`)
             }
         })
     })
