@@ -44,7 +44,7 @@ export default function MainMenu() {
         z(1),
     ])*/
     add([
-        pos(width()/16,8)
+        pos(width()/16,8),
         sprite(localStorage.getItem("skin")),
         area(),
         body(),
