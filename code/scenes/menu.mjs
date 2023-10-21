@@ -5,8 +5,9 @@ export default function MainMenu() {
     var afkTimeout = 0;
     add([
         text(`What The Floosh Game`, {
-            size: 28,
+            size: 24,
             width: width(),
+            align: "center"
         }),
         pos(10, 10),
         z(3)
@@ -77,7 +78,7 @@ export default function MainMenu() {
     ])
     add([
         sprite("instagram"),
-        pos(width()/2, height()/2),
+        pos(width()/2.3, height()/2),
         area(),
         "social:Instagram",
         z(3),
