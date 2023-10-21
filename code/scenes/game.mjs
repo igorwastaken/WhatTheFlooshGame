@@ -184,6 +184,7 @@ export default function Game(velocity=1, spawn=1) {
     })
     onCollide("Coins", "Rectred", (c) => {
         destroy(c)
+        addKaboom(c.pos)
     })
     player.onCollide("Rect", (c) => {
 
