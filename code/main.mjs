@@ -72,6 +72,9 @@ loadShaderURL("vhs", null, "shaders/vhs.frag")
 // Skins
 loadSprite("nerd", "sprites/skins/nerd.png")
 
+// Icons
+loadSprite("instagram", "sprites/icons/instagram.png")
+
 const menumusic = play("20190724 2", {
     loop: true,
     volume: 0,

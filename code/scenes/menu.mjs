@@ -75,6 +75,14 @@ export default function MainMenu() {
         "shop",
         z(3)
     ])
+    add([
+        sprite("instagram"),
+        pos(width()/3, height()/2),
+        area(),
+        "social:Instagram",
+        z(3),
+        scale(0.6)
+    ])
     var clouds = 0
     for (clouds = 0; clouds < 50; clouds++) {
         const clouds = add([
@@ -149,5 +157,16 @@ export default function MainMenu() {
         if (afkTimeout === 60) {
             go("afk")
         }
+    })
+
+    const socials = [
+        {
+            id: "Instagram",
+            link: "https://instagram.com/wtfl.game"
+        }
+    ]
+
+    socials.forEach((s) => {
+        onClick(`social:${s.id}`, () => window.open(s.link))
     })
 }
