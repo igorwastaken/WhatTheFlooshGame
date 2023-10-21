@@ -179,4 +179,16 @@ export default function MainMenu() {
     socials.forEach((s) => {
         onClick(`social:${s.id}`, () => window.open(s.link))
     })
+
+    onUpdate(() => {
+        if(window.location.hash==="#kaboom")
+        { 
+            destroyAll("stars")
+            //destroyAll("clouds")
+
+        }
+    })
+    onDestroy("stars", (s) => {
+        addKaboom(s.pos)
+    })
 }
