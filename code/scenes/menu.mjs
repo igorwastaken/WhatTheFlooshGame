@@ -138,9 +138,9 @@ export default function MainMenu() {
     onCollide("btn", (e) => {
         destroy(e)
     })
-    onCollide("stars", "stars", (s) => {
+    /*onCollide("stars", "stars", (s) => {
         destroy(s)
-    })
+    })*/
     onCollide("credits", (e) => {
         destroy(e)
     })
