@@ -35,7 +35,7 @@ export default function MainMenu() {
         scale(0.1)
     ])
     add([
-        pos(center()),
+        pos(width()/2,10),
         sprite(localStorage.getItem("skin")),
         area(),
         body(),
@@ -81,7 +81,7 @@ export default function MainMenu() {
         area(),
         "social:Instagram",
         z(3),
-        scale(0.6)
+        scale(0.2)
     ])
     var clouds = 0
     for (clouds = 0; clouds < 50; clouds++) {
