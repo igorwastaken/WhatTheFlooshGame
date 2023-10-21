@@ -81,7 +81,7 @@ export default function MainMenu() {
         area(),
         "social:Instagram",
         z(3),
-        scale(0.2)
+        scale(0.3)
     ])
     var clouds = 0
     for (clouds = 0; clouds < 50; clouds++) {
