@@ -35,13 +35,21 @@ export default function MainMenu() {
         z(3),
         scale(0.1)
     ])
-    add([
+    /*add([
         pos(width()-50,50),
         sprite(localStorage.getItem("skin")),
         area(),
         body(),
         "btn",
         z(1),
+    ])*/
+    add([
+        pos(width()/16,8)
+        sprite(localStorage.getItem("skin")),
+        area(),
+        body(),
+        "btn",
+        z(3),
     ])
     add([
         text(`Jogar`, {
