@@ -36,7 +36,7 @@ export default function Game(velocity=1, spawn=1) {
     ])
 	player.onUpdate(() => {
 		if(player.pos.y < 300) {
-			player.move(0,100)
+			player.move(0,200)
 		}
 	})
     onTouchMove((_, pos) => {
