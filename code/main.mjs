@@ -71,6 +71,7 @@ loadShaderURL("vhs", null, "shaders/vhs.frag")
 
 // Skins
 loadSprite("nerd", "sprites/skins/nerd.png")
+loadSprite("skull", "sprites/skins/skull.png")
 
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")

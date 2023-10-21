@@ -8,6 +8,11 @@ const items = [{
         sprite: "nerd",
         name: "Nerd",
         price: 100
+    },
+    {
+        sprite: "skull",
+        name: "Skull",
+        price: 350
     }
 ]
 export default function Shop() {
