@@ -13,7 +13,7 @@ export default function MainMenu() {
         z(3)
     ]);
     add([
-        text("Maior pontuação: " + maxScore, {
+        text(maxScore, {
             size: 18
         }),
         pos(10, 60),
