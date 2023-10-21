@@ -50,6 +50,7 @@ export default function MainMenu() {
         body(),
         "btn",
         z(3),
+        scale(0.5)
     ])
     add([
         text(`Jogar`, {
