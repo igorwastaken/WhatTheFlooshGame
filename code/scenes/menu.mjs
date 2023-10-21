@@ -44,7 +44,7 @@ export default function MainMenu() {
         z(1),
     ])*/
     add([
-        pos(width()/16,8),
+        pos(width()/16.5,8),
         sprite(localStorage.getItem("skin")),
         area(),
         body(),
@@ -87,7 +87,7 @@ export default function MainMenu() {
     ])
     add([
         sprite("instagram"),
-        pos(width()/2.5, height()/2),
+        pos(width()/2.2, height()/2),
         area(),
         "social:Instagram",
         z(3),
