@@ -59,14 +59,18 @@ const effects = {
 let curEffect = 0
 // load assets
 loadSprite("bean", "sprites/bean.png")
-loadSprite("cloud", "sprites/clouds.png")
-loadSprite("plane", "sprites/plane.png")
-loadSprite("star", "sprites/star.png")
-loadSprite("coin", "sprites/coins.gif")
+loadSprite("cloud", "sprites/elements/clouds.png")
+loadSprite("plane", "sprites/elements/plane.png")
+loadSprite("star", "sprites/elements/star.png")
+loadSprite("coin", "sprites/elements/coins.gif")
+
+// sounds
 loadSound("20190724", "sounds/20190724.mp3")
 loadSound("score", "sounds/score.mp3")
 loadSound("20190724 2", "sounds/20190724 2.mp3")
 loadSound("20210511", "sounds/20210511.mp3")
+
+// Shaders (Not working)
 loadShaderURL("vhs", null, "shaders/vhs.frag")
 
 // Skins
