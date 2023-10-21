@@ -16,9 +16,10 @@ export default function Game(velocity=1, spawn=1) {
     const score = add([
         text(currentScore, {
             width: width(),
-            align: "right"
+            align: "right",
+            size: 18
         }),
-        pos(0, 0),
+        pos(-10, 13),
         area()
     ])
     add([
