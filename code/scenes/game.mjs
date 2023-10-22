@@ -95,9 +95,14 @@ export default function Game(velocity=1, spawn=1) {
     }
 
     function spawnRedRect() {
+        const sprites = [
+            "rocket", "rocket2", "rocket3"
+        ]
+
+        const random = sprites[Math.floor(Math.random()*sprites.length)]
         const recta = add([
             pos(rand(width()), height()),
-            sprite("rocket"),
+            sprite(random),
             area(),
             offscreen({
                 destroy: true

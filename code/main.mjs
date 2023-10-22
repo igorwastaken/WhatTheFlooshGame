@@ -64,6 +64,8 @@ loadSprite("plane", "sprites/elements/plane.png")
 loadSprite("star", "sprites/elements/star.png")
 loadSprite("coin", "sprites/elements/coins.gif")
 loadSprite("rocket", "sprites/elements/rockets.png")
+loadSprite("rocket2", "sprites/elements/rockets2.png")
+loadSprite("rocket3", "sprites/elements/rockets3.png")
 loadSprite("ufo", "sprites/elements/ufo.png")
 
 // sounds
