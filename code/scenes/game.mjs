@@ -105,7 +105,7 @@ export default function Game(velocity=1, spawn=1) {
             "Rectred",
            // scale(1),
             rotate(0),
-            scale(rand(0.8, 1))
+            scale(rand(0.5, 0.8))
         ])
         onUpdate(() => {
             recta.move(0, -150)
