@@ -162,7 +162,7 @@ export default function Game(velocity=1, spawn=1) {
             z(rand(0,3))
         ])
         onUpdate(() => {
-            recta.move(0, rand(-100, -50)),
+            recta.move(0, rand(-100, -50))
         })
         wait(rand(0.5, 2), spawnStars)
     }
