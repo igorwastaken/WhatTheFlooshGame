@@ -198,7 +198,7 @@ export default function Game(velocity=1, spawn=1) {
         }
         destroy(c)
     })
-    onUpdate(() => {
+    player.onUpdate(() => {
         currentScore++;
         score.text=currentScore;
         if(currentScore>localStorage.getItem("score")) {
