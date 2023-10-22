@@ -129,7 +129,7 @@ export default function Game(velocity=1, spawn=1) {
             pos(-100, rand(height())),
             color(255, 0, 0),
             sprite("ufo", {
-                flipX: true
+                flipX: false
             }),
             scale(1),
             area(),
@@ -149,7 +149,23 @@ export default function Game(velocity=1, spawn=1) {
             }
         })
     }
-
+    function spawnStars() {
+        const recta = add([
+            pos(rand(width()), height()),
+            sprite("star"),
+            scale(rand(0.1, 0.5)),
+            area(),
+            offscreen({
+                destroy: true
+            }),
+            "clouds",
+            z(rand(0,3))
+        ])
+        onUpdate(() => {
+            recta.move(0, rand(-100, -50)),
+        })
+        wait(rand(0.5, 2), spawnStars)
+    }
     function spawnClouds() {
         const recta = add([
             pos(rand(width()), height()),
@@ -175,6 +191,7 @@ export default function Game(velocity=1, spawn=1) {
     }
     // spawnClouds()
     spawnRedRect()
+    spawnStars()
    // spawnRect()
     wait(1, spawnCoins)
     wait(1, spawnPlanes)
