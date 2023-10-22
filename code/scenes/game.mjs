@@ -97,7 +97,7 @@ export default function Game(velocity=1, spawn=1) {
     function spawnRedRect() {
         const recta = add([
             pos(rand(width()), height()),
-            sprite("star"),
+            sprite("rocket"),
             area(),
             offscreen({
                 destroy: true
@@ -123,7 +123,7 @@ export default function Game(velocity=1, spawn=1) {
         const recta = add([
             pos(-100, rand(height())),
             color(255, 0, 0),
-            sprite("plane", {
+            sprite("ufo", {
                 flipX: true
             }),
             scale(0.5),
@@ -168,7 +168,7 @@ export default function Game(velocity=1, spawn=1) {
             }
         })
     }
-    spawnClouds()
+    // spawnClouds()
     spawnRedRect()
    // spawnRect()
     wait(1, spawnCoins)

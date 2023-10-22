@@ -63,6 +63,8 @@ loadSprite("cloud", "sprites/elements/clouds.png")
 loadSprite("plane", "sprites/elements/plane.png")
 loadSprite("star", "sprites/elements/star.png")
 loadSprite("coin", "sprites/elements/coins.gif")
+loadSprite("rocket", "sprites/elements/rockets.png")
+loadSprite("ufo", "sprites/elements/ufo.png")
 
 // sounds
 loadSound("20190724", "sounds/20190724.mp3")
