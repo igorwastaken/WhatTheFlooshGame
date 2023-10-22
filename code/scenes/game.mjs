@@ -50,9 +50,10 @@ export default function Game(velocity=1, spawn=1) {
     function spawnRect() {
         const recta = add([
             pos(rand(width()), height()),
-            circle(5, 5),
+            rect(5, 5),
             outline(2),
             area(),
+            color(),
             offscreen({
                 destroy: true
             }),
@@ -169,7 +170,7 @@ export default function Game(velocity=1, spawn=1) {
     }
     spawnClouds()
     spawnRedRect()
-    spawnRect()
+   // spawnRect()
     wait(1, spawnCoins)
     wait(1, spawnPlanes)
     player.onCollide("Rectred", (re) => {
@@ -196,6 +197,14 @@ export default function Game(velocity=1, spawn=1) {
             score.color = GREEN
         }
         destroy(c)
+    })
+    onUpdate(() => {
+        currentScore++;
+        score.text=currentScore;
+        if(currentScore>localStorage.getItem("score")) {
+            localStorage.setItem("score", currentScore);
+            score.color=GREEN;
+        }
     })
     player.onCollide("Coins", (c) => {
         currentCoins++;
