@@ -103,9 +103,9 @@ export default function Game(velocity=1, spawn=1) {
                 destroy: true
             }),
             "Rectred",
-            scale(0.4),
-            rotate(rand(0, 360)),
-            scale(rand(0.2, 0.5))
+           // scale(1),
+            rotate(0),
+            scale(rand(0.8, 1))
         ])
         onUpdate(() => {
             recta.move(0, -150)
@@ -126,7 +126,7 @@ export default function Game(velocity=1, spawn=1) {
             sprite("ufo", {
                 flipX: true
             }),
-            scale(0.5),
+            scale(1),
             area(),
             offscreen({
                 destroy: true
