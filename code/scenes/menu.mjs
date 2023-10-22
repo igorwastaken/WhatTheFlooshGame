@@ -13,10 +13,16 @@ export default function MainMenu() {
         z(3)
     ]);
     add([
+        sprite("clock"),
+        pos(10, 60),
+        z(3),
+        scale(0.3)
+    ])
+    add([
         text(maxScore, {
             size: 18
         }),
-        pos(10, 60),
+        pos(40, 63),
         "score",
         z(3)
     ])
