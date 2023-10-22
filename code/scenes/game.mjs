@@ -159,7 +159,7 @@ export default function Game(velocity=1, spawn=1) {
                 destroy: true
             }),
             "clouds",
-            z(rand(0,3)),
+            z(rand(0,1)),
             rotate(rand(0,360))
         ])
         onUpdate(() => {
