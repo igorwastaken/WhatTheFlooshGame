@@ -19,7 +19,7 @@ export default function Game(velocity=1, spawn=1) {
             // align: "right",
             size: 18
         }),
-        pos(60, 13),
+        pos(40, 43),
         area()
     ])
     add([
@@ -30,7 +30,7 @@ export default function Game(velocity=1, spawn=1) {
     ])
     add([
         sprite("clock"),
-        pos(40, 10),
+        pos(10, 40),
         z(3),
         // scale()
     ])
