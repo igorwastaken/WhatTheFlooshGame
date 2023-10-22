@@ -113,13 +113,28 @@ add([
     shader("vhs")
 ])
 
-scene("game", () => {
+scene("game:easy", () => {
     gamemusic.play()
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
-    Game(effects, curEffect);
+    Game(0.8,0.5);
 })
+scene("game:normal", () => {
+    gamemusic.play()
+    menumusic.volume = 0
+    creditsmusic.volume = 0
+    gamemusic.volume = 1
+    Game(1,1);
+})
+scene("game:hard", () => {
+    gamemusic.play()
+    menumusic.volume = 0
+    creditsmusic.volume = 0
+    gamemusic.volume = 1
+    Game(3,6);
+})
+
 scene("afk", () => {
     /*gamemusic.play()
     menumusic.volume = 0
