@@ -15,11 +15,11 @@ export default function Game(velocity=1, spawn=1) {
     ])
     const score = add([
         text(currentScore, {
-            width: width(),
-            align: "right",
+           // width: width(),
+            // align: "right",
             size: 18
         }),
-        pos(-10, 13),
+        pos(60, 13),
         area()
     ])
     add([
@@ -27,6 +27,12 @@ export default function Game(velocity=1, spawn=1) {
         pos(10, 10),
         z(3),
         scale(0.1)
+    ])
+    add([
+        sprite("clock"),
+        pos(40, 10),
+        z(3),
+        // scale()
     ])
     const coins = add([
         text(currentCoins, {

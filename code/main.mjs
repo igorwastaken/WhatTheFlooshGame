@@ -67,6 +67,7 @@ loadSprite("rocket", "sprites/elements/rockets.png")
 loadSprite("rocket2", "sprites/elements/rockets2.png")
 loadSprite("rocket3", "sprites/elements/rockets3.png")
 loadSprite("ufo", "sprites/elements/ufo.png")
+loadSprite("clock", "sprites/elements/clock.png")
 
 // sounds
 loadSound("20190724", "sounds/20190724.mp3")
