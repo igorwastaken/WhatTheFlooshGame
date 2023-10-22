@@ -11,7 +11,8 @@ export default function Game(velocity=1, spawn=1) {
         offscreen({
             destroy: true
         }),
-        z(1)
+        z(1),
+	scale(0.5)
     ])
     const score = add([
         text(currentScore, {
