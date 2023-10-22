@@ -12,7 +12,7 @@ export default function Game(velocity=1, spawn=1) {
             destroy: true
         }),
         z(1),
-	scale(0.5)
+	scale(0.7)
     ])
     const score = add([
         text(currentScore, {
