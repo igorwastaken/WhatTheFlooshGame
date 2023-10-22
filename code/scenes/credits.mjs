@@ -7,7 +7,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10,10),
+		pos(0,0),
 		area(),
 		"devBtn"
 	])
