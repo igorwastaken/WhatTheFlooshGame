@@ -20,7 +20,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10,40)
+		pos(0,40)
 	])
 	add([
 		text("Igor Figueiredo", {
@@ -28,7 +28,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10, 70)
+		pos(0, 70)
 	])
 	add([
 		text("Músicas:", {
@@ -36,7 +36,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10, 110)
+		pos(0, 110)
 	])
 	add([
 		text("20190724 - Mac Demarco", {
@@ -44,7 +44,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10, 140)
+		pos(0, 140)
 	])
 	add([
 		text("20190724 2 - Mac Demarco", {
@@ -52,7 +52,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10, 160)
+		pos(0, 160)
 	])
 	add([
 		text("20210511 - Mac Demarco", {
@@ -60,7 +60,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10, 180)
+		pos(0, 180)
 	])
 	add([
 		text("Criado com Kaboom.js", {
@@ -68,7 +68,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(10, 210),
+		pos(0, 210),
 		area(),
 		"kaboomgit"
 	])
