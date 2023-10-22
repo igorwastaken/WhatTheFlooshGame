@@ -3,11 +3,11 @@ import kaboom from 'kaboom'
 export default function Credits() {
 	add([
 		text(`What The Floosh Game`, {
-			size: 28,
+			size: 24,
 			width: width(),
 			align: "center"
 		}),
-		pos(0,0),
+		pos(10,10),
 		area(),
 		"devBtn"
 	])
