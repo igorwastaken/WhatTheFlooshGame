@@ -77,7 +77,7 @@ export default function Credits() {
 			size: 14,
 			width: width()
 		}),
-		pos(10, height()-250),
+		pos(10, height()-10),
 		area(),
 
 		"voltar"
