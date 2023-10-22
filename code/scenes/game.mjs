@@ -159,13 +159,13 @@ export default function Game(velocity=1, spawn=1) {
                 destroy: true
             }),
             "clouds",
-            z(rand(0,1)),
+            z(-1),
             rotate(rand(0,360))
         ])
         onUpdate(() => {
             recta.move(0, rand(-100, -50))
         })
-        wait(rand(0.5, 2), spawnStars)
+        wait(rand(0.1, 0.5), spawnStars)
     }
     function spawnClouds() {
         const recta = add([
