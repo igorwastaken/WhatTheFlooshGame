@@ -32,7 +32,7 @@ export default function Game(velocity=1, spawn=1) {
         sprite("clock"),
         pos(10, 40),
         z(3),
-        scale(0.5)
+        scale(0.3)
     ])
     const coins = add([
         text(currentCoins, {
