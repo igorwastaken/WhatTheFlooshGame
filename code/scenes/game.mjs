@@ -58,6 +58,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         // player.moveTo(pos.x, player.pos.y)
 	targetX=pos.x
     })
+    onUpdate(() => { console.log(targetX) })
     player.onUpdate(() => {
        const speed = 200; // Ajuste a velocidade de movimento conforme necessário.
        const diffX = targetX - player.pos.x;
