@@ -118,7 +118,7 @@ scene("game:easy", () => {
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
-    Game(0.8,0.5);
+    Game(0.5,2);
 })
 scene("game:normal", () => {
     gamemusic.play()
@@ -132,7 +132,7 @@ scene("game:hard", () => {
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
-    Game(3,6);
+    Game(2,0.7);
 })
 
 scene("afk", () => {
