@@ -92,9 +92,9 @@ export default function Game(velocity=1, spawn=1) {
             "Coins"
         ])
         onUpdate(() => {
-            recta.move(0, rand(-150, -100)/(velocity))
+            recta.move(0, rand(-150, -100)*(velocity))
         })
-        wait(rand(0.5, 1.5)/spawn, spawnCoins);
+        wait(rand(0.5, 1.5)*spawn, spawnCoins);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
@@ -122,9 +122,9 @@ export default function Game(velocity=1, spawn=1) {
             scale(rand(0.5, 0.8))
         ])
         onUpdate(() => {
-            recta.move(0, -150)
+            recta.move(0, -150*velocity)
         })
-        wait(rand(0.9, 2), spawnRedRect);
+        wait(rand(0.9, 2)*spawn, spawnRedRect);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
@@ -148,9 +148,9 @@ export default function Game(velocity=1, spawn=1) {
             "Rectred"
         ])
         onUpdate(() => {
-            recta.move(rand(200, 50), -120)
+            recta.move(rand(200, 50)*velocity, -120*velocity)
         })
-        wait(rand(2, 7), spawnPlanes);
+        wait(rand(2, 7)/spawn, spawnPlanes);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
@@ -174,7 +174,7 @@ export default function Game(velocity=1, spawn=1) {
         onUpdate(() => {
             recta.move(0, rand(-100, -50))
         })
-        wait(rand(0.1, 0.5), spawnStars)
+        wait(rand(0.4, 1), spawnStars)
     }
     function spawnClouds() {
         const recta = add([
@@ -199,7 +199,7 @@ export default function Game(velocity=1, spawn=1) {
             }
         })
     }
-    // spawnClouds()
+    spawnClouds()
     spawnRedRect()
     spawnStars()
    // spawnRect()
