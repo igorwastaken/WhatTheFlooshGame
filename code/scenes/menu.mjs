@@ -151,7 +151,7 @@ export default function MainMenu() {
         destroy(e)
     })
     onClick("btn", () => {
-        go("game:easy")
+        go("game:normal")
     })
     onClick("credits", () => {
         go("credits")
