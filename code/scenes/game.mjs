@@ -15,6 +15,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         z(1),
 	scale(0.7)
     ])
+    let targetX = player.pos.x;
     const score = add([
         text(currentScore, {
            // width: width(),
@@ -50,11 +51,18 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
 		}
 	})
     onTouchMove((_, pos) => {
-        player.moveTo(pos.clientX, player.pos.y)
+        // player.moveTo(pos.clientX, player.pos.y)
+	targetX = pos.clientX;
     })
     onMouseMove((pos) => {
         player.moveTo(pos.x, player.pos.y)
     })
+    player.onUpdate(() => {
+       const speed = 200; // Ajuste a velocidade de movimento conforme necessário.
+       const diffX = targetX - player.pos.x;
+       const newX = player.pos.x + diffX * speed * dt();
+       player.pos.x = newX;
+     });
 
     function spawnRect() {
         const recta = add([
