@@ -202,7 +202,7 @@ scene("warning", () => {
         scale(2)
     ])
     const secondText = add([
-        text("- Novo emoji: Nerd\n- O jogo está mais fácil!\n- Correção e melhorias na jogabilidade\n- Atualizado em 19/10/2023\n\n\n- Tente NÃO tirar o seu dedo enquanto estiver jogando, assim o Flush irá mover rapidamente para outro lado, e assim você pode bater em uma estrela e perder o jogo. Enquanto no computador, para evitar isso, tente jogar em tela cheia (F11 + F5).", {
+        text("- Novo emoji: Caveira\n- Melhoria na pontuação, interface mais fácil de usar\n- Foguetes, OVNIs, e muito mais!\n- Estrelas agora são inofensivas.\n- Correção e melhorias na jogabilidade\n- Atualizado em 22/10/2023\n\n\n- Tente NÃO tirar o seu dedo enquanto estiver jogando, assim o Flush irá mover rapidamente para outro lado, e assim você pode bater em uma estrela e perder o jogo. Enquanto no computador, para evitar isso, tente jogar em tela cheia (F11 + F5).", {
             size: 18,
             width: width()
         }),
