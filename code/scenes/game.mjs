@@ -1,6 +1,6 @@
 import kaboom from 'kaboom'
 
-export default function Game(velocity=1, spawn=1) {
+export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     var currentScore = 0;
     var currentCoins = 0;
     console.log(velocity, spawn)
@@ -94,7 +94,7 @@ export default function Game(velocity=1, spawn=1) {
         onUpdate(() => {
             recta.move(0, rand(-150, -100)*(velocity))
         })
-        wait(rand(0.5, 1.5)*spawn, spawnCoins);
+        wait(rand(0.5, 1.5)*coinsSpawn, spawnCoins);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
@@ -189,7 +189,7 @@ export default function Game(velocity=1, spawn=1) {
             z(rand(0, 2))
         ])
         onUpdate(() => {
-            recta.move(rand(-100, -50), -150)
+            recta.move(rand(-100, -50)*velocity, -150*velocity)
         })
         wait(0.6, spawnClouds);
         recta.onUpdate(() => {
