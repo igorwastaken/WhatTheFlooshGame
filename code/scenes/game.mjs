@@ -3,6 +3,7 @@ import kaboom from 'kaboom'
 export default function Game(velocity=1, spawn=1) {
     var currentScore = 0;
     var currentCoins = 0;
+    console.log(velocity, spawn)
     const player = add([
         sprite(localStorage.getItem("skin")),
         pos(100, 0),
@@ -68,9 +69,9 @@ export default function Game(velocity=1, spawn=1) {
             "Rect"
         ])
         onUpdate(() => {
-            recta.move(0, rand(-150, -100))
+            recta.move(0, rand(-150, -100)*(velocity/spawn))
         })
-        wait(rand(0.1, 0.2), spawnRect);
+        wait(rand(0.1, 0.2)*spawn, spawnRect);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
@@ -91,9 +92,9 @@ export default function Game(velocity=1, spawn=1) {
             "Coins"
         ])
         onUpdate(() => {
-            recta.move(0, rand(-150, -100))
+            recta.move(0, rand(-150, -100)/(velocity))
         })
-        wait(rand(0.5, 1.5), spawnCoins);
+        wait(rand(0.5, 1.5)/spawn, spawnCoins);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
