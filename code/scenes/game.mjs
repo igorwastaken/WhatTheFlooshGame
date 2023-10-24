@@ -133,9 +133,9 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             scale(rand(0.5, 0.8))
         ])
         onUpdate(() => {
-            recta.move(0, -150*velocity)
+            recta.move(0, -150*(velocity))
         })
-        wait(rand(0.9, 2)*spawn, spawnRedRect);
+        wait(rand(0.9, 2)/(spawn), spawnRedRect);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
@@ -159,9 +159,9 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             "Rectred"
         ])
         onUpdate(() => {
-            recta.move(rand(200, 50)*velocity, -120*velocity)
+            recta.move(rand(200, 50)*(velocity), -120*(velocity))
         })
-        wait(rand(2, 7)/spawn, spawnPlanes);
+        wait(rand(2, 7)/(spawn), spawnPlanes);
         recta.onUpdate(() => {
             if (recta.pos.y > height()) {
                 destroy(recta)
@@ -200,7 +200,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             z(rand(0, 2))
         ])
         onUpdate(() => {
-            recta.move(rand(-100, -50)*velocity, -150*velocity)
+            recta.move(rand(-100, -50)*(velocity), -150*(velocity))
         })
         wait(0.6, spawnClouds);
         recta.onUpdate(() => {
