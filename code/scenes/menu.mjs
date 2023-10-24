@@ -50,7 +50,7 @@ export default function MainMenu() {
         z(1),
     ])*/
     add([
-        pos(width()/16.5,8),
+        pos(10,10),
         sprite(localStorage.getItem("skin")),
         area(),
         "btn",
