@@ -64,7 +64,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
        const diffX = targetX - player.pos.x;
        const newX = player.pos.x + diffX * speed * dt();
        player.pos.x = newX;*/
-       player.moveTo(player.pos.x+targetX, player.pos.y)
+       player.moveTo(targetX, player.pos.y)
      });
 
     function spawnRect() {
