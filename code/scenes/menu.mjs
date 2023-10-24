@@ -53,7 +53,6 @@ export default function MainMenu() {
         pos(width()/16.5,8),
         sprite(localStorage.getItem("skin")),
         area(),
-        body(),
         "btn",
         z(3),
         scale(0.5)
@@ -126,7 +125,7 @@ export default function MainMenu() {
         onUpdate(() => {
             recta.move(rand(-150, -100), 0)
         })
-	wait(0.3, spawnClouds);
+	    wait(0.3, spawnClouds);
         recta.onUpdate(() => {
             if (recta.pos.x > width()) {
                 destroy(recta)
@@ -138,9 +137,19 @@ export default function MainMenu() {
             size: 15,
             width: width()
         }),
-        pos(10, height() - 30)
+        pos(10, height() - 30),
+	    area(),
+		"ee"
     ])
     spawnClouds()
+	var clicked = 0;
+    onClick("ee", () => {
+		clicked++;
+		if(clicked===2) {
+			clicked=0;
+		    window.open("https://apenasigordev.github.io/FastPungentFactors/")
+		}
+	})
     onCollide("btn", (e) => {
         destroy(e)
     })
