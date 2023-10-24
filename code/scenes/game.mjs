@@ -13,7 +13,8 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             destroy: true
         }),
         z(1),
-	scale(0.7)
+	scale(0.7),
+	"player"
     ])
     let targetX = player.pos.x;
     const score = add([
@@ -65,7 +66,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
        const newX = player.pos.x + diffX * speed * dt();
        player.pos.x = newX;*/
        player.moveTo(targetX, player.pos.y)
-       player.rotate=100
+       player.rotate+=100
      });
 
     function spawnRect() {
