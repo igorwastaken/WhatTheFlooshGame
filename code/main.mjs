@@ -132,7 +132,7 @@ scene("game:hard", () => {
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
-    Game(2,0.7,1.5);
+    Game(2,2,1.5);
 })
 
 scene("afk", () => {
