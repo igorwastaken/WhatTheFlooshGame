@@ -45,7 +45,13 @@ export default function Difficulty() {
         "hard",
         z(3),
     ])
-
+    add([
+        text(`Voltar`, {size: 14, width: width()}),
+        pos(10,10),
+        area(),
+        "back",
+        z(3)
+    ])
     onClick('easy', () => {
         go('game:easy')
     })
@@ -55,4 +61,19 @@ export default function Difficulty() {
     onClick('hard', () => {
         go('game:hard')
     })
+    onClick('back', () => {
+        go("menu")
+    });
+    
+    var clouds = 0
+    for (clouds = 0; clouds < 50; clouds++) {
+        const clouds = add([
+            sprite("star"),
+            area(),
+            pos(rand(width()), rand(height())),
+            scale(rand(0.1, 0.3)),
+            rotate(rand(0, 360)),
+            "stars"
+        ])
+    }
 }
