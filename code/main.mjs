@@ -119,7 +119,7 @@ scene("game:easy", () => {
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
-    Game(0.5,2, 2);
+    Game(0.5,0.5, 2.2);
 })
 scene("game:normal", () => {
     gamemusic.play()
