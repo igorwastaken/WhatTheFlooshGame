@@ -141,6 +141,12 @@ export default function MainMenu() {
 	    area(),
 		"ee"
     ])
+    add([
+        sprite("settings"),
+        pos(width()-30, height()-30),
+        area(),
+        "settings"
+    ])
     spawnClouds()
 	var clicked = 0;
     onClick("ee", () => {
@@ -150,6 +156,9 @@ export default function MainMenu() {
 		    window.open("https://apenasigordev.github.io/FastPungentFactors/")
 		}
 	})
+    onClick("settings", () => {
+        go("settings")
+    })
     onCollide("btn", (e) => {
         destroy(e)
     })

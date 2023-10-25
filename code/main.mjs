@@ -7,6 +7,7 @@ import Dev from './scenes/devScreen.mjs'
 import Shop from './scenes/shop.mjs'
 import AFK from './scenes/afk.mjs'
 import Difficulty from "./scenes/difficulty.mjs"
+import Settings from "./scenes/settings.mjs"
 // initialize context
 kaboom({
     width: window.innerWidth,
@@ -25,6 +26,9 @@ if (!localStorage.getItem("coins")) {
 }
 if (!localStorage.getItem("skin")) {
     localStorage.setItem("skin", "bean")
+}
+if(!localStorage.getItem("settings:fullscreen")) {
+    localStorage.setItem("settings:fullscreen", false)
 }
 
 onLoading((progress) => {
@@ -85,6 +89,7 @@ loadSprite("skull", "sprites/skins/skull.png")
 
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")
+loadSprite("settings", "sprites/icons/settings.png")
 
 const menumusic = play("20190724 2", {
     loop: true,
@@ -135,7 +140,9 @@ scene("game:hard", () => {
     gamemusic.volume = 1
     Game(2,2,1.5);
 })
-
+scene("settings", () => {
+    Settings()
+})
 scene("afk", () => {
     /*gamemusic.play()
     menumusic.volume = 0

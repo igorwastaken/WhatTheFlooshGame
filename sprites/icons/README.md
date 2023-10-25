@@ -1,3 +1,2 @@
 # This is ICONS Folder
 
-This contains only Instagram Icon for now...
