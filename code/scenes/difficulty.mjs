@@ -18,7 +18,7 @@ export default function Difficulty() {
             width: width(),
             align: 'center'
         }),
-        pos(0, height() / 2.9),
+        pos(0, height() / 2.9-10),
         area(),
         "easy",
         z(3),
@@ -29,7 +29,7 @@ export default function Difficulty() {
             width: width(),
             align: 'center'
         }),
-        pos(0, height() / 2.5),
+        pos(0, height() / 2.5-10),
         area(),
         "normal",
         z(3),
@@ -40,7 +40,7 @@ export default function Difficulty() {
             width: width(),
             align: 'center'
         }),
-        pos(0, height() / 2.2),
+        pos(0, height() / 2.2-10),
         area(),
         "hard",
         z(3),
@@ -51,7 +51,7 @@ export default function Difficulty() {
             width: width(),
             align: "center"
         }),
-        pos(0,height()/2-10),
+        pos(0,height()/2+10),
         area(),
         "back",
         z(3)
