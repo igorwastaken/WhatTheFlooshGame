@@ -46,8 +46,12 @@ export default function Difficulty() {
         z(3),
     ])
     add([
-        text(`Voltar`, {size: 14, width: width()}),
-        pos(10,10),
+        text(`Voltar`, {
+            size: 14, 
+            width: width(),
+            align: "center"
+        }),
+        pos(0,height()/2-10),
         area(),
         "back",
         z(3)
