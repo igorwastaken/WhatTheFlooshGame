@@ -144,7 +144,7 @@ scene("afk", () => {
     AFK(1);
 })
 burp()
-scene("devOptions", () => {
+scene("difficulty", () => {
     Difficulty()
 })
 scene("devOptions", () => {
