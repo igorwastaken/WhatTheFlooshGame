@@ -6,6 +6,7 @@ import Credits from './scenes/credits.mjs'
 import Dev from './scenes/devScreen.mjs'
 import Shop from './scenes/shop.mjs'
 import AFK from './scenes/afk.mjs'
+import Difficulty from "./scenes/difficulty.mjs"
 // initialize context
 kaboom({
     width: window.innerWidth,
@@ -143,6 +144,9 @@ scene("afk", () => {
     AFK(1);
 })
 burp()
+scene("devOptions", () => {
+    Difficulty()
+})
 scene("devOptions", () => {
     Dev()
 })
