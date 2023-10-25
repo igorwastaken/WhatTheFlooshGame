@@ -144,7 +144,9 @@ export default function MainMenu() {
     add([
         sprite("settings"),
         pos(width()-30, height()-30),
+        scale(0.5),
         area(),
+        
         "settings"
     ])
     spawnClouds()
