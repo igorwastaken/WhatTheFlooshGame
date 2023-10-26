@@ -188,6 +188,7 @@ scene("loading", () => {
         if (progress > 99) {
             console.log("Done!")
             go("warning")
+            burp()
             clearInterval(interval)
             // alert("O jogo está instável no momento, mas ainda é jogável (:")
             /*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
@@ -229,8 +230,8 @@ scene("warning", () => {
         // scale(1),
         area()
     ])
-    onClick(() => go("menu"))
-    onKeyPress(() => go("menu"))
+    onClick(() => { burp(); go("menu")})
+    onKeyPress(() => {burp(); go("menu")})
 })
 scene("notfull", () => {
     add([
