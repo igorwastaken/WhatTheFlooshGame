@@ -93,7 +93,7 @@ loadSprite("settings", "sprites/icons/settings.png")
 
 const menumusic = play("20190724 2", {
     loop: true,
-    volume: 0,
+    volume: 1,
 })
 const gamemusic = play("20190724", {
     loop: true,
@@ -167,10 +167,10 @@ scene("menu", () => {
     Menu();
 })
 scene("credits", () => {
-    creditsmusic.play()
+    /*creditsmusic.play()
     creditsmusic.volume = 1
     menumusic.volume = 0
-    gamemusic.volume = 0
+    gamemusic.volume = 0*/
     Credits();
 })
 scene("shop", () => {
