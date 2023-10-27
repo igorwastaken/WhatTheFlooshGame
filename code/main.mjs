@@ -138,10 +138,12 @@ scene("game:easy", () => {
 scene("game:normal", () => {
     if (localStorage.getItem("settings:muted") === 0) {
         gamemusic.play()
+        console.log("Can play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 1
     } else {
+        console.log("Can't play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 0
@@ -151,10 +153,12 @@ scene("game:normal", () => {
 scene("game:hard", () => {
     if (localStorage.getItem("settings:muted") === 0) {
         gamemusic.play()
+        console.log("Can play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 1
     } else {
+        console.log("Can't play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 0
@@ -182,10 +186,12 @@ scene("menu", () => {
     // play("score")
     if (localStorage.getItem("settings:muted") === 0) {
         menumusic.play()
+        console.log("Can play song")
         menumusic.volume = 1
         creditsmusic.volume = 0
         gamemusic.volume = 0
     } else {
+        console.log("Can't play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 0
