@@ -6,7 +6,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     console.log(velocity, spawn)
     const player = add([
         sprite(localStorage.getItem("skin")),
-        pos(100, 0),
+        pos(100, mousePos().y),
         area(),
         body(),
         offscreen({
