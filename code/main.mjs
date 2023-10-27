@@ -97,7 +97,6 @@ loadSprite("settings", "sprites/icons/settings.png")
 const menumusic = play("20190724 2", {
     loop: true,
     volume: 1,
-    detune: randi(0, 12) * 100,
 })
 const gamemusic = play("20190724", {
     loop: true,
