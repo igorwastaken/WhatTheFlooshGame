@@ -96,7 +96,7 @@ loadSprite("settings", "sprites/icons/settings.png")
 
 const menumusic = play("20190724 2", {
     loop: true,
-    volume: 1,
+    volume: 0,
 })
 const gamemusic = play("20190724", {
     loop: true,
@@ -123,21 +123,21 @@ add([
 ])
 
 scene("game:easy", () => {
-    gamemusic.play()
+    if(!localStorage.getItem("muted")) gamemusic.play()
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
     Game(0.5,0.5, 2.2);
 })
 scene("game:normal", () => {
-    gamemusic.play()
+    if(!localStorage.getItem("muted")) gamemusic.play()
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
     Game(1,1,1);
 })
 scene("game:hard", () => {
-    gamemusic.play()
+    if(!localStorage.getItem("muted")) gamemusic.play()
     menumusic.volume = 0
     creditsmusic.volume = 0
     gamemusic.volume = 1
@@ -163,7 +163,7 @@ scene("devOptions", () => {
 scene("menu", () => {
     // burp()
     // play("score")
-    menumusic.play()
+    if(!localStorage.getItem("muted")) menumusic.play()
     menumusic.volume = 1
     creditsmusic.volume = 0
     gamemusic.volume = 0
@@ -177,7 +177,7 @@ scene("credits", () => {
     Credits();
 })
 scene("shop", () => {
-    creditsmusic.play()
+    if(!localStorage.getItem("muted")) creditsmusic.play()
     creditsmusic.volume = 1
     menumusic.volume = 0
     gamemusic.volume = 0
