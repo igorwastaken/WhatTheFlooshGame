@@ -128,6 +128,10 @@ scene("game:easy", () => {
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 1
+    } else {
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 0
     }
     Game(0.5, 0.5, 2.2);
 })
@@ -137,6 +141,10 @@ scene("game:normal", () => {
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 1
+    } else {
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 0
     }
     Game(1, 1, 1);
 })
@@ -146,6 +154,10 @@ scene("game:hard", () => {
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 1
+    } else {
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 0
     }
     Game(2, 2, 1.5);
 })
@@ -174,6 +186,10 @@ scene("menu", () => {
         menumusic.volume = 1
         creditsmusic.volume = 0
         gamemusic.volume = 0
+    } else {
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 0
     }
     Menu();
 })
@@ -189,6 +205,10 @@ scene("shop", () => {
         creditsmusic.play()
         creditsmusic.volume = 1
         menumusic.volume = 0
+        gamemusic.volume = 0
+    } else {
+        menumusic.volume = 0
+        creditsmusic.volume = 0
         gamemusic.volume = 0
     }
     Shop();
