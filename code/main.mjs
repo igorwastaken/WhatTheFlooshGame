@@ -27,11 +27,11 @@ if (!localStorage.getItem("coins")) {
 if (!localStorage.getItem("skin")) {
     localStorage.setItem("skin", "bean")
 }
-if(!localStorage.getItem("settings:fullscreen")) {
-    localStorage.setItem("settings:fullscreen", false)
+if (!localStorage.getItem("settings:fullscreen")) {
+    localStorage.setItem("settings:fullscreen", 0)
 }
-if(!localStorage.getItem("settings:muted")) {
-    localStorage.setItem("settings:muted", false)
+if (!localStorage.getItem("settings:muted")) {
+    localStorage.setItem("settings:muted", 0)
 }
 
 onLoading((progress) => {
@@ -45,17 +45,17 @@ onLoading((progress) => {
 
     // A pie representing current load progress
     /*drawCircle({
-    	pos: center(),
-    	radius: 32,
-    	end: map(progress, 0, 1, 0, 360),
+        pos: center(),
+        radius: 32,
+        end: map(progress, 0, 1, 0, 360),
     })
 
     drawText({
-    	text: "loading" + ".".repeat(wave(1, 4, time() * 12)),
-    	font: "monospace",
-    	size: 24,
-    	anchor: "center",
-    	pos: center().add(0, 70),
+        text: "loading" + ".".repeat(wave(1, 4, time() * 12)),
+        font: "monospace",
+        size: 24,
+        anchor: "center",
+        pos: center().add(0, 70),
     })*/
 })
 const effects = {
@@ -123,25 +123,31 @@ add([
 ])
 
 scene("game:easy", () => {
-    if(!localStorage.getItem("muted")) gamemusic.play()
-    menumusic.volume = 0
-    creditsmusic.volume = 0
-    gamemusic.volume = 1
-    Game(0.5,0.5, 2.2);
+    if (localStorage.getItem("muted") === 0) {
+        gamemusic.play()
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 1
+    }
+    Game(0.5, 0.5, 2.2);
 })
 scene("game:normal", () => {
-    if(!localStorage.getItem("muted")) gamemusic.play()
-    menumusic.volume = 0
-    creditsmusic.volume = 0
-    gamemusic.volume = 1
-    Game(1,1,1);
+    if (localStorage.getItem("muted") === 0) {
+        gamemusic.play()
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 1
+    }
+    Game(1, 1, 1);
 })
 scene("game:hard", () => {
-    if(!localStorage.getItem("muted")) gamemusic.play()
-    menumusic.volume = 0
-    creditsmusic.volume = 0
-    gamemusic.volume = 1
-    Game(2,2,1.5);
+    if (localStorage.getItem("muted") === 0) {
+        gamemusic.play()
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 1
+    }
+    Game(2, 2, 1.5);
 })
 scene("settings", () => {
     Settings()
@@ -163,10 +169,12 @@ scene("devOptions", () => {
 scene("menu", () => {
     // burp()
     // play("score")
-    if(!localStorage.getItem("muted")) menumusic.play()
-    menumusic.volume = 1
-    creditsmusic.volume = 0
-    gamemusic.volume = 0
+    if (localStorage.getItem("muted") === 0) {
+        menumusic.play()
+        menumusic.volume = 1
+        creditsmusic.volume = 0
+        gamemusic.volume = 0
+    }
     Menu();
 })
 scene("credits", () => {
@@ -177,10 +185,12 @@ scene("credits", () => {
     Credits();
 })
 scene("shop", () => {
-    if(!localStorage.getItem("muted")) creditsmusic.play()
-    creditsmusic.volume = 1
-    menumusic.volume = 0
-    gamemusic.volume = 0
+    if (localStorage.getItem("muted") === 0) {
+        creditsmusic.play()
+        creditsmusic.volume = 1
+        menumusic.volume = 0
+        gamemusic.volume = 0
+    }
     Shop();
 })
 scene("loading", () => {
@@ -233,8 +243,8 @@ scene("warning", () => {
         // scale(1),
         area()
     ])
-    onClick(() => { burp(); go("menu")})
-    onKeyPress(() => {burp(); go("menu")})
+    onClick(() => { burp(); go("menu") })
+    onKeyPress(() => { burp(); go("menu") })
 })
 scene("notfull", () => {
     add([
@@ -256,15 +266,15 @@ go("loading")
 /*if(kaboom.isTouch()) {
   go("menu")
 } else {
-	go("notmobile")
+    go("notmobile")
 }
 */
 debug.inspect = window.location.hash === "#debug"
 // setFullscreen()
 /*onUpdate(() => {
-	if(!isFullscreen) {
-		go("notFull")
-	}
+    if(!isFullscreen) {
+        go("notFull")
+    }
 })*/
 
 onDestroy((e) => {
