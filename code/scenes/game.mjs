@@ -221,7 +221,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     player.onCollide("Rectred", (re) => {
         const kaaboom = addKaboom(player.pos)
         kaaboom.move(0, -150)
-        burp()
+        if(localStorage.getItem("muted") === 0) burp()
         shake(50)
         destroy(player)
         destroy(re)

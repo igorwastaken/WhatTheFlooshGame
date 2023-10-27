@@ -171,7 +171,6 @@ scene("afk", () => {
     gamemusic.volume = 1*/
     AFK(1);
 })
-burp()
 scene("difficulty", () => {
     Difficulty()
 })
@@ -237,7 +236,7 @@ scene("loading", () => {
     AFK(rand(2, 4))
 })
 scene("warning", () => {
-    burp()
+    if(localStorage.getItem("muted") === 0) burp()
     const firstText = add([
         text("Novidades:", {
             size: 26
@@ -263,8 +262,10 @@ scene("warning", () => {
         // scale(1),
         area()
     ])
-    onClick(() => { burp(); go("menu") })
-    onKeyPress(() => { burp(); go("menu") })
+    onClick(() => { if(localStorage.getItem("muted") === 0) burp(); 
+    go("menu") })
+    onKeyPress(() => { if(localStorage.getItem("muted") === 0) burp(); 
+        go("menu") })
 })
 scene("notfull", () => {
     add([
