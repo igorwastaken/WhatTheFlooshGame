@@ -123,7 +123,7 @@ add([
 ])
 
 scene("game:easy", () => {
-    if (localStorage.getItem("muted") === 0) {
+    if (localStorage.getItem("settings:muted") === 0) {
         gamemusic.play()
         menumusic.volume = 0
         creditsmusic.volume = 0
@@ -136,7 +136,7 @@ scene("game:easy", () => {
     Game(0.5, 0.5, 2.2);
 })
 scene("game:normal", () => {
-    if (localStorage.getItem("muted") === 0) {
+    if (localStorage.getItem("settings:muted") === 0) {
         gamemusic.play()
         menumusic.volume = 0
         creditsmusic.volume = 0
@@ -149,7 +149,7 @@ scene("game:normal", () => {
     Game(1, 1, 1);
 })
 scene("game:hard", () => {
-    if (localStorage.getItem("muted") === 0) {
+    if (localStorage.getItem("settings:muted") === 0) {
         gamemusic.play()
         menumusic.volume = 0
         creditsmusic.volume = 0
@@ -180,7 +180,7 @@ scene("devOptions", () => {
 scene("menu", () => {
     // burp()
     // play("score")
-    if (localStorage.getItem("muted") === 0) {
+    if (localStorage.getItem("settings:muted") === 0) {
         menumusic.play()
         menumusic.volume = 1
         creditsmusic.volume = 0
@@ -200,7 +200,7 @@ scene("credits", () => {
     Credits();
 })
 scene("shop", () => {
-    if (localStorage.getItem("muted") === 0) {
+    if (localStorage.getItem("settings:muted") === 0) {
         creditsmusic.play()
         creditsmusic.volume = 1
         menumusic.volume = 0
@@ -236,7 +236,7 @@ scene("loading", () => {
     AFK(rand(2, 4))
 })
 scene("warning", () => {
-    if(localStorage.getItem("muted") === 0) burp()
+    if(localStorage.getItem("settings:muted") === 0) burp()
     const firstText = add([
         text("Novidades:", {
             size: 26
@@ -262,9 +262,9 @@ scene("warning", () => {
         // scale(1),
         area()
     ])
-    onClick(() => { if(localStorage.getItem("muted") === 0) burp(); 
+    onClick(() => { if(localStorage.getItem("settings:muted") === 0) burp(); 
     go("menu") })
-    onKeyPress(() => { if(localStorage.getItem("muted") === 0) burp(); 
+    onKeyPress(() => { if(localStorage.getItem("settings:muted") === 0) burp(); 
         go("menu") })
 })
 scene("notfull", () => {
