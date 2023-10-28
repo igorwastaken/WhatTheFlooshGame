@@ -222,6 +222,14 @@ scene("shop", () => {
 })
 scene("loading", () => {
     var progress = 0
+    const protext = add([
+        text(`Carregando... (${progress})`, {
+            size:18,
+            align: 'center',
+            width: width()
+        }),
+        pos(height()/1.5)
+    ])
     const interval = setInterval((t) => {
         console.log(progress)
         progress++;
@@ -233,6 +241,7 @@ scene("loading", () => {
             // alert("O jogo está instável no momento, mas ainda é jogável (:")
             /*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
         }
+        protext.text=`Carregando... (${progress})`
     }, rand(0.4, 1))
     const cl = add([
         pos(width()/2,height()/2),
