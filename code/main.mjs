@@ -86,6 +86,7 @@ loadSound("20210511", "sounds/20210511.mp3")
 // Skins
 loadSprite("nerd", "sprites/skins/nerd.png")
 loadSprite("skull", "sprites/skins/skull.png")
+loadSprite("b21nYnVyYnVyaXNjdXRlc21pbGVmYWNlc21pbGVmYWNl", "sprites/skins/burbur.png")
 
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")
