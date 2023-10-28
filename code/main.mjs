@@ -228,7 +228,7 @@ scene("loading", () => {
             align: 'center',
             width: width()
         }),
-        pos(height()/1.5)
+        pos(0,height()-100)
     ])
     const interval = setInterval((t) => {
         console.log(progress)
@@ -244,7 +244,7 @@ scene("loading", () => {
         protext.text=`Carregando... (${progress})`
     }, rand(0.4, 1))
     const cl = add([
-        pos(width()/2,height()/2),
+        pos(center()),
         sprite("cl:AL"),
         scale(0.5),
         area(),
