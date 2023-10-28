@@ -250,7 +250,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         currentCoins++;
         coins.text = currentCoins;
 
-        if (localStorage.getItem("qt") == true) {
+        if (localStorage.getItem("qt") === true) {
             localStorage.setItem("coins", Math.floor(localStorage.getItem("coins")) * 100)
         } else {
             localStorage.setItem("coins", Math.floor(localStorage.getItem("coins")) + 1)
