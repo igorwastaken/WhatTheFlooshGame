@@ -93,7 +93,7 @@ loadSprite("skull", "sprites/skins/skull.png")
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")
 loadSprite("settings", "sprites/icons/settings.png")
-loadSprite("cl:AL", "https://www.gov.br/mj/pt-br/assuntos/seus-direitos/classificacao-1/simbolos-de-autoclassificacao/l-auto.png/@@images/3a3e9c78-cc34-4351-bfd5-64f57797e602.png")
+loadSprite("cl:AL", "https://www.gov.br/mj/pt-br/assuntos/seus-direitos/classificacao-1/simbolos-de-autoclassificacao/l-auto.png")
 
 
 const menumusic = play("20190724 2", {
