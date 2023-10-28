@@ -27,7 +27,7 @@ if (!localStorage.getItem("coins")) {
 if (!localStorage.getItem("qt")) {
     localStorage.setItem("qt", false)
 }
-if (localStorage.getItem("qt") === true) {
+if (localStorage.getItem("qt") === "true") {
     localStorage.setItem("skin", "burbur")
 }
 if (!localStorage.getItem("skin")) {
@@ -102,7 +102,7 @@ scene("game:easy", () => {
         gamemusic.play()
         menumusic.volume = 0
         creditsmusic.volume = 0
-        if (localStorage.getItem("qt") === true) {
+        if (localStorage.getItem("qt") === "true") {
             gamemusic.volume = 5
         } else {
             gamemusic.volume = 1
@@ -120,7 +120,7 @@ scene("game:normal", () => {
         console.log("Can play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
-        if (localStorage.getItem("qt") === true) {
+        if (localStorage.getItem("qt") === "true") {
             gamemusic.volume = 5
         } else {
             gamemusic.volume = 1
@@ -139,7 +139,7 @@ scene("game:hard", () => {
         console.log("Can play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
-        if (localStorage.getItem("qt") === true) {
+        if (localStorage.getItem("qt") === "true") {
             gamemusic.volume = 5
         } else {
             gamemusic.volume = 1
