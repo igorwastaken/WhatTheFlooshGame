@@ -133,7 +133,7 @@ export default function MainMenu() {
         })
     }
     add([
-        text("2023 © Igor Figueiredo", {
+        text("1984 © Grupo Empadinha de Camarão", {
             size: 15,
             width: width()
         }),

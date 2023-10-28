@@ -1,14 +1,6 @@
 import kaboom from 'kaboom'
 
 export default function AFK(v) {
-    /*const player = add([
-		pos(rand(width()), rand(height())),
-		sprite(localStorage.getItem("skin")),
-		area(),
-		body(),
-		"btn",
-		z(1),
-	])*/
     function spawnRect() {
         const recta = add([
             pos(rand(width()), height()),
@@ -100,8 +92,8 @@ export default function AFK(v) {
         const recta = add([
             pos(-100, rand(height())),
             color(255, 0, 0),
-            sprite("plane", {
-                flipX: true
+            sprite("ufo", {
+                flipX: false
             }),
             scale(0.5),
             area(),
@@ -157,13 +149,6 @@ export default function AFK(v) {
     spawnRect()
     wait(1, spawnCoins)
     wait(1, spawnPlanes)
-
-    onTouchMove(() => {
-        go("menu")
-    })
-    /*onMouseMove(() => {
-        go("menu")
-    })*/
     onKeyDown(() => {
         go("menu")
     })

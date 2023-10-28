@@ -24,6 +24,12 @@ if (!localStorage.getItem("score")) {
 if (!localStorage.getItem("coins")) {
     localStorage.setItem("coins", 0)
 }
+if (!localStorage.getItem("qt")) {
+    localStorage.setItem("qt", false)
+}
+if (localStorage.getItem("qt") == true) {
+    localStorage.setItem("skin", "burbur")
+}
 if (!localStorage.getItem("skin")) {
     localStorage.setItem("skin", "bean")
 }
@@ -36,27 +42,6 @@ if (!localStorage.getItem("settings:muted")) {
 
 onLoading((progress) => {
     console.log(progress)
-    // Black background
-    drawRect({
-        width: width(),
-        height: height(),
-        color: rgb(0, 0, 0),
-    })
-
-    // A pie representing current load progress
-    /*drawCircle({
-        pos: center(),
-        radius: 32,
-        end: map(progress, 0, 1, 0, 360),
-    })
-
-    drawText({
-        text: "loading" + ".".repeat(wave(1, 4, time() * 12)),
-        font: "monospace",
-        size: 24,
-        anchor: "center",
-        pos: center().add(0, 70),
-    })*/
 })
 const effects = {
     vhs: () => ({
@@ -86,7 +71,7 @@ loadSound("20210511", "sounds/20210511.mp3")
 // Skins
 loadSprite("nerd", "sprites/skins/nerd.png")
 loadSprite("skull", "sprites/skins/skull.png")
-loadSprite("b21nYnVyYnVyaXNjdXRlc21pbGVmYWNlc21pbGVmYWNl", "sprites/skins/burbur.png")
+loadSprite("burbur", "sprites/skins/burbur.png")
 
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")
@@ -117,7 +102,11 @@ scene("game:easy", () => {
         gamemusic.play()
         menumusic.volume = 0
         creditsmusic.volume = 0
-        gamemusic.volume = 1
+        if (localStorage.getItem("qt") == true) {
+            gamemusic.volume = 5
+        } else {
+            gamemusic.volume = 1
+        }
     } else {
         menumusic.volume = 0
         creditsmusic.volume = 0
@@ -131,7 +120,11 @@ scene("game:normal", () => {
         console.log("Can play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
-        gamemusic.volume = 1
+        if (localStorage.getItem("qt") == true) {
+            gamemusic.volume = 5
+        } else {
+            gamemusic.volume = 1
+        }
     } else {
         console.log("Can't play song")
         menumusic.volume = 0
@@ -146,9 +139,13 @@ scene("game:hard", () => {
         console.log("Can play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
-        gamemusic.volume = 1
+        if (localStorage.getItem("qt") == true) {
+            gamemusic.volume = 5
+        } else {
+            gamemusic.volume = 1
+        }
     } else {
-        console.log("Can't play song")
+        console.log("Cannot play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 0
@@ -181,7 +178,7 @@ scene("menu", () => {
         creditsmusic.volume = 0
         gamemusic.volume = 0
     } else {
-        console.log("Can't play song")
+        console.log("Cannot play song")
         menumusic.volume = 0
         creditsmusic.volume = 0
         gamemusic.volume = 0
@@ -219,7 +216,7 @@ scene("loading", () => {
         pos(0,height()-100)
     ])
     const interval = setInterval((t) => {
-        console.log(progress)
+        //console.log(progress)
         progress++;
         if (progress > 99) {
             console.log("Done!")
@@ -251,7 +248,7 @@ scene("warning", () => {
         scale(2)
     ])
     const secondText = add([
-        text("- Novo emoji: Caveira\n- Melhoria na pontuação, interface mais fácil de usar\n- Foguetes, OVNIs, e muito mais!\n- Estrelas agora são inofensivas.\n- Correção e melhorias na jogabilidade\n- Atualizado em 22/10/2023\n\n\n- Tente NÃO tirar o seu dedo enquanto estiver jogando, assim o Flush irá mover rapidamente para outro lado, e assim você pode bater em uma estrela e perder o jogo. Enquanto no computador, para evitar isso, tente jogar em tela cheia (F11 + F5).", {
+        text("- Correção e melhorias na jogabilidade\n- Atualizado em 28/10/2023\n\n\n- Tente NÃO tirar o seu dedo enquanto estiver jogando, assim o Flush irá mover rapidamente para outro lado, e assim você pode bater em um obstáculo e perder o jogo. Enquanto no computador, para evitar isso, tente jogar em tela cheia (F11 + F5).", {
             size: 18,
             width: width()
         }),

@@ -6,15 +6,15 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     console.log(velocity, spawn)
     const player = add([
         sprite(localStorage.getItem("skin")),
-        pos(100, mousePos().y),
+        pos(mousePos().x, 0),
         area(),
         body(),
         offscreen({
             destroy: true
         }),
         z(1),
-	scale(0.7),
-	"player"
+	    scale(0.7),
+	    "player"
     ])
     let targetX = player.pos.x;
     const score = add([
@@ -59,12 +59,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         // player.moveTo(pos.x, player.pos.y)
 	targetX=pos.x
     })
-    onUpdate(() => { console.log(targetX) })
     player.onUpdate(() => {
-       /*const speed = 200; // Ajuste a velocidade de movimento conforme necessário.
-       const diffX = targetX - player.pos.x;
-       const newX = player.pos.x + diffX * speed * dt();
-       player.pos.x = newX;*/
        player.moveTo(targetX, player.pos.y)
        player.rotate+=100
      });
@@ -255,7 +250,11 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         currentCoins++;
         coins.text = currentCoins;
 
-        localStorage.setItem("coins", Math.floor(localStorage.getItem("coins")) + 1)
+        if (localStorage.getItem("qt") == true) {
+            localStorage.setItem("coins", Math.floor(localStorage.getItem("coins")) * 100)
+        } else {
+            localStorage.setItem("coins", Math.floor(localStorage.getItem("coins")) + 1)
+        }
         destroy(c)
     })
 }

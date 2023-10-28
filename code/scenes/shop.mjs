@@ -13,7 +13,12 @@ const items = [{
         sprite: "skull",
         name: "Skull",
         price: 350
-    }
+    },
+    /*{
+        sprite: "burbur",
+        name: "Qt Little Burbur",
+        price: 9999999999999999999999
+    }*/
 ]
 export default function Shop() {
     items.map((item, index) => {

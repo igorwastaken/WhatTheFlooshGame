@@ -15,7 +15,7 @@ export default function Credits() {
 		go("devOptions")
 	})
 	add([
-		text("Criador:", {
+		text("Criadores:", {
 			size: 20,
 			width: width(),
 			align: "center"
@@ -23,7 +23,7 @@ export default function Credits() {
 		pos(0,40)
 	])
 	add([
-		text("Igor Figueiredo", {
+		text("Igor, Davi, Alice & Noah (Grupo Empadinha de Camarão), Burbur", {
 			size: 14,
 			width: width(),
 			align: "center"
@@ -63,7 +63,7 @@ export default function Credits() {
 		pos(0, 180)
 	])
 	add([
-		text("Criado com Kaboom.js", {
+		text("Criado com Kaboom.js", { //smh
 			size: 20,
 			width: width(),
 			align: "center"
@@ -79,7 +79,6 @@ export default function Credits() {
 		}),
 		pos(10, height()-30),
 		area(),
-
 		"voltar"
 	])
 	onClick("kaboomgit", () => {
