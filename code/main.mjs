@@ -244,9 +244,9 @@ scene("loading", () => {
         protext.text=`Carregando... (${progress})`
     }, rand(0.4, 1))
     const cl = add([
-        pos(center()),
+        pos(10, 10),
         sprite("cl:AL"),
-        scale(0.5),
+        scale(0.3),
         area(),
         opacity(1)
     ])
