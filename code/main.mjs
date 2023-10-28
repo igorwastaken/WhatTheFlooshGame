@@ -93,7 +93,7 @@ loadSprite("skull", "sprites/skins/skull.png")
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")
 loadSprite("settings", "sprites/icons/settings.png")
-loadSprite("cl:AL", "sprites/icons/Cl-AL")
+loadSprite("cl:AL", "sprites/icons/Cl-AL.png")
 
 
 const menumusic = play("20190724 2", {
