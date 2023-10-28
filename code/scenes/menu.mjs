@@ -132,8 +132,9 @@ export default function MainMenu() {
             }
         })
     }
+    const currentYear = new Date().getUTCFullYear()
     add([
-        text("1984 © Grupo Empadinha de Camarão", {
+        text(currentYear + " © Grupo Empadinha de Camarão", {
             size: 15,
             width: width()
         }),
