@@ -83,9 +83,6 @@ loadSound("score", "sounds/score.mp3")
 loadSound("20190724 2", "sounds/20190724 2.mp3")
 loadSound("20210511", "sounds/20210511.mp3")
 
-// Shaders (Not working)
-loadShaderURL("vhs", null, "shaders/vhs.frag")
-
 // Skins
 loadSprite("nerd", "sprites/skins/nerd.png")
 loadSprite("skull", "sprites/skins/skull.png")
@@ -112,16 +109,6 @@ const label = add([
     pos(8, 8),
     text("0"),
     area()
-])
-
-
-// gamemusic.play()
-// menumusic.play()
-// record(60)
-
-add([
-    uvquad(width(), height()),
-    shader("vhs")
 ])
 
 scene("game:easy", () => {
