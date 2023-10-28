@@ -93,6 +93,8 @@ loadSprite("skull", "sprites/skins/skull.png")
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")
 loadSprite("settings", "sprites/icons/settings.png")
+loadSprite("cl:AL", "https://www.gov.br/mj/pt-br/assuntos/seus-direitos/classificacao-1/simbolos-de-autoclassificacao/l-auto.png/@@images/3a3e9c78-cc34-4351-bfd5-64f57797e602.png")
+
 
 const menumusic = play("20190724 2", {
     loop: true,
@@ -231,15 +233,15 @@ scene("loading", () => {
             // alert("O jogo está instável no momento, mas ainda é jogável (:")
             /*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
         }
-        drawText({
-            text: progress + "%\ncarregando" + ".".repeat(wave(1, 4, time() * 12)),
-            font: "monospace",
-            size: 24,
-            anchor: "center",
-            pos: center().add(0, 70),
-        })
     }, rand(0.4, 1))
-    AFK(rand(2, 4))
+    const cl = add([
+        pos(width()/2,height()/2),
+        sprite("cl:AL"),
+        scale(0.5),
+        area(),
+        opacity(1)
+    ])
+    
 })
 scene("warning", () => {
     if(localStorage.getItem("settings:muted") == 0) burp()
