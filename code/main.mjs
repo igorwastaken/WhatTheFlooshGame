@@ -240,7 +240,7 @@ scene("loading", () => {
 scene("warning", () => {
     if(localStorage.getItem("settings:muted") == 0) burp()
     const firstText = add([
-        text("Novidades:", {
+        text("Novidades/AVISO:", {
             size: 26
         }),
         pos(10, 10),
@@ -248,7 +248,7 @@ scene("warning", () => {
         scale(2)
     ])
     const secondText = add([
-        text("- Correção e melhorias na jogabilidade\n- Atualizado em 28/10/2023\n\n\n- Tente NÃO tirar o seu dedo enquanto estiver jogando, assim o Flush irá mover rapidamente para outro lado, e assim você pode bater em um obstáculo e perder o jogo. Enquanto no computador, para evitar isso, tente jogar em tela cheia (F11 + F5).", {
+        text("Pedimos desculpas pelo incidente ocorrido no dia 4 de novembro, acreditamos que o jogo esteja funcionando normalmente.\n-Correção e melhorias\n- Última atualização: 05/11/2023", {
             size: 18,
             width: width()
         }),
