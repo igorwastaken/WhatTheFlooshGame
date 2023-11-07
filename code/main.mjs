@@ -240,7 +240,7 @@ scene("loading", () => {
 scene("warning", () => {
     if(localStorage.getItem("settings:muted") == 0) burp()
     const firstText = add([
-        text("Novidades/AVISO:", {
+        text("Novidades:", {
             size: 26
         }),
         pos(10, 10),
@@ -248,7 +248,7 @@ scene("warning", () => {
         scale(2)
     ])
     const secondText = add([
-        text("Pedimos desculpas pelo incidente ocorrido no dia 4 de novembro, acreditamos que o jogo esteja funcionando normalmente.\n-Correção e melhorias\n- Última atualização: 05/11/2023", {
+        text("- Suporte de controle remoto\n- Suporte aos botões Esquerda e Direita no computador\n- Correção e melhorias\n- Última atualização: 05/11/2023", {
             size: 18,
             width: width()
         }),
