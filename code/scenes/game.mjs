@@ -3,6 +3,7 @@ import kaboom from 'kaboom'
 export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     var currentScore = 0;
     var currentCoins = 0;
+    var SPEED = 200
     console.log(velocity, spawn)
     const player = add([
         sprite(localStorage.getItem("skin")),
@@ -52,17 +53,23 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
 		}
 	})
     onTouchMove((_, pos) => {
-        // player.moveTo(pos.clientX, player.pos.y)
-	targetX = pos.clientX;
+        player.moveTo(pos.clientX, player.pos.y)
+	// targetX = pos.clientX;
     })
     onMouseMove((pos) => {
-        // player.moveTo(pos.x, player.pos.y)
-	targetX=pos.x
+        player.moveTo(pos.x, player.pos.y)
+	// targetX=pos.x
     })
-    player.onUpdate(() => {
+    onKeyPress('left', () => {
+        player.move(-SPEED, 0)
+    })
+    onKeyPress('right', () => {
+        player.move(SPEED, 0)
+    })
+    /*player.onUpdate(() => {
        player.moveTo(targetX, player.pos.y)
        player.rotate+=100
-     });
+     });*/
 
     function spawnRect() {
         const recta = add([
