@@ -162,6 +162,12 @@ export default function MainMenu() {
     onClick("settings", () => {
         go("settings")
     })
+    onKeyPress("space", () => {
+        go("game:normal")
+    })
+    onGamepadButtonDown("dpad-down", () => {
+        go("game:normal")
+    })
     onCollide("btn", (e) => {
         destroy(e)
     })
@@ -195,7 +201,6 @@ export default function MainMenu() {
             go("afk")
         }
     })
-
     const socials = [
         {
             id: "Instagram",
