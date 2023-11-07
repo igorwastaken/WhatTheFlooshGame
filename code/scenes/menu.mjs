@@ -168,6 +168,9 @@ export default function MainMenu() {
     onGamepadButtonDown("dpad-down", () => {
         go("game:normal")
     })
+    onKeyPress("down", () => {
+        go("game:normal")
+    })
     onCollide("btn", (e) => {
         destroy(e)
     })
