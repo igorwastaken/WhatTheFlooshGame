@@ -66,6 +66,12 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     onKeyDown('right', () => {
         player.move(SPEED, 0)
     })
+    onGamepadButtonDown('dpad-left', () => {
+        player.move(-SPEED, 0)
+    })
+    onGamepadButtonDown('dpad-right', () => {
+        player.move(SPEED, 0)
+    })
     /*player.onUpdate(() => {
        player.moveTo(targetX, player.pos.y)
        player.rotate+=100
