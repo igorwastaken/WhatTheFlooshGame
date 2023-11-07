@@ -60,10 +60,10 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         player.moveTo(pos.x, player.pos.y)
 	// targetX=pos.x
     })
-    onKeyPress('left', () => {
+    onKeyDown('left', () => {
         player.move(-SPEED, 0)
     })
-    onKeyPress('right', () => {
+    onKeyDown('right', () => {
         player.move(SPEED, 0)
     })
     /*player.onUpdate(() => {
