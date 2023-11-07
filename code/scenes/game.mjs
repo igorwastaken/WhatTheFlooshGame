@@ -3,7 +3,7 @@ import kaboom from 'kaboom'
 export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     var currentScore = 0;
     var currentCoins = 0;
-    var SPEED = 200
+    var SPEED = 400
     console.log(velocity, spawn)
     const player = add([
         sprite(localStorage.getItem("skin")),
