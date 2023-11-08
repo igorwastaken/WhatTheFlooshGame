@@ -293,7 +293,7 @@ go("loading")
 }
 */
 debug.inspect = window.location.hash === "#debug"
-// setFullscreen()
+ setFullscreen()
 /*onUpdate(() => {
     if(!isFullscreen) {
         go("notFull")
