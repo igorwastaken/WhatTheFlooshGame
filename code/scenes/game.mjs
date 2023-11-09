@@ -183,7 +183,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         const recta = add([
             pos(rand(width()), height()),
             sprite("star"),
-            scale(rand(0.1, 0.5)),
+            scale(rand(0.3, 0.5)),
             area(),
             offscreen({
                 destroy: true
