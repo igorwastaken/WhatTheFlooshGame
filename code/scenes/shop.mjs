@@ -7,12 +7,17 @@ const items = [{
     {
         sprite: "nerd",
         name: "Nerd",
-        price: 100
+        price: 1000
     },
     {
         sprite: "skull",
         name: "Skull",
-        price: 350
+        price: 3500
+    },
+    {
+        sprite: "poop",
+        name: "Poop",
+        price: 5000
     },
     /*{
         sprite: "burbur",

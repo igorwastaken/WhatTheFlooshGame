@@ -73,6 +73,7 @@ loadSound("20210511", "sounds/20210511.mp3")
 loadSprite("nerd", "sprites/skins/nerd.png")
 loadSprite("skull", "sprites/skins/skull.png")
 loadSprite("burbur", "sprites/skins/burbur.png")
+loadSprite("poop", "sprites/skins/poop.png")
 
 // Icons
 loadSprite("instagram", "sprites/icons/instagram.png")
