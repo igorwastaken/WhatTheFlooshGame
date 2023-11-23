@@ -180,11 +180,29 @@ export default function MainMenu() {
     onCollide("credits", (e) => {
         destroy(e)
     })
+    onHover("btn", () => {
+        setCursor("pointer")
+    })
+    onHoverEnd("btn", () => {
+        setCursor("default")
+    })
     onClick("btn", () => {
         go("difficulty")
     })
+    onHover("credits", () => {
+        setCursor("pointer")
+    })
+    onHoverEnd("credits", () => {
+        setCursor("default")
+    })
     onClick("credits", () => {
         go("credits")
+    })
+    onHover("shop", () => {
+        setCursor("pointer")
+    })
+    onHoverEnd("shop", () => {
+        setCursor("default")
     })
     onClick("shop", () => {
         go("shop")
