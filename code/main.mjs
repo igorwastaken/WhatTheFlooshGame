@@ -117,7 +117,7 @@ scene("game:easy", () => {
     }
     Game(0.5, 0.5, 2.2);
 })
-scene("game:easteregg", () => {
+scene("game:impossible", () => {
     if (localStorage.getItem("settings:muted") == 0) {
         gamemusic.play()
         menumusic.volume = 0
@@ -132,7 +132,7 @@ scene("game:easteregg", () => {
         creditsmusic.volume = 0
         gamemusic.volume = 0
     }
-    NewGame(1, 1, 1);
+    NewGame(1, 3, 2);
 })
 scene("game:normal", () => {
     if (localStorage.getItem("settings:muted") == 0) {
@@ -170,7 +170,7 @@ scene("game:hard", () => {
         creditsmusic.volume = 0
         gamemusic.volume = 0
     }
-    Game(2, 2, 1.5);
+    Game(1, 2, 1.5);
 })
 scene("settings", () => {
     Settings()
