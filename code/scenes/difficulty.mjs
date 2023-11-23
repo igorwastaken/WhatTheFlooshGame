@@ -56,25 +56,25 @@ export default function Difficulty() {
         "back",
         z(3)
     ])
-    onHoverStart("easy", () => {
+    onHover("easy", () => {
         setCursor("pointer")
     })
     onHoverEnd("easy", () => {
         setCursor("default")
     })
-    onHoverStart("normal", () => {
+    onHover("normal", () => {
         setCursor("pointer")
     })
     onHoverEnd("normal", () => {
         setCursor("default")
     })
-    onHoverStart("hard", () => {
+    onHover("hard", () => {
         setCursor("pointer")
     })
     onHoverEnd("hard", () => {
         setCursor("default")
     })
-    onHoverStart("back", () => {
+    onHover("back", () => {
         setCursor("pointer")
     })
     onHoverEnd("back", () => {
