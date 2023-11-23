@@ -266,6 +266,7 @@ scene("loading", () => {
     
 })
 scene("warning", () => {
+    
     setCursor("default")
     if(localStorage.getItem("settings:muted") == 0) burp()
     const firstText = add([
@@ -293,10 +294,19 @@ scene("warning", () => {
         // scale(1),
         area()
     ])
-    onClick(() => { if(localStorage.getItem("settings:muted") == 0) burp(); 
-    go("menu") })
-    onKeyPress(() => { if(localStorage.getItem("settings:muted") == 0) burp(); 
-        go("menu") })
+    onClick(() => { 
+        if(localStorage.getItem("settings:muted") == 0) burp(); 
+        // go("menu")
+        const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+        if(c == true) { window.location.href = "https://status.igor.mom/" }
+    })
+    onKeyPress(() => { 
+        if(localStorage.getItem("settings:muted") == 0) burp(); 
+        // go("menu") 
+        // confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+        const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+        if(c == true) { window.location.href = "https://status.igor.mom/" }
+    })
 })
 scene("notfull", () => {
     add([
