@@ -1,6 +1,7 @@
 import kaboom from "kaboom"
 // import "kaboom/global"
 import Game from './scenes/game.mjs'
+import NewGame from './scenes/newGame.mjs'
 import Menu from './scenes/menu.mjs'
 import Credits from './scenes/credits.mjs'
 import Dev from './scenes/devScreen.mjs'
@@ -115,6 +116,23 @@ scene("game:easy", () => {
         gamemusic.volume = 0
     }
     Game(0.5, 0.5, 2.2);
+})
+scene("game:easteregg", () => {
+    if (localStorage.getItem("settings:muted") == 0) {
+        gamemusic.play()
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        if (localStorage.getItem("qt") === "true") {
+            gamemusic.volume = 5
+        } else {
+            gamemusic.volume = 1
+        }
+    } else {
+        menumusic.volume = 0
+        creditsmusic.volume = 0
+        gamemusic.volume = 0
+    }
+    NewGame(1, 1, 1);
 })
 scene("game:normal", () => {
     if (localStorage.getItem("settings:muted") == 0) {
