@@ -42,16 +42,6 @@ if (!localStorage.getItem("settings:muted")) {
     localStorage.setItem("settings:muted", 0)
 }
 
-onLoading((progress) => {
-    console.log(progress)
-})
-const effects = {
-    vhs: () => ({
-        "u_intensity": 125,
-    })
-}
-
-let curEffect = 0
 // load assets
 loadSprite("bean", "sprites/bean.png")
 loadSprite("cloud", "sprites/elements/clouds.png")
@@ -296,16 +286,16 @@ scene("warning", () => {
     ])
     onClick(() => { 
         if(localStorage.getItem("settings:muted") == 0) burp(); 
-        // go("menu")
-        const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
-        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }
+        go("menu")
+        /*const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }*/
     })
     onKeyPress(() => { 
         if(localStorage.getItem("settings:muted") == 0) burp(); 
-        // go("menu") 
+        go("menu") 
         // confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
-        const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
-        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }
+        /*const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }*/
     })
 })
 scene("notfull", () => {
