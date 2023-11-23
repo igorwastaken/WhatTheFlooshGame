@@ -181,7 +181,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     }
     function spawnStars() {
         const recta = add([
-            pos(rand(width()), 0),
+            pos(rand(width()), height()),
             sprite("star"),
             scale(rand(0.3, 0.5)),
             area(),
@@ -193,7 +193,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             rotate(rand(0,360))
         ])
         onUpdate(() => {
-            recta.move(0, rand(50, 100))
+            recta.move(0, rand(-100, -50);
         })
         wait(rand(0.8, 1.4), spawnStars)
     }
