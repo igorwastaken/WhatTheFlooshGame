@@ -193,7 +193,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             rotate(rand(0,360))
         ])
         onUpdate(() => {
-            recta.move(0, rand(-100, -50);
+            recta.move(0, rand(-100, -50));
         })
         wait(rand(0.8, 1.4), spawnStars)
     }
