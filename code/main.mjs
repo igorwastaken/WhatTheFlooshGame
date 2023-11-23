@@ -170,7 +170,7 @@ scene("game:hard", () => {
         creditsmusic.volume = 0
         gamemusic.volume = 0
     }
-    Game(1, 2, 1.5);
+    Game(2.5, 2, 1.5);
 })
 scene("settings", () => {
     Settings()
