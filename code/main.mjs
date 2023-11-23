@@ -298,14 +298,14 @@ scene("warning", () => {
         if(localStorage.getItem("settings:muted") == 0) burp(); 
         // go("menu")
         const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
-        if(c == true) { window.location.href = "https://status.igor.mom/" }
+        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }
     })
     onKeyPress(() => { 
         if(localStorage.getItem("settings:muted") == 0) burp(); 
         // go("menu") 
         // confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
         const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
-        if(c == true) { window.location.href = "https://status.igor.mom/" }
+        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }
     })
 })
 scene("notfull", () => {
