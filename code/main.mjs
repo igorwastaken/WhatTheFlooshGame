@@ -132,7 +132,7 @@ scene("game:impossible", () => {
         creditsmusic.volume = 0
         gamemusic.volume = 0
     }
-    NewGame(1, 3, 2);
+    NewGame(2, 3, 2);
 })
 scene("game:normal", () => {
     if (localStorage.getItem("settings:muted") == 0) {
@@ -248,13 +248,13 @@ scene("loading", () => {
         }
         protext.text=`Carregando... (${progress})`
     }, rand(0.4, 1))
-    const cl = add([
+    /*const cl = add([
         pos(10, 10),
         sprite("cl:AL"),
         scale(0.3),
         area(),
         opacity(1)
-    ])
+    ])*/
     
 })
 scene("warning", () => {
