@@ -1,7 +1,7 @@
 import kaboom from 'kaboom'
 
 export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
-    setCursor("pointer")
+    setCursor("none")
     var currentScore = 0;
     var currentCoins = 0;
     var SPEED = 400
