@@ -174,8 +174,10 @@ scene("game:hard", () => {
 })
 scene("settings", () => {
     Settings()
+    setCursor("default")
 })
 scene("afk", () => {
+    setCursor("none")
     /*gamemusic.play()
     menumusic.volume = 0
     creditsmusic.volume = 0
@@ -183,12 +185,15 @@ scene("afk", () => {
     AFK(1);
 })
 scene("difficulty", () => {
+    setCursor("default")
     Difficulty()
 })
 scene("devOptions", () => {
+    setCursor("default")
     Dev()
 })
 scene("menu", () => {
+    setCursor("default")
     // burp()
     // play("score")
     if (localStorage.getItem("settings:muted") == 0) {
@@ -206,6 +211,7 @@ scene("menu", () => {
     Menu();
 })
 scene("credits", () => {
+    setCursor("default")
     /*creditsmusic.play()
     creditsmusic.volume = 1
     menumusic.volume = 0
@@ -213,6 +219,7 @@ scene("credits", () => {
     Credits();
 })
 scene("shop", () => {
+    setCursor("default")
     if (localStorage.getItem("settings:muted") == 0) {
         creditsmusic.play()
         creditsmusic.volume = 1
@@ -226,6 +233,7 @@ scene("shop", () => {
     Shop();
 })
 scene("loading", () => {
+    setCursor("none")
     var progress = 0
     const protext = add([
         text(`Carregando... (${progress})`, {
@@ -258,6 +266,7 @@ scene("loading", () => {
     
 })
 scene("warning", () => {
+    setCursor("default")
     if(localStorage.getItem("settings:muted") == 0) burp()
     const firstText = add([
         text("Novidades:", {
