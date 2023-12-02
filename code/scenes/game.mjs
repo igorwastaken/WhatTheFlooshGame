@@ -189,7 +189,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             offscreen({
                 destroy: true
             }),
-            "Rectred",
+            "Clouds",
             z(-1),
             rotate(rand(0,360))
         ])
