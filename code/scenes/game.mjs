@@ -158,7 +158,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     function spawnPlanes() {
         const recta = add([
             pos(-100, rand(height())),
-            color(255, 0, 0),
+            // color(255, 0, 0),
             sprite("ufo", {
                 flipX: false
             }),
