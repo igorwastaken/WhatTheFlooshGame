@@ -134,7 +134,7 @@ export default function MainMenu() {
     }
     const currentYear = new Date().getUTCFullYear()
     add([
-        text(currentYear + " © Grupo Empadinha de Camarão", {
+        text(currentYear + " © Grupo Empadinha", {
             size: 15,
             width: width()
         }),
