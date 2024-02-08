@@ -47,10 +47,16 @@
 	<!-- If i put "game", "jogos" or something, my school's firewall blocks the game.-->
 	<meta name="keywords" content="igor.mom, What The Floosh, wtfl, what the floosh, the floosh, floosh, flush, what the flush">
 	<!-- Ok, i need fix it (jk) -->
+	<script src="https://cdn.tailwindcss.com/"></script>
 </head>
 
 <body>
-<canvas id="gamecanvas"></canvas>
+<div id="main" class="flex flex-col justify-center items-center h-screen">
+	<p>AH NÃO!!!</p>
+	<p>What The Floosh está em manutenção!</p>
+	<button>Jogue na versão antiga</button>
+</div>
+<canvas class="hidden" id="gamecanvas"></canvas>
 <script type="importmap">
   {
     "imports": {
@@ -59,6 +65,12 @@
   }
 </script>
 <script src="./code/main.mjs" type="module"></script>
+<script>
+	if(window.location.hash === "#debug") {
+		document.getElementById("gamecanvas").classList.remove("hidden")
+		document.getElementById("gamecanvas").classList.add("hidden")
+	}
+</script>
 </body>
 </html>
 
