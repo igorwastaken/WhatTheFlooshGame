@@ -54,10 +54,11 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
 		}
 	})
     onTouchStart(() => {
+	    console.log("started")
 	    player.moveTo(player.pos.x, player.pos.y)
     });
     onTouchMove((_, pos) => {
-        player.moveTo(pos.clientX, player.pos.y)
+        setTimeout(() => player.moveTo(pos.clientX, player.pos.y), 500)
 	// targetX = pos.clientX;
     })
     onMouseMove((pos) => {
