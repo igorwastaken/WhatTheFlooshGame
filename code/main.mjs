@@ -183,6 +183,7 @@ scene("devOptions", () => {
     Dev()
 })
 scene("menu", () => {
+    setFullscreen()
     setCursor("default")
     
     // burp()
