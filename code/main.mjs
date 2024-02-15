@@ -269,7 +269,7 @@ scene("warning", () => {
         scale(2)
     ])
     const secondText = add([
-        text("- Suporte de controle remoto\n- Suporte aos botões Esquerda e Direita no computador\n- Correção e melhorias\n- Última atualização: 05/11/2023", {
+        text("• Telefone não suportam mais WTFL.\n• Música de menu atualizado.\n- Correção e melhorias\n- Última atualização: 15/02/2024", {
             size: 18,
             width: width()
         }),
