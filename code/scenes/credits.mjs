@@ -63,12 +63,20 @@ export default function Credits() {
 		pos(0, 180)
 	])
 	add([
+		text("20210616 - Mac Demarco", {
+			size: 14,
+			width: width(),
+			align: "center"
+		}),
+		pos(0, 210)
+	])
+	add([
 		text("Criado com Kaboom.js", { //smh
 			size: 20,
 			width: width(),
 			align: "center"
 		}),
-		pos(0, 210),
+		pos(0, 230),
 		area(),
 		"kaboomgit"
 	])
