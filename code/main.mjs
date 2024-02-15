@@ -185,7 +185,9 @@ scene("devOptions", () => {
 scene("menu", () => {
    // setFullscreen()
     setCursor("default")
-    
+    setTimeout(function(){window.scrollTo(0,0);},1);
+    document.getElementById("gamecanvas").style.width = "100%"
+    document.getElementById("gamecanvas").style.height = "100%"
     // burp()
     // play("score")
     if (localStorage.getItem("settings:muted") == 0) {
