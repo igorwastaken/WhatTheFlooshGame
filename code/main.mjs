@@ -57,7 +57,7 @@ loadSprite("clock", "sprites/elements/clock.png")
 // sounds
 loadSound("20190724", "sounds/20190724.mp3")
 loadSound("score", "sounds/score.mp3")
-loadSound("20190724 2", "sounds/20190724 2.mp3")
+loadSound("20210616", "sounds/20210616.mp3")
 loadSound("20210511", "sounds/20210511.mp3")
 
 // Skins
@@ -72,7 +72,7 @@ loadSprite("settings", "sprites/icons/settings.png")
 loadSprite("cl:AL", "sprites/icons/Cl-AL.png")
 
 
-const menumusic = play("20190724 2", {
+const menumusic = play("20210616", {
     loop: true,
     volume: 1,
 })
