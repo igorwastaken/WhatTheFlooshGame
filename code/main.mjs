@@ -184,7 +184,7 @@ scene("devOptions", () => {
 })
 scene("menu", () => {
     setCursor("default")
-    setFullscreen()
+    
     // burp()
     // play("score")
     if (localStorage.getItem("settings:muted") == 0) {
