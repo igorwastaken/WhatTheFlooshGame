@@ -49,7 +49,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     ])
 	player.onUpdate(() => {
 		// player.rotate(rand(100, 200))
-		if(player.pos.y < 300) {
+		if(player.pos.y < width() / 100) {
 			player.move(0,200)
 		}
 	})
