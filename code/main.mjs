@@ -20,7 +20,6 @@ kaboom({
     backgroundAudio: true,
     background: [0, 20, 102],
     loadingScreen: false,
-    scale: 1,
     canvas: document.getElementById("gamecanvas")
 })
 
@@ -174,10 +173,6 @@ scene("settings", () => {
 })
 scene("afk", () => {
     setCursor("none")
-    /*gamemusic.play()
-    menumusic.volume = 0
-    creditsmusic.volume = 0
-    gamemusic.volume = 1*/
     AFK(1);
 })
 scene("difficulty", () => {
@@ -306,36 +301,9 @@ scene("warning", () => {
         if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }*/
     })
 })
-scene("notfull", () => {
-    add([
-        pos(center()),
-        sprite("bean"),
-        area(),
-        body()
-    ])
-    add([
-        text(`O jogo funciona melhor com tela cheia. Clique em F11 e/ou recarregue a página`, {
-            size: 16,
-            width: width(),
-            // font: "breakout"
-        }),
-        pos(0, height() * (3 / 4)),
-    ]);
-})
+
 go("loading")
-/*if(kaboom.isTouch()) {
-  go("menu")
-} else {
-    go("notmobile")
-}
-*/
 debug.inspect = window.location.hash === "#debug"
-// setFullscreen(true)
-/*onUpdate(() => {
-    if(!isFullscreen) {
-        go("notFull")
-    }
-})*/
 
 onDestroy((e) => {
     debug.log("Item destruído")
