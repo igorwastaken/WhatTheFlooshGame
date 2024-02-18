@@ -11,6 +11,9 @@ import Difficulty from "./scenes/difficulty.mjs"
 import Settings from "./scenes/settings.mjs"
 // initialize context
 kaboom({
+    global: true,
+    stretch: true,
+    letterbox: true,
     width: window.innerWidth,
     height: window.innerHeight,
     fullscreen: true,
