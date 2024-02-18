@@ -57,6 +57,7 @@ loadSprite("rocket2", "sprites/elements/rockets2.png")
 loadSprite("rocket3", "sprites/elements/rockets3.png")
 loadSprite("ufo", "sprites/elements/ufo.png")
 loadSprite("clock", "sprites/elements/clock.png")
+loadSprite("empadinhalogo", "sprites/elements/empadinhalogo.png")
 
 // sounds
 loadSound("20190724", "sounds/20190724.mp3")
@@ -233,13 +234,10 @@ scene("shop", () => {
 scene("loading", () => {
     setCursor("none")
     var progress = 0
-    const protext = add([
-        text(`Carregando... (${progress})`, {
-            size:18,
-            align: 'center',
-            width: width()
-        }),
-        pos(0,height()-100)
+    add([
+        sprite("empadinhalogo"),
+        center(),
+        scale(0.5)
     ])
     const interval = setInterval((t) => {
         //console.log(progress)
@@ -252,7 +250,7 @@ scene("loading", () => {
             // alert("O jogo está instável no momento, mas ainda é jogável (:")
             /*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
         }
-        protext.text=`Carregando... (${progress})`
+       // protext.text=`Carregando... (${progress})`
     }, rand(0.4, 1))
     /*const cl = add([
         pos(10, 10),
@@ -276,7 +274,7 @@ scene("warning", () => {
         scale(2)
     ])
     const secondText = add([
-        text("• Telefone não suportam mais WTFL.\n• Música de menu atualizado.\n- Correção e melhorias\n- Última atualização: 15/02/2024", {
+        text("• Telefone não suportam mais WTFL.\n• Música de menu atualizado.\n• Correção e melhorias\n• Última atualização: 18/02/2024", {
             size: 18,
             width: width()
         }),
