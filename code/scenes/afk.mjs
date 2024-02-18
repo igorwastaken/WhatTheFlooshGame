@@ -91,7 +91,6 @@ export default function AFK(v) {
     function spawnPlanes() {
         const recta = add([
             pos(-100, rand(height())),
-            color(255, 0, 0),
             sprite("ufo", {
                 flipX: false
             }),
