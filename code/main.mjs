@@ -236,7 +236,7 @@ scene("loading", () => {
     var progress = 0
     add([
         sprite("empadinhalogo"),
-        pos(width()/5, height()/5),
+        pos(width()/4.8, height()/4.8),
         scale(0.5),
         area()
     ])
