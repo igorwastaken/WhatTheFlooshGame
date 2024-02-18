@@ -236,7 +236,7 @@ scene("loading", () => {
     var progress = 0
     add([
         sprite("empadinhalogo"),
-        center(),
+        pos(center()),
         scale(0.5)
     ])
     const interval = setInterval((t) => {
