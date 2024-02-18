@@ -17,6 +17,7 @@ kaboom({
     backgroundAudio: true,
     background: [0, 20, 102],
     loadingScreen: false,
+    scale: 2,
     canvas: document.getElementById("gamecanvas")
 })
 
