@@ -13,7 +13,7 @@ import Settings from "./scenes/settings.mjs"
 kaboom({
     global: true,
     stretch: true,
-    letterbox: true,
+    letterbox: false,
     width: window.innerWidth,
     height: window.innerHeight,
     fullscreen: true,
