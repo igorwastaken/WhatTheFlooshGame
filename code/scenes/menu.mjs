@@ -3,7 +3,7 @@ import kaboom from 'kaboom'
 // Functions
 function formatCompactNumber(number) {
   const formatter = Intl.NumberFormat("pt-BR", { notation: "compact" });
-  return formatter.format(number);
+  return formatter.format(Number(number));
 }
 
 // Main
