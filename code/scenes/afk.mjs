@@ -95,7 +95,7 @@ export default function AFK(v) {
             sprite("ufo", {
                 flipX: false
             }),
-            scale(0.5),
+            scale(1),
             area(),
             offscreen({
                 destroy: true
@@ -146,7 +146,7 @@ export default function AFK(v) {
     }
     spawnClouds()
     spawnRedRect()
-    spawnRect()
+    //spawnRect()
     wait(1, spawnCoins)
     wait(1, spawnPlanes)
     onKeyDown(() => {
