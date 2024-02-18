@@ -23,7 +23,7 @@ export default function Credits() {
 		pos(0,40)
 	])
 	add([
-		text("Igor, Davi, Alice & Noah (Grupo Empadinha de Camarão), Burbur", {
+		text("Igor, Davi, Alice & Angel Matteo (Grupo Empadinha de Camarão)", {
 			size: 14,
 			width: width(),
 			align: "center"
@@ -68,7 +68,7 @@ export default function Credits() {
 			width: width(),
 			align: "center"
 		}),
-		pos(0, 210)
+		pos(0, 200)
 	])
 	add([
 		text("Criado com Kaboom.js", { //smh
