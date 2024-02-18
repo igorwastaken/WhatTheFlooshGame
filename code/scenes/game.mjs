@@ -13,7 +13,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         area(),
         body(),
         offscreen({
-            destroy: true
+            destroy: false
         }),
         z(1),
 	    scale(0.7),
@@ -78,10 +78,9 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     onGamepadButtonDown('dpad-right', () => {
         player.move(SPEED, 0)
     })
-    /*player.onUpdate(() => {
-       player.moveTo(targetX, player.pos.y)
-       player.rotate+=100
-     });*/
+    player.onUpdate(() => {
+	    if(player.pos.x > width()) return player.moveTo(width(), player.pos.y)
+    });
 
     function spawnRect() {
         const recta = add([
