@@ -8,7 +8,8 @@ function formatCompactNumber(number) {
 
 // Main
 export default function MainMenu() {
-    const maxScore = formatCompactNumber(localStorage.getItem("score"));
+    const maxScore = localStorage.getItem("score");
+    console.log(formatCompactNumber(maxScore))
     var afkTimeout = 0;
     add([
         text(`What The Floosh Game`, {
