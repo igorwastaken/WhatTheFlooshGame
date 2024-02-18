@@ -1,7 +1,8 @@
 import kaboom from 'kaboom'
 
 export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
-    // setCursor("none")
+    setCursor("none")
+    setFullscreen()
     // setCursorLocked(true) // i think that locks the cursor :trollface:
     var currentScore = 0;
     var currentCoins = 0;
