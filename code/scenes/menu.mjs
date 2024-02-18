@@ -90,14 +90,14 @@ export default function MainMenu() {
         "shop",
         z(3)
     ])
-    add([
+    /*add([
         sprite("instagram"),
         pos(width()/2.1, height()/2),
         area(),
         "social:Instagram",
         z(3),
         scale(0.3)
-    ])
+    ])*/
     var clouds = 0
     for (clouds = 0; clouds < 50; clouds++) {
         const clouds = add([
