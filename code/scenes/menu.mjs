@@ -1,15 +1,14 @@
 import kaboom from 'kaboom'
 
 // Functions
-/*function formatCompactNumber(number) {
+function formatCompactNumber(number) {
   const formatter = Intl.NumberFormat("pt-BR", { notation: "compact" });
   return formatter.format(Number(number));
 }
-*/
 // Main
 export default function MainMenu() {
-    const maxScore = localStorage.getItem("score");
-    console.log(formatCompactNumber(maxScore))
+    const maxScore = formatCompactNumber(localStorage.getItem("score"));
+
     var afkTimeout = 0;
     add([
         text(`What The Floosh Game`, {
