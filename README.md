@@ -12,33 +12,15 @@ Simplesmente você pode ajudar a encontrar, vulnerabilidades, bugs, e até mesmo
 
 *Aceito qualquer tipo de idéia*
 
-# Como funciona?
-Simples, você começa o jogo e é só desviar de alguns... obstáculos? Sei lá, só isso.
+# Planejamentos para Versão 3 do jogo:
+- Obstáculos melhores
+- Aprimoramento na jogabilidade
+- Novos recursos
+  - Algo que deixe o jogo empolgante
+  - Configurações
+  - Sistema de Ranking
+- Sons de interface
+- Mais melhorias
+- E muito mais!
 
-
-```mermaid
-graph TD
-
-A["Flush"]
-B["Obstáculo"]
-C["Aviões"]
-D["Moedas"]
-E["Pontos"]
-
-F1["Colide com"]
-F2["Colide com"]
-FL["Localstorage add"] 
-C1["Morre"]
-C2["Destrói"]
-
-M["Cena Menu"]
-
-A --> F1 --> B --> C1 --> M
-C --> F2 --> B --> C2
-D --> F2 --> B --> C2
-
-F1 --> E --> FL --> P["+1"]
-F1 --> D --> FL --> P
-```
-
-Sei, não dá pra entender, mas é o que eu sei explicar.
+Ajuda ae :)
