@@ -2,7 +2,7 @@ import kaboom from 'kaboom'
 
 // Functions
 function formatCompactNumber(number) {
-  const formatter = Intl.NumberFormat("pt-BR", { notation: "compact" });
+  const formatter = Intl.NumberFormat("en-US", { notation: "compact" });
   return formatter.format(Number(number));
 }
 // Main
@@ -34,7 +34,7 @@ export default function MainMenu() {
         z(3)
     ])
     add([
-        text(localStorage.getItem("coins"), {
+        text(formatCompactNumber(localStorage.getItem("coins")), {
             size: 18
         }),
         pos(40, 93),
