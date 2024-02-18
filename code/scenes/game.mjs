@@ -2,7 +2,7 @@ import kaboom from 'kaboom'
 
 export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
     setCursor("none")
-    setCursorLocked(true) // i think that locks the cursor :trollface:
+    // setCursorLocked(true) // i think that locks the cursor :trollface:
     var currentScore = 0;
     var currentCoins = 0;
     var SPEED = 400
@@ -239,7 +239,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         shake(50)
         destroy(player)
         destroy(re)
-    	setCursorLocked(false)
+    	// setCursorLocked(false)
     	setCursor("default")
         wait(2, () => {
             go("menu")
