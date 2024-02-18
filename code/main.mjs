@@ -63,6 +63,7 @@ loadSprite("empadinhalogo", "sprites/elements/empadinhalogo.png")
 loadSound("20190724", "sounds/20190724.mp3")
 loadSound("score", "sounds/score.mp3")
 loadSound("20210616", "sounds/20210616.mp3")
+loadSound("20190724 2", "sounds/20190724 2.mp3")
 loadSound("20210511", "sounds/20210511.mp3")
 
 // Skins
@@ -77,7 +78,7 @@ loadSprite("settings", "sprites/icons/settings.png")
 loadSprite("cl:AL", "sprites/icons/Cl-AL.png")
 
 
-const menumusic = play("20210616", {
+const menumusic = play("20190724 2", {
     loop: true,
     volume: 1,
 })
@@ -275,7 +276,7 @@ scene("warning", () => {
         scale(2)
     ])
     const secondText = add([
-        text("• Telefone não suportam mais WTFL.\n• Música de menu atualizado.\n• Correção e melhorias\n• Última atualização: 18/02/2024", {
+        text("• Agora estamos trabalhando na versão 3.0 do WTFL!\n• Música de menu atualizado.\n• Correção e melhorias\n• Última atualização: 18/02/2024", {
             size: 18,
             width: width()
         }),
