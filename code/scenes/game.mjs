@@ -239,6 +239,8 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
         shake(50)
         destroy(player)
         destroy(re)
+    	setCursorLocked(false)
+    	setCursor("default")
         wait(2, () => {
             go("menu")
         })
