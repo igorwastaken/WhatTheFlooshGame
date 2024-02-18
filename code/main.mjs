@@ -20,7 +20,7 @@ kaboom({
     backgroundAudio: true,
     background: [0, 20, 102],
     loadingScreen: false,
-    scale: 2,
+    scale: 4,
     canvas: document.getElementById("gamecanvas")
 })
 
@@ -236,7 +236,7 @@ scene("loading", () => {
     var progress = 0
     add([
         sprite("empadinhalogo"),
-        pos(center()),
+        pos(width()/2, height()/2),
         scale(0.5)
     ])
     const interval = setInterval((t) => {
