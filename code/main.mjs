@@ -64,6 +64,7 @@ loadSound("20210616", "sounds/20210616.mp3");
 loadSound("20190724 2", "sounds/20190724 2.mp3");
 loadSound("20210511", "sounds/20210511.mp3");
 loadSound("coin", "sounds/ui/coin.mp3");
+loadSound("ui:click", "sounds/ui/click.mp3");
 
 // Skins
 loadSprite("nerd", "sprites/skins/nerd.png");

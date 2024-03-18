@@ -157,15 +157,19 @@ export default function MainMenu() {
   });
   onClick("settings", () => {
     go("settings");
+    play("ui:click")
   });
   onKeyPress("space", () => {
     go("game:normal");
+    play("ui:click")
   });
   onGamepadButtonDown("dpad-down", () => {
     go("game:normal");
+    play("ui:click")
   });
   onKeyPress("down", () => {
     go("game:normal");
+    play("ui:click")
   });
   onCollide("btn", (e) => {
     destroy(e);
@@ -184,6 +188,7 @@ export default function MainMenu() {
   });
   onClick("btn", () => {
     go("difficulty");
+    play("ui:click")
   });
   onHover("credits", () => {
     setCursor("pointer");
@@ -193,6 +198,7 @@ export default function MainMenu() {
   });
   onClick("credits", () => {
     go("credits");
+    play("ui:click")
   });
   onHover("shop", () => {
     setCursor("pointer");
@@ -202,6 +208,7 @@ export default function MainMenu() {
   });
   onClick("shop", () => {
     go("shop");
+    play("ui:click")
   });
   onMouseMove(() => {
     afkTimeout = 0;
