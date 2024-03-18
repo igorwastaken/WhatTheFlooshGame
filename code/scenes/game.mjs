@@ -270,6 +270,6 @@ export default function Game(velocity = 1, spawn = 1, coinsSpawn = 1) {
       );
     }
     destroy(c);
-    play("coins");
+    play("coin");
   });
 }
