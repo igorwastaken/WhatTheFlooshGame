@@ -127,7 +127,11 @@
     </script>
     <script src="./code/main.mjs" type="module"></script>
     <script>
-      UIkit.notification({message: '<img src="sprites/icons/Cl-AL.png" width="30px" height="30px"></img> Este jogo é livre para todos os públicos.', pos: 'top-left'})
+      UIkit.notification({
+        message:
+          '<img src="sprites/icons/Cl-AL.png" width="30px" height="30px"></img> Este jogo é livre para todos os públicos.',
+        pos: "top-left",
+      });
       if (window.location.hash === "#debug") {
         document.getElementById("gamecanvas").classList.remove("hidden");
         document.getElementById("main").classList.add("hidden");
