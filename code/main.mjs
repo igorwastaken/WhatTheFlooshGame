@@ -274,16 +274,18 @@ scene("warning", () => {
         const portuguese = add([
             text("Português", {
                 size: 16,
-                width: width()
+                width: width(),
+                align: "center"
             }),
             pos(10,60)
         ])
         const english = add([
             text("English", {
                 size: 16,
-                width: width()
+                width: width(),
+                align: "center"
             }),
-            pos(10,60)
+            pos(10,100)
         ])
     } else {
     const firstText = add([
