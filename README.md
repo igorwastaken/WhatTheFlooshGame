@@ -15,14 +15,15 @@ Simplesmente você pode ajudar a encontrar, vulnerabilidades, bugs, e até mesmo
 *Aceito qualquer tipo de idéia*
 
 # Planejamentos para Versão 3 do jogo:
-- Obstáculos melhores
-- Aprimoramento na jogabilidade
-- Novos recursos
-  - Algo que deixe o jogo empolgante
-  - Configurações
-  - Sistema de Ranking
-- Sons de interface
-- Mais melhorias
-- E muito mais!
+- [ ] Obstáculos melhores
+- [ ] Aprimoramento na jogabilidade
+- [ ] Novos recursos
+  - [ ] Algo que deixe o jogo empolgante
+  - [ ] Configurações
+  - [ ] Sistema de Ranking
+- [ ] Sons de interface
+- [ ] Mais melhorias
+- [ ] Internacionalização, (outros idiomas)
+- [ ] E muito mais!
 
 Ajuda ae :)
