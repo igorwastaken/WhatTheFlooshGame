@@ -276,7 +276,8 @@ scene("warning", () => {
                 width: width(),
                 align: "center"
             }),
-            pos(0,60)
+            pos(0,60),
+            area()
         ])
         const english = add([
             text("English", {
@@ -284,7 +285,8 @@ scene("warning", () => {
                 width: width(),
                 align: "center"
             }),
-            pos(0,100)
+            pos(0,100),
+            area()
         ])
         portuguese.onClick(() => {
             localStorage.setItem("language", "pt-br")
