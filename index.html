@@ -83,7 +83,7 @@
   </head>
 
   <body>
-    <div class="uk-alert-success" uk-alert>
+    <div id="classind" class="uk-alert-success" uk-alert>
       <a href class="uk-alert-close" uk-close></a>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -131,7 +131,7 @@
 
       UIkit.alert(CL);
 
-      setTimeout(() => UIkit.close(CL), 2000);
+      setTimeout(() => UIkit.close(CL), 5000);
       if (window.location.hash === "#debug") {
         document.getElementById("gamecanvas").classList.remove("hidden");
         document.getElementById("main").classList.add("hidden");
