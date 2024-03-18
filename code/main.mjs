@@ -105,7 +105,7 @@ scene("game:easy", () => {
     creditsmusic.volume = 0;
     gamemusic.volume = 0;
   }
-  Game(1, 0.5, 0.2);
+  Game(1, 0.5, 1);
 });
 scene("game:impossible", () => {
   if (localStorage.getItem("settings:muted") == 0) {
@@ -160,7 +160,7 @@ scene("game:hard", () => {
     creditsmusic.volume = 0;
     gamemusic.volume = 0;
   }
-  Game(3, 6, 2);
+  Game(3, 6, 1.2);
 });
 scene("settings", () => {
   Settings();
