@@ -83,13 +83,13 @@
   </head>
 
   <body>
-    <div id="classind" class="uk-alert-success" uk-alert>
+    <!--<div id="classind" class="uk-alert-success" uk-alert>
       <a href class="uk-alert-close" uk-close></a>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt.
       </p>
-    </div>
+    </div>-->
     <div
       id="main"
       class="hidden text-white flex flex-col justify-center items-center w-full h-[100vh]"
@@ -127,11 +127,7 @@
     </script>
     <script src="./code/main.mjs" type="module"></script>
     <script>
-      const CL = document.getElementById("classind");
-
-      UIkit.alert(CL);
-
-      setTimeout(() => UIkit.close(CL), 5000);
+      UIkit.notification({message: '<img src="sprites/icons/Cl-AL.png" width="60px" height="60px"></img> Este jogo é livre para todos os públicos.', pos: 'top-left'})
       if (window.location.hash === "#debug") {
         document.getElementById("gamecanvas").classList.remove("hidden");
         document.getElementById("main").classList.add("hidden");
