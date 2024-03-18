@@ -90,7 +90,7 @@
         tempor incididunt.
       </p>
     </div>-->
-    <!--<div
+    <div
       id="main"
       class="hidden text-white flex flex-col justify-center items-center w-full h-[100vh]"
     >
@@ -102,8 +102,8 @@
       >
         Jogue na versão antiga
       </button>
-    </div>-->
-    <div
+    </div>
+    <!--<div
       id="mobile"
       class="hidden text-white flex flex-col justify-center items-center w-full h-[100vh]"
     >
@@ -116,7 +116,7 @@
         uns erros anteriores.
       </p>
       <p>Essa atualização é temporário, até a versão mobile ser lançada.</p>
-    </div>
+    </div>-->
     <canvas class="block" id="gamecanvas"></canvas>
     <script type="importmap">
       {
@@ -130,7 +130,7 @@
       UIkit.notification({
         message:
           '<img src="sprites/icons/Cl-AL.png" width="30px" height="30px"></img> Este jogo é livre para todos os públicos.',
-        pos: "top-left",
+        pos: "bottom-left",
       });
       if (window.location.hash === "#debug") {
         document.getElementById("gamecanvas").classList.remove("hidden");
