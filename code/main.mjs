@@ -44,7 +44,6 @@ if (!localStorage.getItem("settings:fullscreen")) {
 if (!localStorage.getItem("settings:muted")) {
     localStorage.setItem("settings:muted", 0)
 }
-
 // load assets
 loadSprite("bean", "sprites/bean.png")
 loadSprite("cloud", "sprites/elements/clouds.png")
@@ -277,7 +276,7 @@ scene("warning", () => {
                 width: width(),
                 align: "center"
             }),
-            pos(10,60)
+            pos(0,60)
         ])
         const english = add([
             text("English", {
@@ -285,8 +284,14 @@ scene("warning", () => {
                 width: width(),
                 align: "center"
             }),
-            pos(10,100)
+            pos(0,100)
         ])
+        portuguese.onClick(() => {
+            localStorage.setItem("language", "pt-br")
+        })
+        english.onClick(() => {
+            localStorage.setItem("language", "en")
+        })
     } else {
     const firstText = add([
         text("Novidades:", {
