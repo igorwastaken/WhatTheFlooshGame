@@ -230,24 +230,24 @@ scene("shop", () => {
 scene("loading", () => {
     setCursor("none")
     var progress = 0
-    add([
+   /* add([
         sprite("empadinhalogo"),
         pos(width()/4.8, height()/4.8),
         scale(0.5),
         area()
-    ])
+    ]) */
     const interval = setInterval((t) => {
         //console.log(progress)
         progress++;
         if (progress > 99) {
             console.log("Done!")
             go("warning")
-            burp()
+           // burp()
             clearInterval(interval)
             // alert("O jogo está instável no momento, mas ainda é jogável (:")
             /*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
         }
-       // protext.text=`Carregando... (${progress})`
+        // protext.text=`Carregando... (${progress})`
     }, rand(0.4, 1))
     /*const cl = add([
         pos(10, 10),
@@ -259,9 +259,33 @@ scene("loading", () => {
     
 })
 scene("warning", () => {
-    
     setCursor("default")
-    if(localStorage.getItem("settings:muted") == 0) burp()
+  //  if(localStorage.getItem("settings:muted") == 0) burp()
+    if (!localStorage.getItem("language")) {
+        const firstText = add([
+            text("Welcome, first of all, choose your language.", {
+                size: 20,
+                width: width(),
+                align: "center"
+            }),
+            pos(0,10),
+            area()
+        ])
+        const portuguese = add([
+            text("Português", {
+                size: 16,
+                width: width()
+            }),
+            pos(10,60)
+        ])
+        const english = add([
+            text("English", {
+                size: 16,
+                width: width()
+            }),
+            pos(10,60)
+        ])
+    } else {
     const firstText = add([
         text("Novidades:", {
             size: 26
@@ -300,6 +324,7 @@ scene("warning", () => {
         /*const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
         if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }*/
     })
+    }
 })
 
 go("loading")
