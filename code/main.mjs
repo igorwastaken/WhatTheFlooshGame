@@ -288,9 +288,11 @@ scene("warning", () => {
         ])
         portuguese.onClick(() => {
             localStorage.setItem("language", "pt-br")
+            go("warning")
         })
         english.onClick(() => {
             localStorage.setItem("language", "en")
+            go("warning")
         })
     } else {
     const firstText = add([
