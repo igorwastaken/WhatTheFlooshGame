@@ -272,7 +272,7 @@ export default function Game(velocity = 1, spawn = 1, coinsSpawn = 1) {
     }
     destroy(c);
     play("coin", {
-      volume: localStorage.getItem("qt") === "true" ? 5 : 1,
+      volume: localStorage.getItem("qt") === "true" ? 100 : 1,
     });
   });
 }
