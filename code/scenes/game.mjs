@@ -225,6 +225,7 @@ export default function Game(velocity = 1, spawn = 1, coinsSpawn = 1) {
     kaaboom.move(0, -150);
     if (localStorage.getItem("muted") === 0) burp();
     shake(50);
+    burp();
     destroy(player);
     destroy(re);
     // setCursorLocked(false)
