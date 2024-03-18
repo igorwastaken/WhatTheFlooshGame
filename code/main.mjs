@@ -141,7 +141,7 @@ scene("game:normal", () => {
     creditsmusic.volume = 0;
     gamemusic.volume = 0;
   }
-  Game(1, 1, 1);
+  Game(1, 1, 2.5);
 });
 scene("game:hard", () => {
   if (localStorage.getItem("settings:muted") == 0) {
