@@ -49,7 +49,7 @@ export default function MainMenu() {
     pos(10, 10),
     sprite(localStorage.getItem("skin")),
     area(),
-    "btn",
+    "floosh",
     z(3),
     scale(0.5),
   ]);
@@ -181,9 +181,11 @@ export default function MainMenu() {
     destroy(e);
   });
   onHover("btn", () => {
+    get("btn")[0].textSize = 18
     setCursor("pointer");
   });
   onHoverEnd("btn", () => {
+    get("btn")[0].textSize = 16
     setCursor("default");
   });
   onClick("btn", () => {
@@ -191,9 +193,11 @@ export default function MainMenu() {
     play("ui:click")
   });
   onHover("credits", () => {
+    get("credits")[0].textSize = 18
     setCursor("pointer");
   });
   onHoverEnd("credits", () => {
+    get("credits")[0].textSize = 16
     setCursor("default");
   });
   onClick("credits", () => {
@@ -201,9 +205,11 @@ export default function MainMenu() {
     play("ui:click")
   });
   onHover("shop", () => {
+    get("shop")[0].textSize = 18
     setCursor("pointer");
   });
   onHoverEnd("shop", () => {
+    get("shop")[0].textSize = 16
     setCursor("default");
   });
   onClick("shop", () => {
