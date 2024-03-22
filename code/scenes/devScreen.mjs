@@ -1,16 +1,16 @@
 // import 'kaboom/global'
-import kaboom from 'kaboom'
+import kaboom from "kaboom";
 
 export default function DevOptions() {
-	add([
-		text("Página do desenvolvedor", {
-			size: 20
-		}),
-		pos(10,10),
-		area(),
-		"back"
-	])
-	/*add([
+  add([
+    text("Página do desenvolvedor", {
+      size: 20,
+    }),
+    pos(10, 10),
+    area(),
+    "back",
+  ]);
+  /*add([
 		text("Voltar", {
 			size: 18
 		}),
@@ -18,28 +18,28 @@ export default function DevOptions() {
 		area(),
 		"back"
 	])*/
-	const debugBtn = add([
-		text("Ativar debug", {
-			size: 18
-		}),
-		pos(10,60),
-		area(),
-		"debug"
-	])
-	const AFKScreen = add([
-		text("AFK Screen", {
-			size: 18
-		}),
-		pos(10,80),
-		area(),
-		"afk"
-	])
-	onClick("back", () => go("menu"));
+  const debugBtn = add([
+    text("Ativar debug", {
+      size: 18,
+    }),
+    pos(10, 60),
+    area(),
+    "debug",
+  ]);
+  const AFKScreen = add([
+    text("AFK Screen", {
+      size: 18,
+    }),
+    pos(10, 80),
+    area(),
+    "afk",
+  ]);
+  onClick("back", () => go("menu"));
 
-	onClick("debug", () => {
-		debug.inspect = !debug.inspect
-	})
-	onClick("afk", () => {
-		go("afk")
-	})
+  onClick("debug", () => {
+    debug.inspect = !debug.inspect;
+  });
+  onClick("afk", () => {
+    go("afk");
+  });
 }

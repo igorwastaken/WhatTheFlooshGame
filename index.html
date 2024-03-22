@@ -1,95 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html height="100%">
-<head>
-	<meta name="viewport" content="width=device-width; 
-    initial-scale=1; maximum-scale=1; user-scalable=0;"/>
-	<!-- Primary Meta Tags -->
-<title>What The Floosh Game</title>
-<meta name="title" content="What The Floosh Game" />
-<meta name="description" content="What The Floosh Game é um jogo em que você passa por estrelas e outros obstáculos para chegar em seu destino final (inexistente). O objetivo é conseguir mais pontos até acertar uma estrela ou qualquer outro obstáculo." />
-<meta name="author" content="Igor Figueiredo">
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://igor.mom/" />
-<meta property="og:title" content="What The Floosh Game" />
-<meta property="og:description" content="What The Floosh Game é um jogo em que você passa por estrelas e outros obstáculos para chegar em seu destino final (inexistente). O objetivo é conseguir mais pontos até acertar uma estrela ou qualquer outro obstáculo." />
-<meta property="og:image" content="https://igor.mom/header.png" />
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width; 
+    initial-scale=1; maximum-scale=1; user-scalable=0;"
+    />
+    <!-- Primary Meta Tags -->
+    <title>What The Floosh Game</title>
+    <meta name="title" content="What The Floosh Game" />
+    <meta
+      name="description"
+      content="What The Floosh Game é um jogo em que você passa por estrelas e outros obstáculos para chegar em seu destino final (inexistente). O objetivo é conseguir mais pontos até acertar uma estrela ou qualquer outro obstáculo."
+    />
+    <meta name="author" content="Igor Figueiredo" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://igor.mom/" />
+    <meta property="og:title" content="What The Floosh Game" />
+    <meta
+      property="og:description"
+      content="What The Floosh Game é um jogo em que você passa por estrelas e outros obstáculos para chegar em seu destino final (inexistente). O objetivo é conseguir mais pontos até acertar uma estrela ou qualquer outro obstáculo."
+    />
+    <meta property="og:image" content="https://igor.mom/header.png" />
 
-<!-- X -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://igor.mom/" />
-<meta property="twitter:title" content="What The Floosh Game" />
-<meta property="twitter:description" content="What The Floosh Game é um jogo em que você passa por estrelas e outros obstáculos para chegar em seu destino final (inexistente). O objetivo é conseguir mais pontos até acertar uma estrela ou qualquer outro obstáculo." />
-<meta property="twitter:image" content="https://igor.mom/header.png" />
-<meta name="google-adsense-account" content="ca-pub-2263118129253952">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2263118129253952"
-     crossorigin="anonymous"></script>
-<!-- Meta Tags Generated with https://metatags.io -->
-	<link rel="icon" href="./sprites/bean.png"/>
-	<meta charset="utf-8">
-	<style>
-		* {
-			margin: 0;
-		}
-		html,
-		body {
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-			background: black;
-		}
-		canvas {
-			display: block;
-			width:1920px;
-			height: 1080px;
-		}
-	</style>
-	<!-- If i put "game", "jogos" or something, my school's firewall blocks the game.-->
-	<meta name="keywords" content="igor.mom, What The Floosh, wtfl, what the floosh, the floosh, floosh, flush, what the flush">
-	<!-- Ok, i need fix it (jk) -->
-	<script src="https://cdn.tailwindcss.com/"></script>
-</head>
+    <!-- X -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://igor.mom/" />
+    <meta property="twitter:title" content="What The Floosh Game" />
+    <meta
+      property="twitter:description"
+      content="What The Floosh Game é um jogo em que você passa por estrelas e outros obstáculos para chegar em seu destino final (inexistente). O objetivo é conseguir mais pontos até acertar uma estrela ou qualquer outro obstáculo."
+    />
+    <meta property="twitter:image" content="https://igor.mom/header.png" />
+    <meta name="google-adsense-account" content="ca-pub-2263118129253952" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2263118129253952"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Meta Tags Generated with https://metatags.io -->
+    <link rel="icon" href="./sprites/bean.png" />
+    <meta charset="utf-8" />
+    <style>
+      * {
+        margin: 0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: black;
+      }
+      canvas {
+        display: block;
+        width: 1920px;
+        height: 1080px;
+      }
+    </style>
+    <!-- If i put "game", "jogos" or something, my school's firewall blocks the game.-->
+    <meta
+      name="keywords"
+      content="igor.mom, What The Floosh, wtfl, what the floosh, the floosh, floosh, flush, what the flush"
+    />
+    <!-- Ok, i need fix it (jk) -->
+    <!-- UIkit CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/css/uikit.min.css"
+    />
 
-<body>
-<div id="main" class="hidden text-white flex flex-col justify-center items-center w-full h-[100vh]">
-	<p>AH NÃO!!!</p>
-	<p>What The Floosh está em manutenção!</p>
-	<button class="text-blue-500" onclick="window.location.href='https://og.igor.mom'">Jogue na versão antiga</button>
-</div>
-<div id="mobile" class="hidden text-white flex flex-col justify-center items-center w-full h-[100vh]">
-	<p class="text-2xl font-black">What The Floosh não está mais disponível em celular.</p>
-	<p>Olá, este é um comunicado para você que está no telefone.</p>
-	<p>O jogo What The Floosh não está mais disponível para telefone devido à uns erros anteriores.</p>
-	<p>Essa atualização é temporário, até a versão mobile ser lançada.</p>
-</div>
-<canvas class="block" id="gamecanvas"></canvas>
-<script type="importmap">
-  {
-    "imports": {
-	"kaboom": "https://unpkg.com/kaboom@3000.1.17/dist/kaboom.mjs"
-    }
-  }
-</script>
-<script src="./code/main.mjs" type="module"></script>
-<script>
-	if(window.location.hash === "#debug") {
-		document.getElementById("gamecanvas").classList.remove("hidden")
-		document.getElementById("main").classList.add("hidden")
-	} else {
-		
-	}
-	if(navigator.userAgentData.mobile) {
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit-icons.min.js"
+    >
+      </script
+          <script src="https://cdn.tailwindcss.com/">
+    </script>
+  </head>
+
+  <body>
+    <!--<div id="classind" class="uk-alert-success" uk-alert>
+      <a href class="uk-alert-close" uk-close></a>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt.
+      </p>
+    </div>-->
+    <div
+      id="main"
+      class="hidden text-white flex flex-col justify-center items-center w-full h-[100vh]"
+    >
+      <p>AH NÃO!!!</p>
+      <p>What The Floosh está em manutenção!</p>
+      <button
+        class="text-blue-500"
+        onclick="window.location.href='https://og.igor.mom'"
+      >
+        Jogue na versão antiga
+      </button>
+    </div>
+    <!--<div
+      id="mobile"
+      class="hidden text-white flex flex-col justify-center items-center w-full h-[100vh]"
+    >
+      <p class="text-2xl font-black">
+        What The Floosh não está mais disponível em celular.
+      </p>
+      <p>Olá, este é um comunicado para você que está no telefone.</p>
+      <p>
+        O jogo What The Floosh não está mais disponível para telefone devido à
+        uns erros anteriores.
+      </p>
+      <p>Essa atualização é temporário, até a versão mobile ser lançada.</p>
+    </div>-->
+    <canvas class="block" id="gamecanvas"></canvas>
+    <script type="importmap">
+      {
+        "imports": {
+          "kaboom": "https://unpkg.com/kaboom@3000.1.17/dist/kaboom.mjs"
+        }
+      }
+    </script>
+    <script src="./code/main.mjs" type="module"></script>
+    <script>
+      UIkit.notification({
+        message:
+          '<img src="sprites/icons/Cl-AL.png" width="30px" height="30px"></img> Este jogo é livre para todos os públicos.',
+        pos: "bottom-left",
+      });
+      if (window.location.hash === "#debug") {
+        document.getElementById("gamecanvas").classList.remove("hidden");
+        document.getElementById("main").classList.add("hidden");
+      } else {
+      }
+      /*if(navigator.userAgentData.mobile) {
 		document.getElementById("mobile").classList.remove("hidden")
 		document.getElementById("gamecanvas").classList.remove("block")
 		document.getElementById("gamecanvas").classList.add("hidden")
-	}
-</script>
-</body>
+	}*/
+    </script>
+  </body>
 </html>
-
-
-
-
 
 <!-- funny line number -->
