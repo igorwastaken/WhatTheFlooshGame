@@ -1,101 +1,105 @@
 import kaboom from "kaboom";
 
-export default function Game(velocity = 1, spawn = 1, coinsSpawn = 1) {
-  // setCursor("none")
-  //setFullscreen()
-  // setCursorLocked(true) // i think that locks the cursor :trollface:
-  var currentScore = 0;
-  var currentCoins = 0;
-  var SPEED = 400;
-  console.log(velocity, spawn);
-  const player = add([
-    sprite(localStorage.getItem("skin")),
-    pos(mousePos().x, 0),
-    area(),
-    body(),
-    offscreen({
-      destroy: false,
-    }),
-    z(1),
-    scale(0.7),
-    "player",
-  ]);
-  let targetX = player.pos.x;
-  const score = add([
-    text(currentScore, {
-      // width: width(),
-      // align: "right",
-      size: 18,
-    }),
-    pos(40, 43),
-    area(),
-  ]);
-  add([sprite("coin"), pos(10, 10), z(3), scale(0.1)]);
-  add([sprite("clock"), pos(10, 40), z(3), scale(0.3)]);
-  const coins = add([
-    text(currentCoins, {
-      size: 18,
-    }),
-    pos(40, 13),
-    area(),
-  ]);
-  player.onUpdate(() => {
-    // player.rotate(rand(100, 200))
-    if (player.pos.y < 200) {
-      player.move(0, 200);
+export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
+    var currentScore = 0;
+    var currentCoins = 0;
+    var SPEED = 400
+    console.log(velocity, spawn)
+    const player = add([
+        sprite(localStorage.getItem("skin")),
+        pos(mousePos().x, 0),
+        area(),
+        body(),
+        offscreen({
+            destroy: true
+        }),
+        z(1),
+	    scale(0.7),
+	    "player"
+    ])
+    let targetX = player.pos.x;
+    const score = add([
+        text(currentScore, {
+           // width: width(),
+            // align: "right",
+            size: 18
+        }),
+        pos(40, 43),
+        area()
+    ])
+    add([
+        sprite("coin"),
+        pos(10, 10),
+        z(3),
+        scale(0.1)
+    ])
+    add([
+        sprite("clock"),
+        pos(10, 40),
+        z(3),
+        scale(0.3)
+    ])
+    const coins = add([
+        text(currentCoins, {
+            size: 18
+        }),
+        pos(40, 13),
+        area()
+    ])
+	player.onUpdate(() => {
+		// player.rotate(rand(100, 200))
+		if(player.pos.y < 300) {
+			player.move(0,200)
+		}
+	})
+    onTouchMove((_, pos) => {
+        player.moveTo(pos.clientX, player.pos.y)
+	// targetX = pos.clientX;
+    })
+    onMouseMove((pos) => {
+        player.moveTo(pos.x, player.pos.y)
+	// targetX=pos.x
+    })
+    onKeyDown('left', () => {
+        player.move(-SPEED, 0)
+    })
+    onKeyDown('right', () => {
+        player.move(SPEED, 0)
+    })
+    onGamepadButtonDown('dpad-left', () => {
+        player.move(-SPEED, 0)
+    })
+    onGamepadButtonDown('dpad-right', () => {
+        player.move(SPEED, 0)
+    })
+    /*player.onUpdate(() => {
+       player.moveTo(targetX, player.pos.y)
+       player.rotate+=100
+     });*/
+
+    function spawnRect() {
+        const recta = add([
+            pos(rand(width()), height()),
+            rect(5, 5),
+            outline(2),
+            area(),
+            color(),
+            offscreen({
+                destroy: true
+            }),
+            "Rect"
+        ])
+        onUpdate(() => {
+            recta.move(0, rand(-150, -100)*(velocity/spawn))
+        })
+        wait(rand(0.1, 0.2)*spawn, spawnRect);
+        recta.onUpdate(() => {
+            if (recta.pos.y > height()) {
+                destroy(recta)
+                addKaboom(recta.pos)
+            }
+        })
     }
-  });
-  onTouchStart(() => {
-    console.log("started");
-    player.move(0, 0);
-  });
-  onTouchMove((_, pos) => {
-    player.moveTo(player.pos.x, player.pos.y);
-    // targetX = pos.clientX;
-  });
-  onMouseMove((pos) => {
-    player.moveTo(pos.x, player.pos.y);
-    // targetX=pos.x
-  });
-  onKeyDown("left", () => {
-    player.move(-SPEED, 0);
-  });
-  onKeyDown("right", () => {
-    player.move(SPEED, 0);
-  });
-  onGamepadButtonDown("dpad-left", () => {
-    player.move(-SPEED, 0);
-  });
-  onGamepadButtonDown("dpad-right", () => {
-    player.move(SPEED, 0);
-  });
-  /*  player.onUpdate(() => {
-	    if(player.pos.x > width()) return player.moveTo(width(), player.pos.y)
-    });
-*/
-  function spawnRect() {
-    const recta = add([
-      pos(rand(width()), height()),
-      rect(5, 5),
-      outline(2),
-      area(),
-      color(),
-      offscreen({
-        destroy: true,
-      }),
-      "Rect",
-    ]);
-    onUpdate(() => {
-      recta.move(0, rand(-150, -100) * (velocity / spawn));
-    });
-    wait(rand(0.1, 0.2) * spawn, spawnRect);
-    recta.onUpdate(() => {
-      if (recta.pos.y > height()) {
-        destroy(recta);
-        addKaboom(recta.pos);
-      }
-    });
-  }
 
   function spawnCoins() {
     const recta = add([
@@ -123,30 +127,30 @@ export default function Game(velocity = 1, spawn = 1, coinsSpawn = 1) {
   function spawnRedRect() {
     const sprites = ["rocket", "rocket2", "rocket3"];
 
-    const random = sprites[Math.floor(Math.random() * sprites.length)];
-    const recta = add([
-      pos(rand(width()), height()),
-      sprite(random),
-      area(),
-      offscreen({
-        destroy: true,
-      }),
-      "Rectred",
-      // scale(1),
-      rotate(0),
-      scale(rand(0.5, 0.8)),
-    ]);
-    onUpdate(() => {
-      recta.move(0, -150 * velocity);
-    });
-    wait(rand(0.9, 2) / spawn, spawnRedRect);
-    recta.onUpdate(() => {
-      if (recta.pos.y > height()) {
-        destroy(recta);
-        addKaboom(recta.pos);
-      }
-    });
-  }
+        const random = sprites[Math.floor(Math.random()*sprites.length)]
+        const recta = add([
+            pos(rand(width()), height()),
+            sprite(random),
+            area(),
+            offscreen({
+                destroy: true
+            }),
+            "Rectred",
+           // scale(1),
+            rotate(0),
+            scale(rand(0.5, 0.8))
+        ])
+        onUpdate(() => {
+            recta.move(0, -150*(velocity))
+        })
+        wait(rand(0.9, 2)/(spawn), spawnRedRect);
+        recta.onUpdate(() => {
+            if (recta.pos.y > height()) {
+                destroy(recta)
+                addKaboom(recta.pos)
+            }
+        })
+    }
 
   function spawnPlanes() {
     const recta = add([
