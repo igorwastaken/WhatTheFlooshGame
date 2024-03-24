@@ -30,4 +30,11 @@ _Aceito qualquer tipo de idéia_
 
 Ajuda ae :)
 
+
+# Mais
+As skins são emojis do X (anteriormente Twitter), tudo veio do [Twemoji](https://github.com/twitter/twemoji).
+
+
+
+**WTFL é um jogo produzido e escrito por humanos, não IA.**
 ![Produzido por humano](sprites/icons/Produced-By-Human-Not-By-AI-Badge-white@2x.png)
