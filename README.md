@@ -29,3 +29,5 @@ _Aceito qualquer tipo de idéia_
 - [ ] E muito mais!
 
 Ajuda ae :)
+
+![Produzido por humano](sprites/icons/Produced-By-Human-Not-By-AI-Badge-white@2x.png)
