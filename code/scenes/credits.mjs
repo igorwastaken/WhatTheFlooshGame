@@ -23,7 +23,7 @@ export default function Credits() {
     pos(0, 40),
   ]);
   add([
-    text("Igor, Davi, Alice & Angel Matteo (Grupo Empadinha de Camarão)", {
+    text("- Igor (Coder, art creator)", {
       size: 14,
       width: width(),
       align: "center",
