@@ -130,7 +130,7 @@ export default function MainMenu() {
   }
   const currentYear = new Date().getUTCFullYear();
   add([
-    text(currentYear + " © Grupo Empadinha", {
+    text(currentYear + " © igorwastaken", {
       size: 15,
       width: width(),
     }),
