@@ -64,7 +64,7 @@ loadSound("20210616", "sounds/20210616.mp3");
 loadSound("20190724 2", "sounds/20190724 2.mp3");
 loadSound("intro", "sounds/20190724-2-_intro-loop_.mp3");
 loadSound("20210511", "sounds/20210511.mp3");
-loadSound("coin", "sounds/ui/coin.mp3");
+loadSound("coin", "sounds/ui/retro-game-coin-pickup-jam-fx-1-00-03.mp3");
 loadSound("ui:click", "sounds/ui/click.mp3");
 
 // Skins
