@@ -1,3 +1,4 @@
+alert("Todos os pontos serão resetados em breve...")
 import kaboom from "kaboom";
 // import "kaboom/global"
 import Game from "./scenes/game.mjs";
