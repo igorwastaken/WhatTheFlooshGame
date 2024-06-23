@@ -1,4 +1,5 @@
-alert("Todos os pontos serão resetados em breve...")
+
+
 import kaboom from "kaboom";
 // import "kaboom/global"
 import Game from "./scenes/game.mjs";
@@ -10,6 +11,7 @@ import Shop from "./scenes/shop.mjs";
 import AFK from "./scenes/afk.mjs";
 import Difficulty from "./scenes/difficulty.mjs";
 import Settings from "./scenes/settings.mjs";
+import Stats from "./scenes/stats.mjs";
 // initialize context
 kaboom({
   global: true,
@@ -24,8 +26,14 @@ kaboom({
   canvas: document.getElementById("gamecanvas"),
 });
 
-if (!localStorage.getItem("score")) {
-  localStorage.setItem("score", 0);
+if (!localStorage.getItem("score.easy")) {
+  localStorage.setItem("score.easy", 0);
+}
+if (!localStorage.getItem("score.normal")) {
+  localStorage.setItem("score.normal", 0);
+}
+if (!localStorage.getItem("score.hard")) {
+  localStorage.setItem("score.hard", 0);
 }
 if (!localStorage.getItem("coins")) {
   localStorage.setItem("coins", 0);
@@ -113,7 +121,7 @@ scene("game:easy", () => {
     creditsmusic.volume = 0;
     gamemusic.volume = 0;
   }
-  Game(1, 0.5, 1);
+  Game(1, 0.5, 1, "easy");
 });
 scene("game:impossible", () => {
   if (localStorage.getItem("settings:muted") == 0) {
@@ -149,7 +157,7 @@ scene("game:normal", () => {
     creditsmusic.volume = 0;
     gamemusic.volume = 0;
   }
-  Game(1.5, 1, 0.4);
+  Game(1.5, 1, 0.4, "normal");
 });
 scene("game:hard", () => {
   if (localStorage.getItem("settings:muted") == 0) {
@@ -168,7 +176,7 @@ scene("game:hard", () => {
     creditsmusic.volume = 0;
     gamemusic.volume = 0;
   }
-  Game(3, 6, 1.2);
+  Game(3, 6, 1.2, "hard");
 });
 scene("settings", () => {
   Settings();
@@ -232,6 +240,20 @@ scene("shop", () => {
     gamemusic.volume = 0;
   }
   Shop();
+});
+scene("stats", () => {
+  setCursor("default");
+  if (localStorage.getItem("settings:muted") == 0) {
+    creditsmusic.play();
+    creditsmusic.volume = 1;
+    menumusic.volume = 0;
+    gamemusic.volume = 0;
+  } else {
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  }
+  Stats();
 });
 scene("loading", () => {
   setCursor("none");
@@ -301,11 +323,11 @@ scene("warning", () => {
     ]);
     portuguese.onClick(() => {
       localStorage.setItem("language", "pt-br");
-      go("warning");
+      go("menu");
     });
     english.onClick(() => {
       localStorage.setItem("language", "en");
-      go("warning");
+      go("menu");
     });
   } else {
     const firstText = add([

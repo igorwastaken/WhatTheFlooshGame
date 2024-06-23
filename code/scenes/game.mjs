@@ -1,6 +1,6 @@
 import kaboom from "kaboom";
 
-export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
+export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="normal") {
     var currentScore = 0;
     var currentCoins = 0;
     var SPEED = 400
@@ -255,8 +255,8 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
   player.onUpdate(() => {
     currentScore++;
     score.text = currentScore;
-    if (currentScore > localStorage.getItem("score")) {
-      localStorage.setItem("score", currentScore);
+    if (currentScore > localStorage.getItem("score."+difficulty)) {
+      localStorage.setItem("score."+difficulty, currentScore);
       score.color = GREEN;
     }
   });

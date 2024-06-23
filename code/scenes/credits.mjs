@@ -96,4 +96,16 @@ export default function Credits() {
   onClick("voltar", () => {
     go("menu");
   });
+  var clouds = 0;
+  for (clouds = 0; clouds < 50; clouds++) {
+    const clouds = add([
+      sprite("star"),
+      area(),
+      pos(rand(width()), rand(height())),
+      scale(rand(0.1, 0.3)),
+      rotate(rand(0, 360)),
+      "stars",
+      z(0.5)
+    ]);
+  }
 }

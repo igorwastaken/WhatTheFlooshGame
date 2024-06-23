@@ -10,13 +10,13 @@ export default function MainMenu() {
   const maxScore = formatCompactNumber(localStorage.getItem("score"));
 
   var afkTimeout = 0;
-  add([
+  const mainText = add([
     text(`What The Floosh Game`, {
       size: 24,
       width: width(),
       align: "center",
     }),
-    pos(10, 10),
+    pos(10, height()/3.4),
     z(3),
   ]);
   /*add([sprite("clock"), pos(10, 60), z(3), scale(0.3)]);
@@ -32,11 +32,11 @@ export default function MainMenu() {
     text(formatCompactNumber(localStorage.getItem("coins")), {
       size: 18,
     }),
-    pos(40, 63),
+    pos(40, 13),
     "coins",
     z(3),
   ]);
-  add([sprite("coin"), pos(10, 60), "coins", z(3), scale(0.1)]);
+  add([sprite("coin"), pos(10, 10), "coins", z(3), scale(0.1)]);
   /*add([
         pos(width()-50,50),
         sprite(localStorage.getItem("skin")),
@@ -46,12 +46,12 @@ export default function MainMenu() {
         z(1),
     ])*/
   add([
-    pos(10, 10),
+    pos(10, height()/3.5),
     sprite(localStorage.getItem("skin")),
     area(),
     "floosh",
     z(3),
-    scale(0.5),
+    scale(0.7),
   ]);
   add([
     text(`Jogar`, {
@@ -84,6 +84,17 @@ export default function MainMenu() {
     pos(0, height() / 2.2),
     area(),
     "shop",
+    z(3),
+  ]);
+  add([
+    text("Estatísticas", {
+      size: 16,
+      width: width(),
+      align: "center",
+    }),
+    pos(0, height() / 2),
+    area(),
+    "stats",
     z(3),
   ]);
   /*add([
@@ -214,6 +225,18 @@ export default function MainMenu() {
   });
   onClick("shop", () => {
     go("shop");
+    play("ui:click")
+  });
+  onHover("stats", () => {
+    get("stats")[0].textSize = 18
+    setCursor("pointer");
+  });
+  onHoverEnd("stats", () => {
+    get("stats")[0].textSize = 16
+    setCursor("default");
+  });
+  onClick("stats", () => {
+    go("stats");
     play("ui:click")
   });
   onMouseMove(() => {
