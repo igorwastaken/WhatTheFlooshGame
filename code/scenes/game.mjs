@@ -14,8 +14,8 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1) {
             destroy: true
         }),
         z(1),
-	scale(0.7),
-	"player"
+	      scale(0.7),
+	      "player"
     ])
     let targetX = player.pos.x;
     const score = add([
