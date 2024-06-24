@@ -1,4 +1,5 @@
 import kaboom from "kaboom";
+
 const items = [
   {
     sprite: "bean",
@@ -8,17 +9,17 @@ const items = [
   {
     sprite: "nerd",
     name: "Nerd",
-    price: 1000,
+    price: 50,
   },
   {
     sprite: "skull",
     name: "Skull",
-    price: 3500,
+    price: 100,
   },
   {
     sprite: "poop",
     name: "Poop",
-    price: 5000,
+    price: 150,
   },
   /*{
         sprite: "burbur",
@@ -26,26 +27,42 @@ const items = [
         price: 9999999999999999999999
     }*/
 ];
+
 export default function Shop() {
+  // Get current coins from local storage or set to 0 if not available
+  const coins = parseInt(localStorage.getItem("coins") || "0");
+
   items.map((item, index) => {
     const i = add([
       sprite(item.sprite),
       pos(width() / 2.3, 55 * index),
       area(),
-      opacity(localStorage.getItem("score") >= item.price ? 1 : 0.5),
+      opacity(coins >= item.price ? 1 : 0.5),
       item.name,
     ]);
+
     onClick(item.name, () => {
-      if (localStorage.getItem("score") >= item.price) {
+      if (coins >= item.price) {
         localStorage.setItem("skin", item.sprite);
+        localStorage.setItem("coins", coins - item.price); // Deduct coins
+        alert(`Você comprou ${item.name} por ${item.price} moedas.`);
         go("menu");
       } else {
-        alert(
-          `Desculpe, mas você não tem pontos suficientes (${item.price}) para comprar esse item.`,
-        );
+        alert(`Desculpe, mas você não tem moedas suficientes (${item.price}) para comprar esse item.`);
       }
     });
   });
+
+  // Display current coin count
+  add([
+    text(`Moedas: ${coins}`, {
+      size: 18,
+    }),
+    pos(10, height() - 30),
+    color(255, 255, 0),
+  ]);
+
+  // Add back button
   add([
     text("Voltar", {
       size: 14,
@@ -54,6 +71,7 @@ export default function Shop() {
     area(),
     "backbtn",
   ]);
+
   onClick("backbtn", () => {
     go("menu");
   });

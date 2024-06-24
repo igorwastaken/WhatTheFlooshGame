@@ -1,4 +1,5 @@
 import kaboom from "kaboom";
+
 function formatCompactNumber(number) {
   const formatter = Intl.NumberFormat("en-US", { notation: "compact" });
   return formatter.format(Number(number));
@@ -8,59 +9,81 @@ export default function Stats() {
   const maxScoreEasy = formatCompactNumber(localStorage.getItem("score.easy"));
   const maxScoreNormal = formatCompactNumber(localStorage.getItem("score.normal"));
   const maxScoreHard = formatCompactNumber(localStorage.getItem("score.hard"));
+
+  // Constantes para tamanhos e espaçamentos
+  const titleSize = 26;
+  const textSize = 14;
+  const spacing = 30;
+  const marginTop = height() / 3.4;
+
+  // Título Pontos
   add([
     text("Pontos:", {
-      size: 26,
+      size: titleSize,
       width: width(),
       align: "center",
     }),
-    pos(0, height()/3.4),
+    pos(width() / 2, marginTop),
+    anchor("center"),
   ]);
+
+  // Pontuação Fácil
   add([
-    text("Facil: "+ maxScoreEasy, {
-      size: 14,
+    text("Fácil: " + maxScoreEasy, {
+      size: textSize,
       width: width(),
       align: "center",
     }),
-    pos(0, height() / 2.9),
+    pos(width() / 2, marginTop + spacing),
+    anchor("center"),
   ]);
+
+  // Pontuação Normal
   add([
-    text("Normal: "+ maxScoreNormal, {
-      size: 14,
+    text("Normal: " + maxScoreNormal, {
+      size: textSize,
       width: width(),
       align: "center",
     }),
-    pos(0, height() / 2.5),
+    pos(width() / 2, marginTop + spacing * 2),
+    anchor("center"),
   ]);
+
+  // Pontuação Difícil
   add([
-    text("Dificl: "+ maxScoreHard, {
-      size: 14,
+    text("Difícil: " + maxScoreHard, {
+      size: textSize,
       width: width(),
       align: "center",
     }),
-    pos(0, height() / 2.2),
+    pos(width() / 2, marginTop + spacing * 3),
+    anchor("center"),
   ]);
+
+  // Botão Voltar
   add([
     text("Voltar", {
-      size: 14,
+      size: textSize,
     }),
-    pos(10, 10),
+    pos(10, height() - 30),
     area(),
     "backbtn",
   ]);
+
   onClick("backbtn", () => {
     go("menu");
   });
-  var clouds = 0;
-  for (clouds = 0; clouds < 50; clouds++) {
-    const clouds = add([
+
+  // Background stars
+  for (let i = 0; i < 50; i++) {
+    add([
       sprite("star"),
       area(),
       pos(rand(width()), rand(height())),
       scale(rand(0.1, 0.3)),
       rotate(rand(0, 360)),
       "stars",
-      z(0.5)
+      z(0.5),
     ]);
   }
 }

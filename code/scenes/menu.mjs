@@ -5,29 +5,26 @@ function formatCompactNumber(number) {
   const formatter = Intl.NumberFormat("en-US", { notation: "compact" });
   return formatter.format(Number(number));
 }
+
 // Main
 export default function MainMenu() {
   const maxScore = formatCompactNumber(localStorage.getItem("score"));
 
   var afkTimeout = 0;
-  const mainText = add([
+
+  // Main title
+  add([
     text(`What The Floosh Game`, {
       size: 24,
       width: width(),
       align: "center",
     }),
-    pos(10, height()/3.4),
+    pos(width() / 2, height() / 3.4),
+    anchor("center"),
     z(3),
   ]);
-  /*add([sprite("clock"), pos(10, 60), z(3), scale(0.3)]);
-  add([
-    text(maxScore, {
-      size: 18,
-    }),
-    pos(40, 63),
-    "score",
-    z(3),
-  ]);*/
+
+  // Coin display
   add([
     text(formatCompactNumber(localStorage.getItem("coins")), {
       size: 18,
@@ -36,78 +33,53 @@ export default function MainMenu() {
     "coins",
     z(3),
   ]);
+
   add([sprite("coin"), pos(10, 10), "coins", z(3), scale(0.1)]);
-  /*add([
-        pos(width()-50,50),
-        sprite(localStorage.getItem("skin")),
-        area(),
-        body(),
-        "btn",
-        z(1),
-    ])*/
-  add([
-    pos(10, height()/3.5),
-    sprite(localStorage.getItem("skin")),
-    area(),
-    "floosh",
-    z(3),
-    scale(0.7),
-  ]);
-  add([
-    text(`Jogar`, {
-      size: 16,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2.9),
-    area(),
-    "btn",
-    z(3),
-  ]);
-  add([
-    text(`Créditos`, {
-      size: 16,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2.5),
-    area(),
-    "credits",
-    z(3),
-  ]);
-  add([
-    text("Loja", {
-      size: 16,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2.2),
-    area(),
-    "shop",
-    z(3),
-  ]);
-  add([
-    text("Estatísticas", {
-      size: 16,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2),
-    area(),
-    "stats",
-    z(3),
-  ]);
-  /*add([
-        sprite("instagram"),
-        pos(width()/2.1, height()/2),
-        area(),
-        "social:Instagram",
-        z(3),
-        scale(0.3)
-    ])*/
-  var clouds = 0;
-  for (clouds = 0; clouds < 50; clouds++) {
-    const clouds = add([
+
+  // Menu buttons
+  const buttons = [
+    { label: "Jogar", scene: "difficulty", y: height() / 2.5 },
+    { label: "Créditos", scene: "credits", y: height() / 2.1 },
+    { label: "Loja", scene: "shop", y: height() / 1.85 },
+    { label: "Estatísticas", scene: "stats", y: height() / 1.65 }
+  ];
+
+  buttons.forEach(({ label, scene, y }) => {
+    const btn = add([
+      text(label, {
+        size: 16,
+        width: width(),
+        align: "center",
+      }),
+      pos(width() / 2, y),
+      anchor("center"),
+      area(),
+      "btn",
+      z(3),
+      {
+        clickAction: scene,
+      }
+    ]);
+
+    btn.onClick(() => {
+      go(scene);
+      play("ui:click");
+    });
+
+    btn.onHover(() => {
+      btn.textSize = 18;
+      setCursor("pointer");
+    });
+
+    btn.onHoverEnd(() => {
+      btn.textSize = 16;
+      setCursor("default");
+    });
+  });
+
+  // Clouds and stars background
+  for (let clouds = 0; clouds < 50; clouds++) {
+    add([
       sprite("star"),
       area(),
       pos(rand(width()), rand(height())),
@@ -133,12 +105,8 @@ export default function MainMenu() {
       recta.move(rand(-150, -100), 0);
     });
     wait(0.3, spawnClouds);
-    recta.onUpdate(() => {
-      if (recta.pos.x > width()) {
-        destroy(recta);
-      }
-    });
   }
+
   const currentYear = new Date().getUTCFullYear();
   add([
     text(currentYear + " © igorwastaken", {
@@ -149,15 +117,18 @@ export default function MainMenu() {
     area(),
     "ee",
   ]);
+
+  // Settings button
   add([
     sprite("settings"),
     pos(width() - 30, height() - 30),
     scale(0.5),
     area(),
-
     "settings",
   ]);
+
   spawnClouds();
+
   var clicked = 0;
   onClick("ee", () => {
     clicked++;
@@ -166,94 +137,45 @@ export default function MainMenu() {
       window.open("https://apenasigordev.github.io/FastPungentFactors/");
     }
   });
+
   onClick("settings", () => {
     go("settings");
-    play("ui:click")
+    play("ui:click");
   });
+
   onKeyPress("space", () => {
     go("game:normal");
-    play("ui:click")
+    play("ui:click");
   });
+
   onGamepadButtonDown("dpad-down", () => {
     go("game:normal");
-    play("ui:click")
+    play("ui:click");
   });
+
   onKeyPress("down", () => {
     go("game:normal");
-    play("ui:click")
+    play("ui:click");
   });
-  onCollide("btn", (e) => {
-    destroy(e);
-  });
-  /*onCollide("stars", "stars", (s) => {
-        destroy(s)
-    })*/
-  onCollide("credits", (e) => {
-    destroy(e);
-  });
-  onHover("btn", () => {
-    get("btn")[0].textSize = 18
-    setCursor("pointer");
-  });
-  onHoverEnd("btn", () => {
-    get("btn")[0].textSize = 16
-    setCursor("default");
-  });
-  onClick("btn", () => {
-    go("difficulty");
-    play("ui:click")
-  });
-  onHover("credits", () => {
-    get("credits")[0].textSize = 18
-    setCursor("pointer");
-  });
-  onHoverEnd("credits", () => {
-    get("credits")[0].textSize = 16
-    setCursor("default");
-  });
-  onClick("credits", () => {
-    go("credits");
-    play("ui:click")
-  });
-  onHover("shop", () => {
-    get("shop")[0].textSize = 18
-    setCursor("pointer");
-  });
-  onHoverEnd("shop", () => {
-    get("shop")[0].textSize = 16
-    setCursor("default");
-  });
-  onClick("shop", () => {
-    go("shop");
-    play("ui:click")
-  });
-  onHover("stats", () => {
-    get("stats")[0].textSize = 18
-    setCursor("pointer");
-  });
-  onHoverEnd("stats", () => {
-    get("stats")[0].textSize = 16
-    setCursor("default");
-  });
-  onClick("stats", () => {
-    go("stats");
-    play("ui:click")
-  });
+
   onMouseMove(() => {
     afkTimeout = 0;
   });
+
   onTouchMove(() => {
     afkTimeout = 0;
   });
+
   loop(1, () => {
     afkTimeout++;
   });
+
   onUpdate(() => {
-    console.log(afkTimeout);
     if (afkTimeout === 60) {
       go("afk");
     }
   });
+
   const socials = [
     {
       id: "Instagram",
@@ -268,9 +190,9 @@ export default function MainMenu() {
   onUpdate(() => {
     if (window.location.hash === "#kaboom") {
       destroyAll("stars");
-      //destroyAll("clouds")
     }
   });
+
   onDestroy("stars", (s) => {
     addKaboom(s.pos);
   });

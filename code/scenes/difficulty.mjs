@@ -1,107 +1,65 @@
 import kaboom from "kaboom";
 
 export default function Difficulty() {
-  add([
-    text(`What The Floosh Game`, {
-      size: 24,
-      width: width(),
-      align: "center",
-    }),
-    pos(10, 10),
-    z(3),
-  ]);
+  const stars = [];
+  const starCount = 50;
 
-  add([
-    text(`Fácil`, {
-      size: 14,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2.9 - 10),
-    area(),
-    "easy",
-    z(3),
-  ]);
-  add([
-    text(`Normal`, {
-      size: 14,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2.5 - 10),
-    area(),
-    "normal",
-    z(3),
-  ]);
-  add([
-    text(`Dificil`, {
-      size: 14,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2.2 - 10),
-    area(),
-    "hard",
-    z(3),
-  ]);
-  add([
-    text(`Voltar`, {
-      size: 14,
-      width: width(),
-      align: "center",
-    }),
-    pos(0, height() / 2 + 10),
-    area(),
-    "back",
-    z(3),
-  ]);
-  onHover("easy", () => {
-    setCursor("pointer");
-  });
-  onHoverEnd("easy", () => {
-    setCursor("default");
-  });
-  onHover("normal", () => {
-    setCursor("pointer");
-  });
-  onHoverEnd("normal", () => {
-    setCursor("default");
-  });
-  onHover("hard", () => {
-    setCursor("pointer");
-  });
-  onHoverEnd("hard", () => {
-    setCursor("default");
-  });
-  onHover("back", () => {
-    setCursor("pointer");
-  });
-  onHoverEnd("back", () => {
-    setCursor("default");
-  });
-
-  onClick("easy", () => {
-    go("game:easy");
-  });
-  onClick("normal", () => {
-    go("game:normal");
-  });
-  onClick("hard", () => {
-    go("game:hard");
-  });
-  onClick("back", () => {
-    go("menu");
-  });
-
-  var clouds = 0;
-  for (clouds = 0; clouds < 50; clouds++) {
-    const clouds = add([
+  // Create background stars
+  for (let i = 0; i < starCount; i++) {
+    stars.push(add([
       sprite("star"),
-      area(),
       pos(rand(width()), rand(height())),
       scale(rand(0.1, 0.3)),
       rotate(rand(0, 360)),
-      "stars",
-    ]);
+      "star",
+    ]));
   }
+
+  // Add title text
+  add([
+    text("What The Floosh Game", {
+      size: 32,
+      width: width(),
+      align: "center",
+    }),
+    pos(width() / 2, height() / 4),
+    origin("center"),
+    z(2),
+  ]);
+
+  // Add difficulty options
+  const difficulties = [
+    { label: "Fácil", scene: "game:easy" },
+    { label: "Normal", scene: "game:normal" },
+    { label: "Difícil", scene: "game:hard" },
+    { label: "v3", scene: "game:impossible" },
+    { label: "Voltar", scene: "menu" },
+  ];
+
+  difficulties.forEach((option, index) => {
+    const button = add([
+      text(option.label, {
+        size: 24,
+        width: width(),
+        align: "center",
+      }),
+      pos(width() / 2, height() / 2.5 + index * 40),
+      origin("center"),
+      area(),
+      { option: option.scene },
+      z(2),
+    ]);
+
+    button.onHover(() => {
+      button.color = rgb(255, 255, 0);
+      setCursor("pointer");
+    }, () => {
+      button.color = rgb(255, 255, 255);
+      setCursor("default");
+    });
+
+    button.onClick(() => {
+      go(option.scene);
+    });
+  });
 }
