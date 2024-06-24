@@ -173,26 +173,27 @@ scene("loading", () => {
 
 scene("warning", () => {
   setCursor("default");
-  startmusic.volume = 1;
-  startmusic.play();
+  configureMusic("intro")
   if (!localStorage.getItem("language")) {
     showLanguageSelection();
   } else {
     showUpdateNotice();
   }
 });
-
+var oldScene = undefined;
 function configureMusic(scene) {
   if (localStorage.getItem("settings:muted") == 0) {
     musicConfig[scene].play();
-    musicConfig["menu"].volume = 0;
-    musicConfig["credits"].volume = 0;
-    musicConfig["game"].volume = localStorage.getItem("qt") === "true" ? 5 : 1;
+    musicConfig[scene].volume = 1;
+    
+    if(oldScene !== undefined) musicConfig[oldScene].volume = 0;
   } else {
     musicConfig["menu"].volume = 0;
     musicConfig["credits"].volume = 0;
     musicConfig["game"].volume = 0;
+    console.log(scene)
   }
+  oldScene=scene
 }
 
 function showLanguageSelection() {
