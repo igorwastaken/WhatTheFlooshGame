@@ -23,7 +23,7 @@ export default function Difficulty() {
       align: "center",
     }),
     pos(width() / 2, height() / 4),
-    origin("center"),
+    anchor("center"),
     z(2),
   ]);
 
@@ -44,7 +44,7 @@ export default function Difficulty() {
         align: "center",
       }),
       pos(width() / 2, height() / 2.5 + index * 40),
-      origin("center"),
+      anchor("center"),
       area(),
       { option: option.scene },
       z(2),
