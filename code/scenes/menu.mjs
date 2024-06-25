@@ -42,7 +42,7 @@ export default function MainMenu() {
     { label: "Créditos", scene: "credits", y: height() / 2.1 },
     { label: "Loja", scene: "shop", y: height() / 1.85 },
     { label: "Estatísticas", scene: "stats", y: height() / 1.65 },
-    { label: "Mobile App", scene: "menu", y: height() / 1.4 }
+    { label: "Mobile App", scene: "menu", y: height() / 1.5 }
   ];
 
   buttons.forEach(({ label, scene, y }) => {
