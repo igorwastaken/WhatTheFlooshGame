@@ -41,7 +41,8 @@ export default function MainMenu() {
     { label: "Jogar", scene: "difficulty", y: height() / 2.5 },
     { label: "Créditos", scene: "credits", y: height() / 2.1 },
     { label: "Loja", scene: "shop", y: height() / 1.85 },
-    { label: "Estatísticas", scene: "stats", y: height() / 1.65 }
+    { label: "Estatísticas", scene: "stats", y: height() / 1.65 },
+    { label: "Mobile App", scene: "menu", y: height() / 1.4 }
   ];
 
   buttons.forEach(({ label, scene, y }) => {
@@ -54,7 +55,7 @@ export default function MainMenu() {
       pos(width() / 2, y),
       anchor("center"),
       area(),
-      "btn",
+      `${label}`,
       z(3),
       {
         clickAction: scene,
@@ -76,7 +77,9 @@ export default function MainMenu() {
       setCursor("default");
     });
   });
-
+  onClick("Mobile App", () => {
+    window.open("/internal/files/WTFLGameMobile-V1.apk")
+  })
   // Clouds and stars background
   for (let clouds = 0; clouds < 50; clouds++) {
     add([
