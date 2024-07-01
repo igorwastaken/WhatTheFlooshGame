@@ -18,6 +18,8 @@ kaboom({
   fullscreen: true,
   background: [0, 20, 102],
   canvas: document.getElementById("gamecanvas"),
+  stretch: false,
+  letterbox: true,
 });
 
 // Initialize localStorage defaults
