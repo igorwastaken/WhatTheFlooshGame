@@ -78,7 +78,7 @@ export default function MainMenu() {
     });
   });
   onClick("Mobile App", () => {
-    window.open("/internal/files/WTFLGameMobile-V1.apk")
+    window.open("https://igorwastaken.itch.io/wtfl-game")
   })
   // Clouds and stars background
   for (let clouds = 0; clouds < 50; clouds++) {
