@@ -11,248 +11,393 @@ import Settings from "./scenes/settings.mjs";
 import Stats from "./scenes/stats.mjs";
 
 // Initialize kaboom context
+
 kaboom({
-  global: true,
-  width: window.innerWidth,
-  height: window.innerHeight,
-  fullscreen: true,
-  background: [0, 20, 102],
-  canvas: document.getElementById("gamecanvas"),
-  stretch: false,
-  letterbox: true,
+    global: true,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    fullscreen: true,
+    background: [16, 52, 175],
+    canvas: document.getElementById("gamecanvas"),
+    loadingScreen: false,
+    font: "pixellari",
+    crisp: true,
 });
 
+onLoading((progress) => {
+    drawRect({
+        width: width(),
+        height: height(),
+        color: rgb(16, 52, 175),
+    })
+    drawText({
+		text: "What The Floosh Game",
+		font: "pixellari",
+		size: 24,
+		anchor: "center",
+		pos: center().add(0, 70),
+	})
+    drawText({
+        text: "Criado com Kaplay.js",
+        font: "pixellari",
+        size: 20,
+        anchor: "center",
+        pos: center().add(0,120)
+    })
+})
+
+setFullscreen(!isFullscreen())
 // Initialize localStorage defaults
 const defaultSettings = {
-  "score.easy": 0,
-  "score.normal": 0,
-  "score.hard": 0,
-  "coins": 0,
-  "qt": false,
-  "skin": "bean",
-  "settings:fullscreen": 0,
-  "settings:muted": 0,
+    "score.easy": 0,
+    "score.normal": 0,
+    "score.hard": 0,
+    "score.impossible": 0,
+    "coins": 0,
+    "qt": false,
+    "skin": "bean",
+    "settings:fullscreen": 0,
+    "settings:muted": 0,
 };
 
 for (const [key, value] of Object.entries(defaultSettings)) {
-  if (!localStorage.getItem(key)) {
-    localStorage.setItem(key, value);
-  }
+    if (!localStorage.getItem(key)) {
+        localStorage.setItem(key, value);
+    }
 }
 
 if (localStorage.getItem("qt") === "true") {
-  localStorage.setItem("skin", "burbur");
+    localStorage.setItem("skin", "burbur");
 }
-
-// Load assets
-const assets = {
-  sprites: {
-    "bean": "sprites/bean.png",
-    "cloud": "sprites/elements/clouds.png",
-    "plane": "sprites/elements/plane.png",
-    "star": "sprites/elements/star.png",
-    "coin": "sprites/elements/coins.gif",
-    "rocket": "sprites/elements/rockets.png",
-    "rocket2": "sprites/elements/rockets2.png",
-    "rocket3": "sprites/elements/rockets3.png",
-    "ufo": "sprites/elements/ufo.png",
-    "clock": "sprites/elements/clock.png",
-    "empadinhalogo": "sprites/elements/empadinhalogo.png",
-    "nerd": "sprites/skins/nerd.png",
-    "skull": "sprites/skins/skull.png",
-    "burbur": "sprites/skins/burbur.png",
-    "poop": "sprites/skins/poop.png",
-    "instagram": "sprites/icons/instagram.png",
-    "settings": "sprites/icons/settings.png",
-    "cl:AL": "sprites/icons/Cl-AL.png",
-  },
-  sounds: {
-    "20190724": "sounds/20190724.mp3",
-    "score": "sounds/score.mp3",
-    "20210616": "sounds/20210616.mp3",
-    "20190724 2": "sounds/20190724 2.mp3",
-    "intro": "sounds/20190724-2-_intro-loop_.mp3",
-    "20210511": "sounds/20210511.mp3",
-    "coin": "sounds/ui/retro-game-coin-pickup-jam-fx-1-00-03.mp3",
-    "ui:click": "sounds/ui/click.mp3",
-  }
-};
-
-for (const [key, value] of Object.entries(assets.sprites)) {
-  loadSprite(key, value);
+if (!localStorage.getItem("skin")) {
+  localStorage.setItem("skin", "bean");
 }
-
-for (const [key, value] of Object.entries(assets.sounds)) {
-  loadSound(key, value);
+if (!localStorage.getItem("settings:fullscreen")) {
+  localStorage.setItem("settings:fullscreen", 0);
 }
+if (!localStorage.getItem("settings:muted")) {
+  localStorage.setItem("settings:muted", 0);
+}
+// load assets
+loadSprite("bean", "sprites/bean.png");
+loadSprite("cloud", "sprites/elements/clouds.png");
+loadSprite("plane", "sprites/elements/plane.png");
+loadSprite("star", "sprites/elements/star.png");
+loadSprite("coin", "sprites/elements/coins.gif");
+loadSprite("rocket", "sprites/elements/rockets.png");
+loadSprite("rocket2", "sprites/elements/rockets2.png");
+loadSprite("rocket3", "sprites/elements/rockets3.png");
+loadSprite("ufo", "sprites/elements/ufo.png");
+loadSprite("clock", "sprites/elements/clock.png");
+loadSprite("empadinhalogo", "sprites/elements/empadinhalogo.png");
 
-// Initialize and configure background music
-const musicConfig = {
-  "menu": play("20190724 2", { loop: true, volume: 0 }),
-  "game": play("20190724", { loop: true, volume: 0 }),
-  "credits": play("20210511", { loop: true, volume: 0 }),
-  "intro": play("intro", { loop: true, volume: 1 })
-};
+// sounds
+loadSound("20190724", "sounds/20190724.mp3");
+loadSound("score", "sounds/score.mp3");
+loadSound("20210616", "sounds/20210616.mp3");
+loadSound("20190724 2", "sounds/20190724 2.mp3");
+loadSound("intro", "sounds/20190724-2-_intro-loop_.mp3");
+loadSound("20210511", "sounds/20210511.mp3");
+loadSound("coin", "sounds/ui/retro-game-coin-pickup-jam-fx-1-00-03.mp3");
+loadSound("ui:click", "sounds/ui/click.mp3");
 
-// Scene definitions
-scene("game:easy", () => {
-  configureMusic("game");
-  Game(1, 0.5, 1, "easy");
+// Skins
+loadSprite("nerd", "sprites/skins/nerd.png");
+loadSprite("skull", "sprites/skins/skull.png");
+loadSprite("burbur", "sprites/skins/burbur.png");
+loadSprite("poop", "sprites/skins/poop.png");
+
+// Icons
+loadSprite("instagram", "sprites/icons/instagram.png");
+loadSprite("settings", "sprites/icons/settings.png");
+loadSprite("cl:AL", "sprites/icons/Cl-AL.png");
+
+const menumusic = play("20190724 2", {
+  loop: true,
+  volume: 0,
 });
+const gamemusic = play("20190724", {
+  loop: true,
+  volume: 0,
+});
+const creditsmusic = play("20210511", {
+  loop: true,
+  volume: 0,
+});
+const startmusic = play("intro", {
+  loop: true,
+  volume: 1
+})
 
+const label = add([pos(8, 8), text("0"), area()]);
+
+scene("game:easy", () => {
+  if (localStorage.getItem("settings:muted") == 0) {
+    gamemusic.play();
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    if (localStorage.getItem("qt") === "true") {
+      gamemusic.volume = 5;
+    } else {
+      gamemusic.volume = 1;
+    }
+  } else {
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  }
+  Game(1, 0.5, 1);
+});
+scene("game:impossible", () => {
+  if (localStorage.getItem("settings:muted") == 0) {
+    gamemusic.play();
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    if (localStorage.getItem("qt") === "true") {
+      gamemusic.volume = 5;
+    } else {
+      gamemusic.volume = 1;
+    }
+  } else {
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  }
+  NewGame(2, 3, 2);
+});
 scene("game:normal", () => {
-  configureMusic("game");
-  Game(1.5, 1, 0.4, "normal");
+  if (localStorage.getItem("settings:muted") == 0) {
+    gamemusic.play();
+    console.log("Can play song");
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    if (localStorage.getItem("qt") === "true") {
+      gamemusic.volume = 5;
+    } else {
+      gamemusic.volume = 1;
+    }
+  } else {
+    console.log("Can't play song");
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  }
+  Game(1.5, 1, 0.4);
 });
 
 scene("game:hard", () => {
-  configureMusic("game");
-  Game(3, 6, 1.2, "hard");
-});
-
-scene("game:impossible", () => {
-  configureMusic("game");
-  NewGame(2, 3, 2);
+  if (localStorage.getItem("settings:muted") == 0) {
+    gamemusic.play();
+    console.log("Can play song");
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    if (localStorage.getItem("qt") === "true") {
+      gamemusic.volume = 5;
+    } else {
+      gamemusic.volume = 1;
+    }
+  } else {
+    console.log("Cannot play song");
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  }
+  Game(3, 6, 1.2);
 });
 
 scene("settings", () => {
-  Settings();
-  setCursor("default");
+    Settings();
+    setCursor("default");
 });
 
 scene("afk", () => {
-  setCursor("none");
-  AFK(1);
+    configureMusic("menu");
+    setCursor("none");
+    AFK(1);
 });
 
 scene("difficulty", () => {
-  setCursor("default");
-  Difficulty();
+    setCursor("default");
+    Difficulty();
 });
 
 scene("devOptions", () => {
-  setCursor("default");
-  Dev();
+    setCursor("default");
+    Dev();
 });
 
 scene("menu", () => {
-  configureMusic("menu");
+  // setFullscreen()
   setCursor("default");
+  setTimeout(function () {
+    window.scrollTo(0, 0);
+  }, 1);
   document.getElementById("gamecanvas").style.width = "100%";
   document.getElementById("gamecanvas").style.height = "100%";
+  // burp()
+  // play("score")
+  if (localStorage.getItem("settings:muted") == 0) {
+    menumusic.play();
+    console.log("Can play song");
+    menumusic.volume = 1;
+    startmusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  } else {
+    console.log("Cannot play song");
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  }
   Menu();
 });
 
 scene("credits", () => {
   setCursor("default");
-  configureMusic("credits");
+  /*creditsmusic.play()
+    creditsmusic.volume = 1
+    menumusic.volume = 0
+    gamemusic.volume = 0*/
   Credits();
 });
 
 scene("shop", () => {
   setCursor("default");
-  configureMusic("credits");
+  if (localStorage.getItem("settings:muted") == 0) {
+    creditsmusic.play();
+    creditsmusic.volume = 1;
+    menumusic.volume = 0;
+    gamemusic.volume = 0;
+  } else {
+    menumusic.volume = 0;
+    creditsmusic.volume = 0;
+    gamemusic.volume = 0;
+  }
   Shop();
 });
-
-scene("stats", () => {
-  setCursor("default");
-  configureMusic("credits");
-  Stats();
-});
-
 scene("loading", () => {
   setCursor("none");
   var progress = 0;
-  const interval = setInterval(() => {
-    progress++;
-    if (progress > 99) {
-      go("warning");
-      clearInterval(interval);
-    }
-  }, rand(0.4, 1));
+  /* add([
+        sprite("empadinhalogo"),
+        pos(width()/4.8, height()/4.8),
+        scale(0.5),
+        area()
+    ]) */
+  const interval = setInterval(
+    (t) => {
+      //console.log(progress)
+      progress++;
+      if (progress > 99) {
+        console.log("Done!");
+        go("warning");
+        // burp()
+        clearInterval(interval);
+        // alert("O jogo está instável no momento, mas ainda é jogável (:")
+        /*alert("AVISO: Tente o máximo NÃO soltar seu dedo, o personagem pode teleportar para exatamente onde você clicar. Isso pode gerar um problema e você pode até mesmo morrer entre as estrelas. Enquanto no computador, tente jogar em tela cheia (F11 + F5)")*/
+      }
+      // protext.text=`Carregando... (${progress})`
+    },
+    rand(0.4, 1),
+  );
+  /*const cl = add([
+        pos(10, 10),
+        sprite("cl:AL"),
+        scale(0.3),
+        area(),
+        opacity(1)
+    ])*/
 });
-
 scene("warning", () => {
   setCursor("default");
-  configureMusic("intro")
+  startmusic.volume = 1
+  startmusic.play()
+  //  if(localStorage.getItem("settings:muted") == 0) burp()
   if (!localStorage.getItem("language")) {
-    showLanguageSelection();
+    const firstText = add([
+      text("Welcome, first of all, choose your language.", {
+        size: 20,
+        width: width(),
+        align: "center",
+      }),
+      pos(0, 10),
+      area(),
+    ]);
+    const portuguese = add([
+      text("Português", {
+        size: 16,
+        width: width(),
+        align: "center",
+      }),
+      pos(0, 60),
+      area(),
+    ]);
+    const english = add([
+      text("English", {
+        size: 16,
+        width: width(),
+        align: "center",
+      }),
+      pos(0, 100),
+      area(),
+    ]);
+    portuguese.onClick(() => {
+      localStorage.setItem("language", "pt-br");
+      go("warning");
+    });
+    english.onClick(() => {
+      localStorage.setItem("language", "en");
+      go("warning");
+    });
   } else {
-    showUpdateNotice();
+    const firstText = add([
+      text("Novidades:", {
+        size: 26,
+      }),
+      pos(10, 10),
+      area(),
+      scale(2),
+    ]);
+    const secondText = add([
+      text(
+        "• Agora estamos trabalhando na versão 3.0 do WTFL!\n• Música de menu atualizado.\n• Correção e melhorias\n• Última atualização: 18/02/2024",
+        {
+          size: 18,
+          width: width(),
+        },
+      ),
+      pos(10, 60),
+      area(),
+    ]);
+    const OK = add([
+      text("Clique em qualquer lugar ou em qualquer tecla para jogar", {
+        size: 14,
+        width: width(),
+      }),
+      pos(10, height() - 100),
+      // scale(1),
+      area(),
+    ]);
+    onClick(() => {
+      if (localStorage.getItem("settings:muted") == 0) burp();
+      go("menu");
+      /*const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }*/
+    });
+    onKeyPress(() => {
+      if (localStorage.getItem("settings:muted") == 0) burp();
+      go("menu");
+      // confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+      /*const c = confirm("Desculpe, mas o jogo não pode ser acessado agora.\nClique \"OK\" para saber mais.");
+        if(c == true) { window.location.href = "https://status.igor.mom/incident/291358" }*/
+    });
   }
 });
-var oldScene = undefined;
-function configureMusic(scene) {
-  if (localStorage.getItem("settings:muted") == 0) {
-    musicConfig[scene].play();
-    musicConfig[scene].volume = 1;
-    
-    if(oldScene !== undefined) musicConfig[oldScene].volume = 0;
-  } else {
-    musicConfig["menu"].volume = 0;
-    musicConfig["credits"].volume = 0;
-    musicConfig["game"].volume = 0;
-    console.log(scene)
-  }
-  oldScene=scene
-}
-
-function showLanguageSelection() {
-  const firstText = add([
-    text("Welcome, first of all, choose your language.", { size: 20, width: width(), align: "center" }),
-    pos(0, 10),
-    area(),
-  ]);
-  const portuguese = add([
-    text("Português", { size: 16, width: width(), align: "center" }),
-    pos(0, 60),
-    area(),
-  ]);
-  const english = add([
-    text("English", { size: 16, width: width(), align: "center" }),
-    pos(0, 100),
-    area(),
-  ]);
-  portuguese.onClick(() => {
-    localStorage.setItem("language", "pt-br");
-    go("menu");
-  });
-  english.onClick(() => {
-    localStorage.setItem("language", "en");
-    go("menu");
-  });
-}
-
-function showUpdateNotice() {
-  const firstText = add([
-    text("Novidades:", { size: 26 }),
-    pos(10, 10),
-    area(),
-    scale(2),
-  ]);
-  const secondText = add([
-    text("• Agora estamos trabalhando na versão 3.0 do WTFL!\n• Música de menu atualizado.\n• Correção e melhorias\n• Última atualização: 18/02/2024", {
-      size: 18,
-      width: width(),
-    }),
-    pos(10, 60),
-    area(),
-  ]);
-  const OK = add([
-    text("Clique em qualquer lugar ou em qualquer tecla para jogar", { size: 14, width: width() }),
-    pos(10, height() - 100),
-    area(),
-  ]);
-  onClick(() => {
-    if (localStorage.getItem("settings:muted") == 0) burp();
-    go("menu");
-  });
-  onKeyPress(() => {
-    if (localStorage.getItem("settings:muted") == 0) burp();
-    go("menu");
-  });
-}
 
 go("loading");
+
 debug.inspect = window.location.hash === "#debug";
+
+onDestroy((e) => {
+  debug.log("Item destruído");
+});

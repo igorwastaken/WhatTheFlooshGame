@@ -1,19 +1,20 @@
 import kaboom from "kaboom";
 
 export default function Settings() {
-  add([text("Em breve..."), pos(10, 10)]);
+  const padding = 20;
+  add([text("Em breve..."), pos(20, 20)]);
 
   add([
     text("Voltar", {
-      size: 14,
-      width: width(),
+      size: 15,
+      width: width() - padding * 2,
     }),
-    pos(10, 60),
+    pos(padding, height() - padding - 15),
     area(),
-    "back",
+    "backbtn",
   ]);
 
-  onClick("back", () => {
+  onClick("backbtn", () => {
     go("menu");
   });
 }

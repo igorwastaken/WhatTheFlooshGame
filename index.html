@@ -66,7 +66,7 @@
       content="igor.mom, What The Floosh, wtfl, what the floosh, the floosh, floosh, flush, what the flush, game, jogos"
     /> <!-- funny line number -->
       </script
-          <script src="https://cdn.tailwindcss.com/">
+          <script src="./tailwind.js">
     </script>
   </head>
 
@@ -75,17 +75,21 @@
     <script type="importmap">
       {
         "imports": {
-          "kaboom": "https://unpkg.com/kaboom@3000.1.17/dist/kaboom.mjs"
+          "kaboom": "./kaplay.mjs"
         }
       }
     </script>
     <script src="./code/main.mjs" type="module"></script>
     <script>
-      UIkit.notification({
+      /*UIkit.notification({
         message:
           '<img src="sprites/icons/Cl-AL.png" width="30px" height="30px"></img> Este jogo é livre para todos os públicos.',
         pos: "bottom-left",
-      });
+      });*/
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+      // eruda.init();
     </script>
   </body>
 </html>

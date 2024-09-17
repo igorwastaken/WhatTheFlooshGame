@@ -17,14 +17,14 @@ _Aceito qualquer tipo de idéia_
 
 # Planejamentos para Versão 3 do jogo:
 
-- [ ] Obstáculos melhores
-- [ ] Aprimoramento na jogabilidade
-- [ ] Novos recursos
-  - [ ] Algo que deixe o jogo empolgante
+- [x] Obstáculos melhores
+- [x] Aprimoramento na jogabilidade
+- [x] Novos recursos
+  - [x] Algo que deixe o jogo empolgante
   - [ ] Configurações
   - [ ] Sistema de Ranking
-- [ ] Sons de interface
-- [ ] Mais melhorias
+- [x] Sons de interface
+- [x] Mais melhorias
 - [ ] Internacionalização, (outros idiomas)
 - [ ] E muito mais!
 

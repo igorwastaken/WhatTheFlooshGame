@@ -1,12 +1,19 @@
 import kaboom from "kaboom";
 
 export default function Credits() {
+  let back = add([
+    sprite("background", {width: width(), height: height()}),
+    layer("bg"),
+    fixed(),
+  ]);
+
   // Constantes para tamanhos e espaçamentos
   const titleSize = 24;
   const sectionTitleSize = 20;
   const textSize = 14;
   const spacing = 30;
   const marginTop = 30;
+  const padding = 20;
 
   // Título do jogo
   add([
@@ -27,7 +34,7 @@ export default function Credits() {
 
   // Criadores
   add([
-    text("Criadores:", {
+    text("Contribuidores:", {
       size: sectionTitleSize,
       width: width(),
       align: "center",
@@ -36,15 +43,30 @@ export default function Credits() {
     anchor("center"),
   ]);
 
-  add([
-    text("- Igor (Coder, art creator)", {
-      size: textSize,
-      width: width(),
-      align: "center",
-    }),
-    pos(width() / 2, marginTop + spacing * 2),
-    anchor("center"),
-  ]);
+  const creators = [
+    "Igor (Creator, Coder)",
+    "Luminnum (Art Creator, Contributor)"
+  ];
+
+  creators.forEach((creator, index) => {
+    add([
+      text(creator, {
+        size: textSize,
+        width: width(),
+        align: "center",
+      }),
+      area(),
+      pos(width() / 2, marginTop + spacing * (2 + index)),
+      anchor("center"),
+      "creator-"+index
+    ]);
+    onClick("creator-0", () => {
+       window.open("https://www.instagram.com/notigorwastaken")
+    })
+    onClick("creator-1", () => {
+       window.open("https://www.roblox.com/groups/32974679/luminnum")
+    })
+  });
 
   // Músicas
   add([
@@ -53,38 +75,49 @@ export default function Credits() {
       width: width(),
       align: "center",
     }),
-    pos(width() / 2, marginTop + spacing * 3),
+    pos(width() / 2, marginTop + spacing * (2 + creators.length)),
     anchor("center"),
   ]);
-
-  const musicCredits = [
-    "20190724 - Mac Demarco",
-    "20190724 2 - Mac Demarco",
-    "20210511 - Mac Demarco",
-    "20210616 - Mac Demarco",
-  ];
-
-  musicCredits.forEach((credit, index) => {
-    add([
-      text(credit, {
-        size: textSize,
-        width: width(),
-        align: "center",
-      }),
-      pos(width() / 2, marginTop + spacing * (4 + index)),
-      anchor("center"),
-    ]);
-  });
-
-  // Créditos ao Kaboom.js
   add([
-    text("Criado com Kaboom.js", {
-      size: sectionTitleSize,
+    text("20190724 - Mac Demarco", {
+      size: 14,
       width: width(),
       align: "center",
     }),
-    pos(width() / 2, marginTop + spacing * (4 + musicCredits.length)),
-    anchor("center"),
+    pos(0, 140),
+  ]);
+  add([
+    text("20190724 2 - Mac Demarco", {
+      size: 14,
+      width: width(),
+      align: "center",
+    }),
+    pos(0, 160),
+  ]);
+  add([
+    text("20210511 - Mac Demarco", {
+      size: 14,
+      width: width(),
+      align: "center",
+    }),
+    pos(0, 180),
+  ]);
+  add([
+    text("20210616 - Mac Demarco", {
+      size: 14,
+      width: width(),
+      align: "center",
+    }),
+    pos(0, 200),
+  ]);
+  add([
+    text("Criado com Kaboom.js", {
+      //smh
+      size: 20,
+      width: width(),
+      align: "center",
+    }),
+    pos(0, 230),
     area(),
     "kaboomgit",
   ]);
@@ -92,21 +125,24 @@ export default function Credits() {
   // Voltar botão
   add([
     text("Voltar", {
-      size: textSize,
-      width: width(),
+      size: 15,
+      width: width() - padding * 2,
     }),
-    pos(10, height() - 30),
+    pos(padding, height() - padding - 15),
     area(),
-    "voltar",
+    "backbtn",
   ]);
 
-  onClick("kaboomgit", () => {
-    window.open("https://github.com/replit/kaboom");
-  });
-
-  onClick("voltar", () => {
+  onClick("backbtn", () => {
     go("menu");
   });
+
+  onClick("kaboomgit", () => {
+    window.open("https://kaplayjs.com/");
+  });
+  
+  onKeyPress("space", () => go("menu"))
+  onKeyPress("enter", () => go("menu"))
 
   // Background stars
   for (let i = 0; i < 50; i++) {
@@ -118,6 +154,7 @@ export default function Credits() {
       rotate(rand(0, 360)),
       "stars",
       z(0.5),
+      layer("bg")
     ]);
   }
 }

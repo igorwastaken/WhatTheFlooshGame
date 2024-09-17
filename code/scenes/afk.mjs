@@ -1,6 +1,11 @@
 import kaboom from "kaboom";
 
 export default function AFK(v) {
+  let back = add([
+      sprite("background", {width: width(), height: height()}),
+      layer("bg"),
+      fixed(),
+  ]);
   function spawnRect() {
     const recta = add([
       pos(rand(width()), height()),

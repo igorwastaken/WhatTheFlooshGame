@@ -1,83 +1,105 @@
 import kaboom from "kaboom";
 
-export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="normal") {
+export default async function Game(velocity=0.5, spawn=1, coinsSpawn=1, difficulty="normal", impulso=1, slowmode=true) {
+    const padding = 20;
     var currentScore = 0;
     var currentCoins = 0;
     var SPEED = 400;
 
+    let back = add([
+      sprite("background", {width: width(), height: height()}),
+      layer("bg"),
+      fixed(),
+    ]);
+    
     const player = add([
         sprite(localStorage.getItem("skin")),
         pos(mousePos().x, 0),
         area(),
         body(),
         offscreen({
-            destroy: true
+            destroy: false,
+            distance: 0
         }),
         z(1),
-        scale(0.7),
-        "player"
-    ]);
-
-    const score = add([
-        text(currentScore, {
-            size: 18
-        }),
-        pos(40, 43),
-        area(),
-        "score"
+        scale(0.3),
+        "player",
+        layer("game")
     ]);
 
     add([
-        sprite("coin"),
-        pos(10, 10),
-        z(3),
-        scale(0.1)
-    ]);
-
-    add([
-        sprite("clock"),
-        pos(10, 40),
-        z(3),
-        scale(0.3)
+      sprite("coin"),
+      pos(padding, padding),
+      z(3),
+      scale(0.25),
+      fixed()
     ]);
 
     const coins = add([
-        text(currentCoins, {
-            size: 18
-        }),
-        pos(40, 13),
-        area()
+      text(currentCoins, {
+          size: 18
+      }),
+      pos(padding + 30, padding + 3),
+      area(),
+      fixed()
+     ]);
+
+    add([
+      sprite("clock"),
+      pos(padding, padding + 30),
+      z(3),
+      scale(0.3),
+      fixed()
     ]);
 
+const score = add([
+    text(currentScore, {
+        size: 18
+    }),
+    pos(padding + 30, padding + 35),
+    area(),
+    "score",
+    fixed()
+]);
+
+
     player.onUpdate(() => {
-        if (player.pos.y < 300) {
-            player.move(0, 200);
-        }
-    });
+    if (player.pos.y < 100) {
+        player.move(0, 200);
+    }
 
+    if (velocity >= 1.5) {
+        velocity += 0.0001;
+    } else if(velocity >= 5) {} else {
+        velocity += 0.5;
+    }
+});
+
+    
     onTouchMove((_, pos) => {
-        player.moveTo(pos.clientX, player.pos.y);
-    });
+    player.moveTo(pos.clientX, player.pos.y, 500);
+});
 
-    onMouseMove((pos) => {
-        player.moveTo(pos.x, player.pos.y);
-    });
+onMouseMove((pos) => {
+    player.moveTo(pos.x, player.pos.y, 10);
+});
 
-    onKeyDown('left', () => {
-        player.move(-SPEED, 0);
-    });
+onKeyDown('left', () => {
+    player.move(-SPEED, 0);
+});
 
-    onKeyDown('right', () => {
-        player.move(SPEED, 0);
-    });
+onKeyDown('right', () => {
+    player.move(SPEED, 0);
+});
 
-    onGamepadButtonDown('dpad-left', () => {
-        player.move(-SPEED, 0);
-    });
+onGamepadButtonDown('dpad-left', () => {
+    player.move(-SPEED, 0);
+});
 
-    onGamepadButtonDown('dpad-right', () => {
-        player.move(SPEED, 0);
-    });
+onGamepadButtonDown('dpad-right', () => {
+    player.move(SPEED, 0);
+});
+
 
     function spawnRect() {
         const recta = add([
@@ -92,7 +114,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             "Rect"
         ]);
         onUpdate(() => {
-            recta.move(0, rand(-150, -100) * (velocity / spawn));
+            recta.move(0, rand(-150, -100) * (velocity / spawn) * impulso);
         });
         wait(rand(0.1, 0.2) * spawn, spawnRect);
         recta.onUpdate(() => {
@@ -102,12 +124,38 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             }
         });
     }
-
+    
+    function spawnImpulso() {
+       const recta = add([
+            pos(rand(width()), height()),
+            sprite("impulse"),
+            z(3),
+            scale(0.15),
+            outline(2),
+            area(),
+            color(),
+            offscreen({
+                destroy: true
+            }),
+            "impulso"
+        ]);
+        onUpdate(() => {
+           // recta.rotateBy(100);
+            recta.move(0, rand(-150, -100) * (velocity / spawn) * impulso);
+        });
+        wait(rand(10, 60) * spawn, spawnImpulso);
+        recta.onUpdate(() => {
+            if (recta.pos.y > height()) {
+                destroy(recta);
+                addKaboom(recta.pos);
+            }
+        });
+    }
     function spawnCoins() {
         const recta = add([
             pos(rand(width()), height()),
             sprite("coin"),
-            scale(0.15),
+            scale(0.3),
             area(),
             offscreen({
                 destroy: true,
@@ -115,7 +163,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             "Coins",
         ]);
         onUpdate(() => {
-            recta.move(0, rand(-150, -100) * velocity);
+            recta.move(0, rand(-150, -100) * velocity * impulso);
         });
         wait(rand(0.5, 1.5) * coinsSpawn, spawnCoins);
         recta.onUpdate(() => {
@@ -141,7 +189,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             scale(rand(0.5, 0.8))
         ]);
         onUpdate(() => {
-            recta.move(0, -150 * (velocity));
+            recta.move(0, -200 * (velocity) * impulso);
         });
         wait(rand(0.9, 2) / spawn, spawnRedRect);
         recta.onUpdate(() => {
@@ -166,7 +214,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             "Rectred",
         ]);
         onUpdate(() => {
-            recta.move(rand(200, 50) * velocity, -120 * velocity);
+            recta.move(rand(200, 50) * velocity * impulso, -120 * velocity * impulso);
         });
         wait(rand(2, 7) / spawn, spawnPlanes);
         recta.onUpdate(() => {
@@ -191,7 +239,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             rotate(rand(0, 360)),
         ]);
         onUpdate(() => {
-            recta.move(0, rand(-100, -50));
+            recta.move(0, rand(-100, -50) * velocity * impulso);
         });
         wait(rand(0.4, 1), spawnStars);
     }
@@ -200,7 +248,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
         const recta = add([
             pos(rand(width()), height()),
             sprite("cloud"),
-            scale(0.3),
+            scale(0.5),
             area(),
             offscreen({
                 destroy: true,
@@ -209,7 +257,7 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             z(rand(0, 2)),
         ]);
         onUpdate(() => {
-            recta.move(rand(-100, -50) * velocity, -150 * velocity);
+            recta.move(rand(-100, -50) * velocity * impulso, -150 * velocity * impulso);
         });
         wait(0.6, spawnClouds);
         recta.onUpdate(() => {
@@ -219,14 +267,35 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
             }
         });
     }
-
+    player.onCollide("impulso", (imp) => {
+        destroy(imp)
+        impulso += 14
+        wait(1, spawnClouds);
+        wait(0.5, spawnRedRect);
+        wait(1, spawnStars);
+        
+    })
+    player.onUpdate((imp) => {
+         
+         console.log(impulso)
+         if(impulso > 1.8) {
+             currentScore += 50
+             shake(0.5)
+             
+             impulso -= 0.5;
+         } else {
+             
+         }
+    })
     spawnClouds();
     spawnRedRect();
+    wait(20, spawnImpulso);
     spawnStars();
     wait(1, spawnCoins);
     wait(1, spawnPlanes);
 
     player.onCollide("Rectred", (re) => {
+        if(impulso >= 1.8) return;
         const kaaboom = addKaboom(player.pos);
         kaaboom.move(0, -150);
         if (localStorage.getItem("muted") === 0) burp();
@@ -283,7 +352,8 @@ export default function Game(velocity=1, spawn=1, coinsSpawn=1, difficulty="norm
         }
         destroy(c);
         play("coin", {
-            volume: localStorage.getItem("qt") === "true" ? 100 : 1,
+            volume: 0.7,
+            detune: randi(0, 1.5) * 100
         });
     });
 }

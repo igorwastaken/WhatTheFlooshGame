@@ -6,16 +6,32 @@ function formatCompactNumber(number) {
 }
 
 export default function Stats() {
+  let back = add([
+      sprite("background", {width: width(), height: height()}),
+      layer("bg"),
+      fixed(),
+  ]);
+  const padding = 20;
   const maxScoreEasy = formatCompactNumber(localStorage.getItem("score.easy"));
   const maxScoreNormal = formatCompactNumber(localStorage.getItem("score.normal"));
   const maxScoreHard = formatCompactNumber(localStorage.getItem("score.hard"));
 
   // Constantes para tamanhos e espaçamentos
-  const titleSize = 26;
+  const titleSize = 20;
   const textSize = 14;
   const spacing = 30;
-  const marginTop = height() / 3.4;
-
+  const marginTop = height() * 0.4;
+  // Titulo jogo
+  add([
+    text(`What The Floosh Game`, {
+      size: 24,
+      width: width(),
+      align: "center",
+    }),
+    pos(width() / 2, height() * 0.3),
+    anchor("center"),
+    z(3),
+  ]);
   // Título Pontos
   add([
     text("Pontos:", {
@@ -63,9 +79,10 @@ export default function Stats() {
   // Botão Voltar
   add([
     text("Voltar", {
-      size: textSize,
+      size: 15,
+      width: width() - padding * 2,
     }),
-    pos(10, height() - 30),
+    pos(padding, height() - padding - 15),
     area(),
     "backbtn",
   ]);
@@ -73,7 +90,9 @@ export default function Stats() {
   onClick("backbtn", () => {
     go("menu");
   });
-
+  onKeyPress("space", () => go("menu"))
+  onKeyPress("enter", () => go("menu"))
+  
   // Background stars
   for (let i = 0; i < 50; i++) {
     add([
@@ -84,6 +103,7 @@ export default function Stats() {
       rotate(rand(0, 360)),
       "stars",
       z(0.5),
+      layer("bg")
     ]);
   }
 }
