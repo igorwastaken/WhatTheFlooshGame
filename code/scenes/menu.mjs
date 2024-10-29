@@ -10,7 +10,7 @@ function formatCompactNumber(number) {
 export default function MainMenu() {
   const padding = 20; // Define o valor do padding
   const maxScore = formatCompactNumber(localStorage.getItem("score"));
-
+  
   var afkTimeout = 0;
   var selectedButtonIndex = 0;
   let back = add([
@@ -158,7 +158,30 @@ add([
     area(),
     "settings",
   ]);*/
+  function spawnSnowflake() {
+    const snowflake = add([
+      pos(rand(0, width()), 0), // Começa no topo da tela em uma posição horizontal aleatória
+      rect(4, 4), // Cada floco é um quadrado branco de 4x4 pixels (você pode mudar o tamanho)
+      color(255, 255, 255), // Cor branca para os flocos de neve
+      opacity(0.8), // Transparência para suavizar o visual
+      move(DOWN, rand(20, 60)), // Velocidade vertical aleatória para cada floco
+      "snowflake",
+    ]);
 
+    // Anima o floco para que ele também tenha movimento horizontal leve
+    snowflake.onUpdate(() => {
+      snowflake.move(rand(-1, 1), 0); // Move um pouco para a esquerda ou direita para um efeito mais natural
+      if (snowflake.pos.y > height()) {
+        snowflake.pos.y = 0; // Reposiciona o floco no topo ao sair da tela
+        snowflake.pos.x = rand(0, width());
+      }
+    });
+  }
+
+  // Configura um loop para gerar novos flocos de neve constantemente
+  loop(0.1, () => {
+    spawnSnowflake();
+  });
   spawnClouds();
   var clicked = 0;
   onClick("ee", () => {
@@ -168,7 +191,7 @@ add([
       // window.open("https://apenasigordev.github.io/FastPungentFactors/");
     }
   });
-
+ 
   onClick("settings", () => {
     go("settings");
     play("ui:click");
