@@ -81,7 +81,7 @@ const score = add([
 });
 
 onMouseMove((pos) => {
-    player.moveTo(pos.x, player.pos.y, 10);
+    player.moveTo(pos.x, player.pos.y);
 });
 
 onKeyDown('left', () => {
