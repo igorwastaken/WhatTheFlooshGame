@@ -81,7 +81,7 @@ export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, di
     });
 
     onMouseMove((pos) => {
-        player.moveTo(pos.x, player.pos.y, 10);
+        player.moveTo(pos.x, player.pos.y);
     });
 
     onKeyDown('left', () => {
