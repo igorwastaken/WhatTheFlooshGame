@@ -1,17 +1,17 @@
 import kaboom from "kaboom";
 
-export default async function Game(velocity=0.5, spawn=1, coinsSpawn=1, difficulty="normal", impulso=1, slowmode=true) {
+export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, difficulty = "normal", impulso = 1, slowmode = true) {
     const padding = 20;
     var currentScore = 0;
     var currentCoins = 0;
     var SPEED = 400;
 
     let back = add([
-      sprite("background", {width: width(), height: height()}),
-      layer("bg"),
-      fixed(),
+        sprite("background", { width: width(), height: height() }),
+        layer("bg"),
+        fixed(),
     ]);
-    
+
     const player = add([
         sprite(localStorage.getItem("skin")),
         pos(mousePos().x, 0),
@@ -28,77 +28,77 @@ export default async function Game(velocity=0.5, spawn=1, coinsSpawn=1, difficul
     ]);
 
     add([
-      sprite("coin"),
-      pos(padding, padding),
-      z(3),
-      scale(0.25),
-      fixed()
+        sprite("coin"),
+        pos(padding, padding),
+        z(3),
+        scale(0.25),
+        fixed()
     ]);
 
     const coins = add([
-      text(currentCoins, {
-          size: 18
-      }),
-      pos(padding + 30, padding + 3),
-      area(),
-      fixed()
-     ]);
-
-    add([
-      sprite("clock"),
-      pos(padding, padding + 30),
-      z(3),
-      scale(0.3),
-      fixed()
+        text(currentCoins, {
+            size: 18
+        }),
+        pos(padding + 30, padding + 3),
+        area(),
+        fixed()
     ]);
 
-const score = add([
-    text(currentScore, {
-        size: 18
-    }),
-    pos(padding + 30, padding + 35),
-    area(),
-    "score",
-    fixed()
-]);
+    add([
+        sprite("clock"),
+        pos(padding, padding + 30),
+        z(3),
+        scale(0.3),
+        fixed()
+    ]);
+
+    const score = add([
+        text(currentScore, {
+            size: 18
+        }),
+        pos(padding + 30, padding + 35),
+        area(),
+        "score",
+        fixed()
+    ]);
 
 
     player.onUpdate(() => {
-    if (player.pos.y < 100) {
-        player.move(0, 200);
-    }
+        if (player.pos.y < 100) {
+            player.move(0, 200);
+        }
 
-    if (velocity >= 1.5) {
-        velocity += 0.0001;
-    } else if(velocity >= 5) {} else {
-        velocity += 0.5;
-    }
-});
+        if (velocity >= 1.5) {
+            velocity += 0.0001;
+        } else if (velocity >= 5) { } else {
+            velocity += 0.5;
+        }
+    });
 
-    
+
     onTouchMove((_, pos) => {
-    player.moveTo(pos.clientX, player.pos.y, 500);
-});
+        player.moveTo(pos.clientX, player.pos.y, 500);
+    });
 
-onMouseMove((pos) => {
-    player.moveTo(pos.x, player.pos.y);
-});
+    onMouseMove((pos) => {
+        player.moveTo(pos.x, player.pos.y, 10);
+    });
 
-onKeyDown('left', () => {
-    player.move(-SPEED, 0);
-});
+    onKeyDown('left', () => {
+        player.move(-SPEED, 0);
+    });
 
-onKeyDown('right', () => {
-    player.move(SPEED, 0);
-});
+    onKeyDown('right', () => {
+        player.move(SPEED, 0);
+    });
 
-onGamepadButtonDown('dpad-left', () => {
-    player.move(-SPEED, 0);
-});
+    onGamepadButtonDown('dpad-left', () => {
+        player.move(-SPEED, 0);
+    });
 
-onGamepadButtonDown('dpad-right', () => {
-    player.move(SPEED, 0);
-});
+    onGamepadButtonDown('dpad-right', () => {
+        player.move(SPEED, 0);
+    });
 
 
     function spawnRect() {
@@ -124,9 +124,9 @@ onGamepadButtonDown('dpad-right', () => {
             }
         });
     }
-    
+
     function spawnImpulso() {
-       const recta = add([
+        const recta = add([
             pos(rand(width()), height()),
             sprite("impulse"),
             z(3),
@@ -140,7 +140,7 @@ onGamepadButtonDown('dpad-right', () => {
             "impulso"
         ]);
         onUpdate(() => {
-           // recta.rotateBy(100);
+            // recta.rotateBy(100);
             recta.move(0, rand(-150, -100) * (velocity / spawn) * impulso);
         });
         wait(rand(10, 60) * spawn, spawnImpulso);
@@ -273,19 +273,19 @@ onGamepadButtonDown('dpad-right', () => {
         wait(1, spawnClouds);
         wait(0.5, spawnRedRect);
         wait(1, spawnStars);
-        
+
     })
     player.onUpdate((imp) => {
-         
-         console.log(impulso)
-         if(impulso > 1.8) {
-             currentScore += 50
-             shake(0.5)
-             
-             impulso -= 0.5;
-         } else {
-             
-         }
+
+        console.log(impulso)
+        if (impulso > 1.8) {
+            currentScore += 50
+            shake(0.5)
+
+            impulso -= 0.5;
+        } else {
+
+        }
     })
     spawnClouds();
     spawnRedRect();
@@ -295,7 +295,7 @@ onGamepadButtonDown('dpad-right', () => {
     wait(1, spawnPlanes);
 
     player.onCollide("Rectred", (re) => {
-        if(impulso >= 1.8) return;
+        if (impulso >= 1.8) return;
         const kaaboom = addKaboom(player.pos);
         kaaboom.move(0, -150);
         if (localStorage.getItem("muted") === 0) burp();

@@ -10,15 +10,16 @@ import Difficulty from "./scenes/difficulty.mjs";
 import Settings from "./scenes/settings.mjs";
 import Stats from "./scenes/stats.mjs";
 
+const canvas = document.getElementById("gamecanvas")
 // Initialize kaboom context
 
-kaboom({
+const k = kaboom({
     global: true,
     width: window.innerWidth,
     height: window.innerHeight,
     fullscreen: true,
     background: [16, 52, 175],
-    canvas: document.getElementById("gamecanvas"),
+    canvas,
     loadingScreen: false,
     font: "pixellari",
     crisp: true,
@@ -31,18 +32,18 @@ onLoading((progress) => {
         color: rgb(16, 52, 175),
     })
     drawText({
-		text: "What The Floosh Game",
-		font: "pixellari",
-		size: 24,
-		anchor: "center",
-		pos: center().add(0, 70),
-	})
+        text: "What The Floosh Game",
+        font: "pixellari",
+        size: 24,
+        anchor: "center",
+        pos: center().add(0, 70),
+    })
     drawText({
         text: "Criado com Kaplay.js",
         font: "pixellari",
         size: 20,
         anchor: "center",
-        pos: center().add(0,120)
+        pos: center().add(0, 120)
     })
 })
 
@@ -92,7 +93,9 @@ const assets = {
         "instagram": "./sprites/icons/instagram.png",
         "settings": "./sprites/icons/settings.png",
         "cl:AL": "./sprites/icons/Cl-AL.png",
-        "background": "./sprites/elements/bg.png"
+        "background": "./sprites/elements/bg.png",
+        "pointer": "./sprites/icons/cursor_pointer.png",
+        "like": "./sprites/icons/like.png"
     },
     sounds: {
         "20190724-old": "./sounds/20190724.mp3",
@@ -105,6 +108,7 @@ const assets = {
         "20210511": "./sounds/20210511.mp3",
         "coin": "./sounds/ui/retro-game-coin-pickup-jam-fx-1-00-03.mp3",
         "ui:click": "./sounds/ui/click.mp3",
+        "powerup": "./sounds/ui/click.mp3",
     }
 };
 
@@ -147,6 +151,212 @@ const musicConfig = {
         volume: 0
     })
 };
+const setBackground = (bg = "#e9967a") => {
+    const curBg = k.getBackground();
+    if (!curBg) k.setBackground(bg);
+
+    if (!bg || bg == curBg) return;
+
+    let t = 0;
+    const bgLerp = k.onUpdate(() => {
+        if (t == 1) {
+            bgLerp.cancel();
+            return;
+        }
+
+        t = Math.min(t + k.dt() * 0.5, 1);
+        k.setBackground(k.lerp(k.getBackground(), k.rgb(bg), t));
+    });
+
+    return bgLerp;
+};
+
+scene("block-example-1", async () => {
+    if (volume() == 0) canvas?.classList.remove("pointer-events-none");
+
+    onSceneLeave(() => {
+        if (k.volume() == 0) canvas?.classList.add("pointer-events-none");
+    });
+
+    const bgLerp = setBackground("#e9967a");
+
+    // debug.log("Press (B) button to burp!");
+
+    const circlePointer = add([
+        anchor("center"),
+        pos(k.center().sub(0, 26)),
+        circle(186, { fill: true }),
+        color("#ffac85"),
+        scale(0),
+        {
+            add() {
+                this.inner = this.add([
+                    k.anchor("center"),
+                    k.pos(0),
+                    k.circle(100),
+                    k.color(k.WHITE),
+                    k.outline(38, k.rgb("#a32858")),
+                    k.scale(1),
+                ]);
+            },
+        },
+    ]);
+
+    const pointer = circlePointer.add([
+        anchor("center"),
+        sprite("pointer"),
+        scale(0),
+        rotate(60),
+    ]);
+
+    const like = circlePointer.add([
+        anchor("center"),
+        sprite("like"),
+        scale(0),
+        rotate(60),
+    ]);
+
+    const bubble = add([
+        anchor("center"),
+        pos(center().add(0, circlePointer.inner.radius - 24)),
+        rect(Math.min(380, width() - 60), 80, { radius: 12 }),
+        color(WHITE),
+        outline(4, BLACK),
+        scale(0),
+    ]);
+
+    const texto = bubble.add([
+        anchor("center"),
+        pos(0),
+        text(`${isTouchscreen() ? "Tap" : "Click"} to enable sound!`, {
+            size: 24,
+            width: bubble.width - 60,
+            align: "center",
+        }),
+        k.color(k.BLACK),
+    ]);
+
+    tween(
+        circlePointer.scale,
+        k.vec2(1),
+        0.33,
+        (v) => circlePointer.scale = v,
+        easings.easeOutBack,
+    );
+    tween(
+        pointer.angle,
+        0,
+        0.4,
+        (v) => pointer.angle = v,
+        k.easings.easeOutBack,
+    );
+    k.tween(
+        pointer.scale,
+        k.vec2(3),
+        0.5,
+        (v) => pointer.scale = v,
+        k.easings.easeOutBack,
+    );
+
+    if (!k.volume()) {
+        await k.wait(0.05);
+        await k.tween(
+            bubble.scale,
+            k.vec2(1),
+            0.55,
+            (v) => bubble.scale = v,
+            k.easings.easeOutBack,
+        );
+
+        circlePointer.use(k.animate());
+        circlePointer.animate(
+            "scale",
+            [k.vec2(1), k.vec2(0.88), k.vec2(1)],
+            {
+                duration: 6,
+                easing: k.easings.easeInOutQuad,
+            },
+        );
+    }
+    else {
+       /* await k.wait(0.5);
+        await onSoundEnabled();*/
+    }
+
+    async function onSoundEnabled() {
+        if (k.volume() == 0) {
+            k.volume(1);
+        }
+
+        k.play("powerup", { detune: 400, volume: 0.6 });
+
+        k.tween(
+            pointer.scale,
+            k.vec2(0),
+            0.33,
+            (v) => pointer.scale = v,
+            k.easings.easeOutQuad,
+        );
+        k.tween(
+            bubble.scale,
+            k.vec2(0),
+            0.33,
+            (v) => bubble.scale = v,
+            k.easings.easeOutQuad,
+        );
+        k.tween(
+            like.angle,
+            0,
+            0.4,
+            (v) => like.angle = v,
+            k.easings.easeOutBack,
+        );
+        k.tween(
+            like.scale,
+            k.vec2(3),
+            0.5,
+            (v) => like.scale = v,
+            k.easings.easeOutBack,
+        );
+        k.tween(
+            circlePointer.pos,
+            k.center(),
+            0.33,
+            (v) => circlePointer.pos = v,
+            k.easings.easeOutQuad,
+        );
+
+        circlePointer.unuse("animate");
+        k.tween(
+            circlePointer.inner.scale,
+            k.vec2(1.2),
+            0.55,
+            (v) => circlePointer.inner.scale = v,
+            k.easings.easeOutBack,
+        );
+        k.tween(
+            circlePointer.inner.outline.color,
+            k.rgb("#abdd64"),
+            0.55,
+            (v) => circlePointer.inner.outline.color = v,
+            k.easings.easeOutBack,
+        );
+        k.tween(
+            circlePointer.color,
+            k.rgb("#6bc96c"),
+            0.55,
+            (v) => circlePointer.color = v,
+            k.easings.easeOutBack,
+        );
+
+        bgLerp?.cancel();
+        setBackground("#5ba675");
+
+        setTimeout(() => go("warning"), 2000)
+    }
+
+    k.onClick(onSoundEnabled);
+});
 
 // Scene definitions
 scene("game:easy", () => {
@@ -218,25 +428,25 @@ scene("stats", () => {
 
 scene("loading", () => {
     drawText({
-		text: "What The Floosh Game",
-		font: "pixellari",
-		size: 24,
-		anchor: "center",
-		pos: center().add(0, 70),
-	})
+        text: "What The Floosh Game",
+        font: "pixellari",
+        size: 24,
+        anchor: "center",
+        pos: center().add(0, 70),
+    })
     drawText({
         text: "Criado com Kaplay.js",
         font: "pixellari",
         size: 20,
         anchor: "center",
-        pos: center().add(0,120)
+        pos: center().add(0, 120)
     })
     setCursor("none");
     var progress = 0;
     const interval = setInterval(() => {
         progress++;
         if (progress > 99) {
-            go("warning");
+            go("block-example-1");
             clearInterval(interval);
         }
     }, rand(0.4, 1));
@@ -253,13 +463,13 @@ scene("warning", () => {
     // showUpdateNotice();
     const padding = 20;
     let back = add([
-      sprite("background", {width: width(), height: height()}),
-      layer("bg"),
-      fixed(),
+        sprite("background", { width: width(), height: height() }),
+        layer("bg"),
+        fixed(),
     ]);
     const player = add([
         sprite("bean"),
-        pos(20,20),
+        pos(20, 20),
         area(),
         body(),
         offscreen({
@@ -274,53 +484,53 @@ scene("warning", () => {
     onClick(() => go("menu"))
     onKeyPress(() => go("menu"))
     onTouchMove((_, pos) => {
-      player.moveTo(pos.clientX, pos.clientY);
+        player.moveTo(pos.clientX, pos.clientY);
     });
 
     onMouseMove((pos) => {
-      player.moveTo(pos.x, pos.y);
+        player.moveTo(pos.x, pos.y);
     });
     add([
-      text(`What The Floosh Game`, {
-        size: 30,
-        width: width() - padding * 2, // Reduz a largura do texto pelo padding
-        align: "center",
-      }),
-      pos(width() / 2, height() * 0.5 - padding), // Ajusta a posição vertical pelo padding
-      anchor("center"),
-      z(3),
+        text(`What The Floosh Game`, {
+            size: 30,
+            width: width() - padding * 2, // Reduz a largura do texto pelo padding
+            align: "center",
+        }),
+        pos(width() / 2, height() * 0.5 - padding), // Ajusta a posição vertical pelo padding
+        anchor("center"),
+        z(3),
     ]);
     add([
-      text(`Criado com kaplay.js`, {
-        size: 24,
-        width: width() - padding * 2, // Reduz a largura do texto pelo padding
-        align: "center",
-      }),
-      pos(width() / 2, height() * 0.6 - padding), // Ajusta a posição vertical pelo padding
-      anchor("center"),
-      z(3),
+        text(`Criado com kaplay.js`, {
+            size: 24,
+            width: width() - padding * 2, // Reduz a largura do texto pelo padding
+            align: "center",
+        }),
+        pos(width() / 2, height() * 0.6 - padding), // Ajusta a posição vertical pelo padding
+        anchor("center"),
+        z(3),
     ]);
     add([
-      text(`Clique qualquer canto para iniciar`, {
-        size: 18,
-        width: width() - padding * 2, // Reduz a largura do texto pelo padding
-        align: "center",
-      }),
-      pos(width() / 2, height() * 1 - padding), // Ajusta a posição vertical pelo padding
-      anchor("center"),
-      z(3),
+        text(`Clique qualquer canto para iniciar`, {
+            size: 18,
+            width: width() - padding * 2, // Reduz a largura do texto pelo padding
+            align: "center",
+        }),
+        pos(width() / 2, height() * 1 - padding), // Ajusta a posição vertical pelo padding
+        anchor("center"),
+        z(3),
     ]);
     for (let i = 0; i < 50; i++) {
-      add([
-        sprite("star"),
-        area(),
-        pos(rand(width()), rand(height())),
-        scale(rand(0.1, 0.3)),
-        rotate(rand(0, 360)),
-        "stars",
-        z(0.5),
-        layer("bg")
-      ]);
+        add([
+            sprite("star"),
+            area(),
+            pos(rand(width()), rand(height())),
+            scale(rand(0.1, 0.3)),
+            rotate(rand(0, 360)),
+            "stars",
+            z(0.5),
+            layer("bg")
+        ]);
     }
 });
 var oldScene = undefined;
@@ -426,10 +636,10 @@ function showUpdateNotice() {
 
 }
 layers([
-"bg",
-"game",
-"ui"
+    "bg",
+    "game",
+    "ui"
 ], "game")
-go("loading");
+go("block-example-1");
 
 debug.inspect = window.location.hash === "#debug";
