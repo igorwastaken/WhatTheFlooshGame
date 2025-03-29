@@ -177,9 +177,9 @@ add([
   }
 
   // Configura um loop para gerar novos flocos de neve constantemente
-  loop(0.1, () => {
+  /*loop(0.1, () => {
     spawnSnowflake();
-  });
+  });*/
   spawnClouds();
   var clicked = 0;
   onClick("ee", () => {

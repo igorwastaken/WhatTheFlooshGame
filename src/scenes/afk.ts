@@ -7,7 +7,7 @@ export default function AFK(v) {
   function spawnRect() {
     const recta = add([
       pos(rand(width()), height()),
-      circle(5, 5),
+      circle(5),
       outline(2),
       area(),
       offscreen({

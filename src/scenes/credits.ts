@@ -27,7 +27,7 @@ export default function Credits() {
   ]);
 
   onHoverEnd("devBtn", () => {
-    go("devOptions");
+  //  go("devOptions");
   });
 
   // Criadores

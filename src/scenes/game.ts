@@ -34,7 +34,7 @@ export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, di
     ]);
 
     const coins = add([
-        text(currentCoins, {
+        text(currentCoins.toString(), {
             size: 18
         }),
         pos(padding + 30, padding + 3),
@@ -51,13 +51,20 @@ export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, di
     ]);
 
     const score = add([
-        text(currentScore, {
+        text(currentScore.toString(), {
             size: 18
         }),
         pos(padding + 30, padding + 35),
         area(),
         "score",
-        fixed()
+        fixed(),
+        {
+            styles: {
+                "green": {
+                    color: rgb(128,128,255)
+                }
+            }
+        }
     ]);
 
 
@@ -273,16 +280,12 @@ export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, di
         wait(1, spawnStars);
 
     })
-    player.onUpdate((imp) => {
-
-        console.log(impulso)
+    player.onUpdate(() => {
         if (impulso > 1.8) {
             currentScore += 50
             shake(0.5)
 
             impulso -= 0.5;
-        } else {
-
         }
     })
     spawnClouds();
@@ -296,7 +299,7 @@ export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, di
         if (impulso >= 1.8) return;
         const kaaboom = addKaboom(player.pos);
         kaaboom.move(0, -150);
-        if (localStorage.getItem("muted") === 0) burp();
+        if (localStorage.getItem("muted") === "0") burp();
         shake(50);
         burp();
         destroy(player);
@@ -316,36 +319,36 @@ export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, di
 
     player.onCollide("Rect", (c) => {
         currentScore++;
-        score.text = currentScore;
-        if (currentScore > localStorage.getItem("score")) {
-            localStorage.setItem("score", currentScore);
-            score.color = GREEN;
+        score.text = currentScore.toString();
+        if (currentScore.toString() > localStorage.getItem("score")) {
+            localStorage.setItem("score", currentScore.toString());
+            score.text = `[green]${currentScore}[/green]`
         }
         destroy(c);
     });
 
     player.onUpdate(() => {
         currentScore++;
-        score.text = currentScore;
-        if (currentScore > localStorage.getItem("score." + difficulty)) {
-            localStorage.setItem("score." + difficulty, currentScore);
-            score.color = GREEN;
+        score.text = currentScore.toString();
+        if (currentScore > parseInt(localStorage.getItem("score." + difficulty))) {
+            localStorage.setItem("score." + difficulty, currentScore.toString());
+            ;
         }
     });
 
     player.onCollide("Coins", (c) => {
         currentCoins++;
-        coins.text = currentCoins;
+        coins.text = currentCoins.toString();
 
         if (localStorage.getItem("qt") === "true") {
             localStorage.setItem(
                 "coins",
-                Math.floor(localStorage.getItem("coins")) * 100,
+                Math.floor(parseInt(localStorage.getItem("coins")) * 100).toString(),
             );
         } else {
             localStorage.setItem(
                 "coins",
-                Math.floor(localStorage.getItem("coins")) + 1,
+                Math.floor(parseInt(localStorage.getItem("coins")) + 1).toString(),
             );
         }
         destroy(c);

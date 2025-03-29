@@ -20,9 +20,8 @@ const k = kaboom({
     width: window.innerWidth,
     height: window.innerHeight,
     background: [16, 52, 175],
-    loadingScreen: false,
-    font: "pixellari",
-    crisp: true,
+    loadingScreen: true,
+    font: "pixellari"
 });
 loadSprite("cursor", "sprites/cursor/default.png");
 const MOUSE_VEL = 200;
@@ -57,7 +56,6 @@ onLoading((progress) => {
     })
 })
 
-setFullscreen(!isFullscreen())
 // Initialize localStorage defaults
 const defaultSettings = {
     "score.easy": 0,
@@ -649,5 +647,3 @@ setLayers([
     "ui"
 ], "game")
 go("block-example-1");
-
-debug.inspect = window.location.hash === "#debug";
