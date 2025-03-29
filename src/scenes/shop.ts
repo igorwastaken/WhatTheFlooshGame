@@ -1,5 +1,3 @@
-import kaboom from "kaboom";
-
 const items = [
   {
     sprite: "bean",
@@ -30,7 +28,7 @@ const items = [
 
 export default function Shop() {
   // Get current coins from local storage or set to 0 if not available
-  const coins = parseInt(localStorage.getItem("coins") || "0");
+  const coins = parseInt(localStorage.getItem("coins") || '0');
 
   items.map((item, index) => {
     const i = add([
@@ -44,7 +42,7 @@ export default function Shop() {
     onClick(item.name, () => {
       if (coins >= item.price) {
         localStorage.setItem("skin", item.sprite);
-        localStorage.setItem("coins", coins - item.price); // Deduct coins
+        localStorage.setItem("coins", (coins - item.price).toString()); // Deduct coins
         alert(`Você comprou ${item.name} por ${item.price} moedas.`);
         go("menu");
       } else {

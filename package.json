@@ -1,0 +1,19 @@
+{
+	"name": "wtfl",
+	"type": "module",
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite --host",
+		"preview": "vite preview",
+		"zip": "npm run build && mkdir -p dist && zip -r dist/game.zip dist -x \"**/.DS_Store\"",
+		"check": "tsc"
+	},
+	"dependencies": {
+		"kaplay": "^4000.0.0-alpha.17"
+	},
+	"devDependencies": {
+		"@types/node": "^22.13.13",
+		"typescript": "^5.8.2",
+		"vite": "^6.2.3"
+	}
+}

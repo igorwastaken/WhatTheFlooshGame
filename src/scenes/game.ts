@@ -1,5 +1,3 @@
-import kaboom from "kaboom";
-
 export default async function Game(velocity = 0.5, spawn = 1, coinsSpawn = 1, difficulty = "normal", impulso = 1, slowmode = true) {
     const padding = 20;
     var currentScore = 0;

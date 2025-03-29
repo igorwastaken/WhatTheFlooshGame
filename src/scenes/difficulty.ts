@@ -1,5 +1,3 @@
-import kaboom from "kaboom";
-
 export default function Difficulty() {
   let back = add([
       sprite("background", {width: width(), height: height()}),
@@ -34,7 +32,7 @@ export default function Difficulty() {
     anchor("center"),
     z(2),
   ]);
-  const titleHeight = title.textHeight;
+  const titleHeight = title.height;
 
   // Add difficulty options
   const buttons = [

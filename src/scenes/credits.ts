@@ -1,5 +1,3 @@
-import kaboom from "kaboom";
-
 export default function Credits() {
   let back = add([
     sprite("background", {width: width(), height: height()}),

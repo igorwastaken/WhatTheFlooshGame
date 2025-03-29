@@ -1,5 +1,3 @@
-import kaboom from "kaboom";
-
 export default function Settings() {
   const padding = 20;
   add([text("Em breve..."), pos(20, 20)]);

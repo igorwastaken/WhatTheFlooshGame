@@ -1,6 +1,3 @@
-// import 'kaboom/global'
-import kaboom from "kaboom";
-
 export default function DevOptions() {
   add([
     text("Página do desenvolvedor", {

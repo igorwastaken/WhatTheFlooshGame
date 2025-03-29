@@ -1,14 +1,16 @@
-import kaboom from "kaboom";
-import Game from "./scenes/game.mjs";
-import NewGame from "./scenes/newGame.mjs";
-import Menu from "./scenes/menu.mjs";
-import Credits from "./scenes/credits.mjs";
-import Dev from "./scenes/devScreen.mjs";
-import Shop from "./scenes/shop.mjs";
-import AFK from "./scenes/afk.mjs";
-import Difficulty from "./scenes/difficulty.mjs";
-import Settings from "./scenes/settings.mjs";
-import Stats from "./scenes/stats.mjs";
+import kaboom from "kaplay";
+import { Color } from "kaplay";
+import 'kaplay/global'
+import Game from "./scenes/game.js";
+import Menu from "./scenes/menu.js";
+import Credits from "./scenes/credits.js";
+import Dev from "./scenes/devScreen.js";
+import Shop from "./scenes/shop.js";
+import AFK from "./scenes/afk.js";
+import Difficulty from "./scenes/difficulty.js";
+import Settings from "./scenes/settings.js";
+import Stats from "./scenes/stats.js";
+import { CSSColor } from "kaplay/dist/declaration/math/color.js";
 
 const canvas = document.getElementById("gamecanvas")
 // Initialize kaboom context
@@ -17,13 +19,21 @@ const k = kaboom({
     global: true,
     width: window.innerWidth,
     height: window.innerHeight,
-    fullscreen: true,
     background: [16, 52, 175],
-    canvas,
     loadingScreen: false,
     font: "pixellari",
     crisp: true,
 });
+loadSprite("cursor", "sprites/cursor/default.png");
+const MOUSE_VEL = 200;
+
+const cursor = add([
+    sprite("cursor"), // sprite
+    pos(),
+    fakeMouse({
+        followMouse: true, // disable if you want
+    }),
+]);
 
 onLoading((progress) => {
     drawRect({
@@ -63,7 +73,7 @@ const defaultSettings = {
 
 for (const [key, value] of Object.entries(defaultSettings)) {
     if (!localStorage.getItem(key)) {
-        localStorage.setItem(key, value);
+        localStorage.setItem(key, value.toString());
     }
 }
 
@@ -151,21 +161,28 @@ const musicConfig = {
         volume: 0
     })
 };
-const setBackground = (bg = "#e9967a") => {
-    const curBg = k.getBackground();
-    if (!curBg) k.setBackground(bg);
+const setBackground = (bg: string | Color): any => {
+    let currentBg = k.getBackground();
 
-    if (!bg || bg == curBg) return;
+    // Converte currentBg para Color se necessário
+    if (typeof currentBg === "string") {
+        currentBg = k.rgb(currentBg);
+    }
+
+    const targetColor: Color = typeof bg === "string" ? k.rgb(bg) : bg;
+
+    if (!targetColor || currentBg === targetColor) return;
 
     let t = 0;
+    const speedFactor = 1.0; // Aumente esse valor para transições mais rápidas
     const bgLerp = k.onUpdate(() => {
-        if (t == 1) {
+        if (t >= 1) {
             bgLerp.cancel();
             return;
         }
-
-        t = Math.min(t + k.dt() * 0.5, 1);
-        k.setBackground(k.lerp(k.getBackground(), k.rgb(bg), t));
+        // Incrementa t com um fator maior para acelerar a troca de cor
+        t = Math.min(t + k.dt() * speedFactor, 1);
+        k.setBackground(k.lerp(currentBg, targetColor, t));
     });
 
     return bgLerp;
@@ -178,7 +195,8 @@ scene("block-example-1", async () => {
         if (k.volume() == 0) canvas?.classList.add("pointer-events-none");
     });
 
-    const bgLerp = setBackground("#e9967a");
+    const bgLerp = setBackground("salmon");
+    var inner;
 
     // debug.log("Press (B) button to burp!");
 
@@ -186,11 +204,11 @@ scene("block-example-1", async () => {
         anchor("center"),
         pos(k.center().sub(0, 26)),
         circle(186, { fill: true }),
-        color("#ffac85"),
+        color("lightsalmon"),
         scale(0),
         {
             add() {
-                this.inner = this.add([
+                inner = this.add([
                     k.anchor("center"),
                     k.pos(0),
                     k.circle(100),
@@ -200,6 +218,7 @@ scene("block-example-1", async () => {
                 ]);
             },
         },
+        animate()
     ]);
 
     const pointer = circlePointer.add([
@@ -218,11 +237,12 @@ scene("block-example-1", async () => {
 
     const bubble = add([
         anchor("center"),
-        pos(center().add(0, circlePointer.inner.radius - 24)),
+        pos(center().add(0, circlePointer.radius - 24)),
         rect(Math.min(380, width() - 60), 80, { radius: 12 }),
         color(WHITE),
         outline(4, BLACK),
         scale(0),
+        animate()
     ]);
 
     const texto = bubble.add([
@@ -268,7 +288,7 @@ scene("block-example-1", async () => {
             k.easings.easeOutBack,
         );
 
-        circlePointer.use(k.animate());
+        // circlePointer.use(k.animate());
         circlePointer.animate(
             "scale",
             [k.vec2(1), k.vec2(0.88), k.vec2(1)],
@@ -328,17 +348,17 @@ scene("block-example-1", async () => {
 
         circlePointer.unuse("animate");
         k.tween(
-            circlePointer.inner.scale,
+            inner.scale,
             k.vec2(1.2),
             0.55,
-            (v) => circlePointer.inner.scale = v,
+            (v) => inner.scale = v,
             k.easings.easeOutBack,
         );
         k.tween(
-            circlePointer.inner.outline.color,
+            inner.outline.color,
             k.rgb("#abdd64"),
             0.55,
-            (v) => circlePointer.inner.outline.color = v,
+            (v) => inner.outline.color = v,
             k.easings.easeOutBack,
         );
         k.tween(
@@ -350,7 +370,7 @@ scene("block-example-1", async () => {
         );
 
         bgLerp?.cancel();
-        setBackground("#5ba675");
+        setBackground(k.rgb("#5ba675"));
 
         setTimeout(() => go("warning"), 2000)
     }
@@ -381,47 +401,37 @@ scene("game:impossible", () => {
 
 scene("settings", () => {
     Settings();
-    setCursor("default");
 });
 
 scene("afk", () => {
     configureMusic("menu");
-    setCursor("none");
     AFK(1);
 });
 
 scene("difficulty", () => {
-    setCursor("default");
     Difficulty();
 });
 
 scene("devOptions", () => {
-    setCursor("default");
     Dev();
 });
 
 scene("menu", () => {
     configureMusic("menu");
-    setCursor("default");
-    document.getElementById("gamecanvas").style.width = "100%";
-    document.getElementById("gamecanvas").style.height = "100%";
     Menu();
 });
 
 scene("credits", () => {
-    setCursor("default");
     configureMusic("credits");
     Credits();
 });
 
 scene("shop", () => {
-    setCursor("default");
     configureMusic("credits");
     Shop();
 });
 
 scene("stats", () => {
-    setCursor("default");
     configureMusic("stats");
     Stats();
 });
@@ -441,7 +451,6 @@ scene("loading", () => {
         anchor: "center",
         pos: center().add(0, 120)
     })
-    setCursor("none");
     var progress = 0;
     const interval = setInterval(() => {
         progress++;
@@ -453,7 +462,6 @@ scene("loading", () => {
 });
 
 scene("warning", () => {
-    setCursor("default");
     configureMusic("menu")
     /*if (!localStorage.getItem("language")) {
       showLanguageSelection();
@@ -536,7 +544,7 @@ scene("warning", () => {
 var oldScene = undefined;
 
 function configureMusic(scene) {
-    if (localStorage.getItem("settings:muted") == 0) {
+    if (localStorage.getItem("settings:muted") == '0') {
         if (oldScene !== undefined) musicConfig[oldScene].volume = 0;
         if (oldScene !== scene) musicConfig[scene].play();
         musicConfig[scene].volume = 1;
@@ -635,7 +643,7 @@ function showUpdateNotice() {
     });
 
 }
-layers([
+setLayers([
     "bg",
     "game",
     "ui"

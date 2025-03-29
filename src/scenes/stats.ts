@@ -1,5 +1,3 @@
-import kaboom from "kaboom";
-
 function formatCompactNumber(number) {
   const formatter = Intl.NumberFormat("en-US", { notation: "compact" });
   return formatter.format(Number(number));
