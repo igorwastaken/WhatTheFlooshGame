@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<!-- ============================== -->
+	<!--  What The Floosh Game          -->
+	<!--  HaxeFlixel Port               -->
+	<!-- ============================== -->
+
+	<meta title="What The Floosh Game" package="com.igorwastaken.wtfl" version="1.0.0" company="igorwastaken" />
+
+	<app main="Main" path="export" file="WhatTheFloosh" />
+
+	<window width="480" height="640" fps="60" background="#1034AF" hardware="true" vsync="true" />
+	<window if="desktop" width="480" height="640" />
+
+	<source path="source" />
+
+	<haxelib name="flixel" />
+	<haxelib name="flixel-addons" />
+	<haxelib name="flixel-ui" />
+
+	<assets path="assets/images" rename="images" include="*" />
+	<assets path="assets/sounds" rename="sounds" include="*" if="!web" />
+	<assets path="assets/sounds" rename="sounds" include="*" if="web" />
+	<assets path="assets/data" rename="data" include="*" />
+
+	<define name="FLX_NO_KEYBOARD" unless="desktop" />
+
+</project>

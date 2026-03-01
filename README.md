@@ -1,35 +1,134 @@
-# What The Floosh Game
+# What The Floosh Game — HaxeFlixel Port
 
-**What The Floosh Game** é um jogo no qual o jogador navega por entre estrelas e outros obstáculos, buscando alcançar um destino final — mesmo que este seja, na verdade, inexistente. O objetivo principal é acumular o máximo de pontos, evitando colisões com as estrelas e demais barreiras presentes no percurso.
-
-## Previews
-
-A seguir, são apresentadas imagens ilustrativas do jogo:
-
-![Preview 1](screenshots/preview1.png)  
-![Preview 2](screenshots/preview2.png)
-
-## Sobre este Repositório
-
-Este repositório tem como finalidade centralizar o desenvolvimento do jogo e fomentar a colaboração da comunidade. Contribuições para identificação de bugs, vulnerabilidades e sugestões de aprimoramento são extremamente bem-vindas, contribuindo para o contínuo desenvolvimento e evolução do projeto.
-
-## Funcionalidades Implementadas
-
-- **Obstáculos Otimizados:** Implementação de obstáculos redesenhados para proporcionar desafios adequados ao jogador.
-- **Aprimoramento na Jogabilidade:** Melhorias na fluidez e responsividade, visando uma experiência de jogo mais satisfatória.
-- **Sons de Interface:** Inclusão de efeitos sonoros para enriquecer a imersão do usuário.
-- **Melhorias Gerais:** Diversas atualizações que elevam a performance e a usabilidade do jogo.
-
-## Funcionalidades em Desenvolvimento
-
-- **Configurações:** Desenvolvimento de um sistema de opções que permita a personalização da experiência do usuário.
-- **Sistema de Ranking:** Criação de um mecanismo para registro e comparação das pontuações dos jogadores.
-
-## Contribuição
-
-Contribuições são fundamentais para o aperfeiçoamento contínuo deste projeto. Caso identifique algum bug, vulnerabilidade ou possua sugestões de melhoria, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+Port do jogo original em Kaplay.js para **HaxeFlixel**.
 
 ---
 
-### Desenvolvido com
-![Kaplay banner](/public/branding/kaplay-logo-dino.BP3dHtLX.webp)
+## Estrutura do Projeto
+
+```
+wtfl-haxe/
+├── Project.xml              ← Configuração OpenFL/Lime
+├── source/
+│   ├── Main.hx              ← Entry-point (abre o FlxGame)
+│   ├── Reg.hx               ← Registro global + save data (FlxSave)
+│   ├── states/
+│   │   ├── MenuState.hx     ← Menu principal
+│   │   ├── DifficultyState.hx
+│   │   ├── PlayState.hx     ← Loop de gameplay principal ★
+│   │   ├── GameOverState.hx
+│   │   ├── CreditsState.hx
+│   │   ├── StatsState.hx
+│   │   └── AfkState.hx
+│   └── objects/
+│       ├── Player.hx        ← Bean controlado pelo mouse
+│       ├── Obstacle.hx      ← Rockets e UFOs
+│       ├── Coin.hx          ← Moedas coletáveis
+│       ├── StarField.hx     ← Estrelas de fundo estáticas
+│       ├── CloudSpawner.hx  ← Nuvens com scroll
+│       └── ParticleExplosion.hx ← Explosão de morte
+├── assets/
+│   ├── fonts/
+│   │   └── Pixellari.ttf   ← Copie do projeto original
+│   ├── images/              ← Copie os PNGs do projeto original
+│   │   ├── bean.png
+│   │   ├── rocket.png  (rocket.png / rocket2.png / rocket3.png)
+│   │   ├── ufo.png
+│   │   ├── coin.png
+│   │   ├── cloud.png
+│   │   └── ...
+│   └── sounds/              ← Copie os arquivos de áudio (converta para .ogg)
+│       ├── coin.ogg
+│       └── burp.ogg
+```
+
+---
+
+## Pré-requisitos
+
+```bash
+# 1. Instale o Haxe (https://haxe.org/download/)
+# 2. Instale as libs via haxelib
+haxelib install flixel
+haxelib install flixel-addons
+haxelib install flixel-ui
+haxelib run lime setup         # instala OpenFL / Lime
+```
+
+---
+
+## Como Compilar
+
+```bash
+cd wtfl-haxe
+
+# Desktop (nativo — recomendado para desenvolvimento)
+lime test neko
+lime test hl         # HashLink (mais rápido)
+lime test cpp        # C++ nativo (produção)
+
+# HTML5 (navegador)
+lime test html5
+
+# Modo debug com HaxeFlixel debugger
+lime test neko -debug
+```
+
+---
+
+## Mapeamento do Original → Port
+
+| Kaplay (JS/TS)                     | HaxeFlixel (Haxe)                        |
+|------------------------------------|------------------------------------------|
+| `kaboom({ ... })`                  | `new FlxGame(480, 640, MenuState)`       |
+| `scene("menu", () => Menu())`      | `MenuState extends FlxState`             |
+| `scene("game:normal", () => ...)`  | `PlayState` + `Reg.selectedDifficulty`   |
+| `add([sprite("bean"), ...])`       | `new Player("bean")` (FlxSprite)         |
+| `onMouseMove(pos => player...)`    | `FlxG.mouse.x` no `update()`            |
+| `localStorage`                     | `FlxSave` (Reg.hx)                       |
+| `tween(obj, target, time, cb)`     | `FlxTween.tween(obj, {prop: val}, time)` |
+| `onCollide("Rectred", cb)`         | `FlxG.overlap(player, obstacles, cb)`    |
+| `play("coin")`                     | `FlxG.sound.play("assets/sounds/...")`   |
+| `addKaboom(pos)`                   | `ParticleExplosion` (FlxEmitter)         |
+
+---
+
+## Parâmetros de Dificuldade (Idênticos ao Original)
+
+| Dificuldade | velocity | spawn | coinsSpawn |
+|-------------|----------|-------|------------|
+| Fácil       | 1.0      | 0.5   | 1.0        |
+| Normal      | 0.5      | 1.0   | 0.4        |
+| Difícil     | 3.0      | 6.0   | 1.2        |
+| Impossível  | 2.0      | 3.0   | 2.0        |
+
+---
+
+## Assets
+
+Os assets gráficos e sonoros **não estão incluídos** por questões de direitos autorais.
+Copie-os do projeto original:
+
+- `public/sprites/**/*.png` → `assets/images/`
+- `public/sounds/**/*.mp3|wav` → `assets/sounds/` (converta para `.ogg` com ffmpeg)
+- `public/fonts/Pixellari.ttf` → `assets/fonts/`
+
+```bash
+# Converter áudio para .ogg (requer ffmpeg)
+ffmpeg -i 20190724-Remake.wav  -c:a libvorbis game_music.ogg
+ffmpeg -i coin.mp3             -c:a libvorbis coin.ogg
+```
+
+---
+
+## Fallback Procedural
+
+Quando os assets **não são encontrados**, o jogo usa sprites desenhados
+proceduralmente em código (pixel-by-pixel), garantindo que o jogo rode
+mesmo sem os arquivos de imagem. Isso é tratado nos `catch` de cada classe em `objects/`.
+
+---
+
+## Licença
+
+Port desenvolvido como exercício. O jogo original pertence a **igorwastaken**.
